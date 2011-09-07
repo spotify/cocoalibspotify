@@ -89,12 +89,12 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 
 	if ((self = [super init])) {
 		
-		if (aSession != nil && [tracks count] > 0 && [user length] > 0) {
+		if (aSession != nil && [tracksToSend count] > 0 && [user length] > 0) {
 			
 			self.session = aSession;
 			self.destinationUser = user;
 			self.message = aFriendlyGreeting;
-			self.tracks = tracks;
+			self.tracks = tracksToSend;
 			self.delegate = completionDelegate;
 			
 			
