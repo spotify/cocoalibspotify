@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 44;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0518F5420D5F2B430026C7DC /* CoCAAudioDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518F53C0D5F2B430026C7DC /* CoCAAudioDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0518F5430D5F2B430026C7DC /* CoCAAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518F53D0D5F2B430026C7DC /* CoCAAudioDevice.m */; };
+		0518F5440D5F2B430026C7DC /* CoCAAudioHardwareSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518F53E0D5F2B430026C7DC /* CoCAAudioHardwareSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0518F5450D5F2B430026C7DC /* CoCAAudioHardwareSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518F53F0D5F2B430026C7DC /* CoCAAudioHardwareSystem.m */; };
+		0518F5470D5F2B430026C7DC /* PrivateUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518F5410D5F2B430026C7DC /* PrivateUtil.h */; };
+		0518F54B0D5F2B720026C7DC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518F54A0D5F2B720026C7DC /* CoreAudio.framework */; };
+		0518F5550D5F2BAA0026C7DC /* NCCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518F5530D5F2BAA0026C7DC /* NCCommon.h */; };
+		0518F5560D5F2BAA0026C7DC /* NCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518F5540D5F2BAA0026C7DC /* NCCommon.m */; };
+		0518F55B0D5F2C050026C7DC /* CoCAAudioUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518F5590D5F2C050026C7DC /* CoCAAudioUnit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0518F55C0D5F2C050026C7DC /* CoCAAudioUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518F55A0D5F2C050026C7DC /* CoCAAudioUnit.m */; };
+		0518F5730D5F2FEE0026C7DC /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518F5720D5F2FEE0026C7DC /* AudioUnit.framework */; };
+		0518F5BA0D5F83260026C7DC /* CoCA.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518F5B90D5F83260026C7DC /* CoCA.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0518F5C00D5F835A0026C7DC /* CoCA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CoCA.framework */; };
+		05B14BBF0D606D270020BE0C /* CoCATest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B14BA40D606C870020BE0C /* CoCATest.m */; };
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0518F5DE0D5F86810026C7DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = CoCA;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0518F53C0D5F2B430026C7DC /* CoCAAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCAAudioDevice.h; sourceTree = "<group>"; };
+		0518F53D0D5F2B430026C7DC /* CoCAAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCAAudioDevice.m; sourceTree = "<group>"; };
+		0518F53E0D5F2B430026C7DC /* CoCAAudioHardwareSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCAAudioHardwareSystem.h; sourceTree = "<group>"; };
+		0518F53F0D5F2B430026C7DC /* CoCAAudioHardwareSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCAAudioHardwareSystem.m; sourceTree = "<group>"; };
+		0518F5410D5F2B430026C7DC /* PrivateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateUtil.h; sourceTree = "<group>"; };
+		0518F54A0D5F2B720026C7DC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
+		0518F5530D5F2BAA0026C7DC /* NCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCCommon.h; sourceTree = "<group>"; };
+		0518F5540D5F2BAA0026C7DC /* NCCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCCommon.m; sourceTree = "<group>"; };
+		0518F5590D5F2C050026C7DC /* CoCAAudioUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCAAudioUnit.h; sourceTree = "<group>"; };
+		0518F55A0D5F2C050026C7DC /* CoCAAudioUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCAAudioUnit.m; sourceTree = "<group>"; };
+		0518F5720D5F2FEE0026C7DC /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = /System/Library/Frameworks/AudioUnit.framework; sourceTree = "<absolute>"; };
+		0518F5AD0D5F82D70026C7DC /* CoCATest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CoCATest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0518F5B90D5F83260026C7DC /* CoCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCA.h; sourceTree = "<group>"; };
+		05B14BA40D606C870020BE0C /* CoCATest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCATest.m; sourceTree = "<group>"; };
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* CoCA_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCA_Prefix.pch; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* CoCA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoCA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0518F5AB0D5F82D70026C7DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0518F5C00D5F835A0026C7DC /* CoCA.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+				0518F54B0D5F2B720026C7DC /* CoreAudio.framework in Frameworks */,
+				0518F5730D5F2FEE0026C7DC /* AudioUnit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* CoCA.framework */,
+				0518F5AD0D5F82D70026C7DC /* CoCATest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0518F53B0D5F2B430026C7DC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0518F53C0D5F2B430026C7DC /* CoCAAudioDevice.h */,
+				0518F53D0D5F2B430026C7DC /* CoCAAudioDevice.m */,
+				0518F53E0D5F2B430026C7DC /* CoCAAudioHardwareSystem.h */,
+				0518F53F0D5F2B430026C7DC /* CoCAAudioHardwareSystem.m */,
+				0518F5410D5F2B430026C7DC /* PrivateUtil.h */,
+				0518F5590D5F2C050026C7DC /* CoCAAudioUnit.h */,
+				0518F55A0D5F2C050026C7DC /* CoCAAudioUnit.m */,
+				0518F5B90D5F83260026C7DC /* CoCA.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* CoCA */ = {
+			isa = PBXGroup;
+			children = (
+				0518F53B0D5F2B430026C7DC /* Source */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = CoCA;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				0518F5720D5F2FEE0026C7DC /* AudioUnit.framework */,
+				0518F54A0D5F2B720026C7DC /* CoreAudio.framework */,
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C1665FE841158C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0518F5530D5F2BAA0026C7DC /* NCCommon.h */,
+				0518F5540D5F2BAA0026C7DC /* NCCommon.m */,
+				32DBCF5E0370ADEE00C91783 /* CoCA_Prefix.pch */,
+				05B14BA40D606C870020BE0C /* CoCATest.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0518F5420D5F2B430026C7DC /* CoCAAudioDevice.h in Headers */,
+				0518F5440D5F2B430026C7DC /* CoCAAudioHardwareSystem.h in Headers */,
+				0518F5470D5F2B430026C7DC /* PrivateUtil.h in Headers */,
+				0518F5550D5F2BAA0026C7DC /* NCCommon.h in Headers */,
+				0518F55B0D5F2C050026C7DC /* CoCAAudioUnit.h in Headers */,
+				0518F5BA0D5F83260026C7DC /* CoCA.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0518F5AC0D5F82D70026C7DC /* CoCATest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0518F5B60D5F82E10026C7DC /* Build configuration list for PBXNativeTarget "CoCATest" */;
+			buildPhases = (
+				0518F5AA0D5F82D70026C7DC /* Sources */,
+				0518F5AB0D5F82D70026C7DC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0518F5DF0D5F86810026C7DC /* PBXTargetDependency */,
+			);
+			name = CoCATest;
+			productName = CoCATest;
+			productReference = 0518F5AD0D5F82D70026C7DC /* CoCATest */;
+			productType = "com.apple.product-type.tool";
+		};
+		8DC2EF4F0486A6940098B216 /* CoCA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CoCA" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoCA;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = CoCA;
+			productReference = 8DC2EF5B0486A6940098B216 /* CoCA.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "CoCA" */;
+			compatibilityVersion = "Xcode 3.0";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* CoCA */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* CoCA */,
+				0518F5AC0D5F82D70026C7DC /* CoCATest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0518F5AA0D5F82D70026C7DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05B14BBF0D606D270020BE0C /* CoCATest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0518F5430D5F2B430026C7DC /* CoCAAudioDevice.m in Sources */,
+				0518F5450D5F2B430026C7DC /* CoCAAudioHardwareSystem.m in Sources */,
+				0518F5560D5F2BAA0026C7DC /* NCCommon.m in Sources */,
+				0518F55C0D5F2C050026C7DC /* CoCAAudioUnit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0518F5DF0D5F86810026C7DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* CoCA */;
+			targetProxy = 0518F5DE0D5F86810026C7DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0518F5AF0D5F82D70026C7DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CoCA_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = CoCATest;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		0518F5B00D5F82D70026C7DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CoCA_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = CoCATest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CoCA_Prefix.pch;
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				PRODUCT_NAME = CoCA;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CoCA_Prefix.pch;
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				PRODUCT_NAME = CoCA;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0518F5B60D5F82E10026C7DC /* Build configuration list for PBXNativeTarget "CoCATest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0518F5AF0D5F82D70026C7DC /* Debug */,
+				0518F5B00D5F82D70026C7DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CoCA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "CoCA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
