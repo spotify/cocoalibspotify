@@ -282,6 +282,9 @@
 /* Begin PBXProject section */
 		50AF49D31439CBFE00E4A5EF /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 50AF49D61439CBFE00E4A5EF /* Build configuration list for PBXProject "CocoaLibSpotify iOS Library" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -388,6 +391,8 @@
 				DSTROOT = /tmp/CocoaLibSpotify_iOS_Library.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CocoaLibSpotify iOS Library-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/libspotify-10.1.16-iOS-universal/libspotify.framework/Versions/10.1.16\"",
@@ -406,6 +411,8 @@
 				DSTROOT = /tmp/CocoaLibSpotify_iOS_Library.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CocoaLibSpotify iOS Library-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/libspotify-10.1.16-iOS-universal/libspotify.framework/Versions/10.1.16\"",
