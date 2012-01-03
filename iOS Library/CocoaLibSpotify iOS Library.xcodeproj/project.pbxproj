@@ -51,6 +51,8 @@
 		50AF4A981439CF8600E4A5EF /* SPTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A781439CF8600E4A5EF /* SPTrack.m */; };
 		50AF4A991439CF8600E4A5EF /* SPUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AF4A791439CF8600E4A5EF /* SPUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AF4A9A1439CF8600E4A5EF /* SPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A7A1439CF8600E4A5EF /* SPUser.m */; };
+		50DE7F55147E833D005403A9 /* SPPlaylistInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DE7F54147E833D005403A9 /* SPPlaylistInternal.h */; };
+		50DE7F58147E834D005403A9 /* SPTrackInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DE7F57147E834D005403A9 /* SPTrackInternal.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +101,8 @@
 		50AF4A781439CF8600E4A5EF /* SPTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPTrack.m; path = ../common/SPTrack.m; sourceTree = "<group>"; };
 		50AF4A791439CF8600E4A5EF /* SPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPUser.h; path = ../common/SPUser.h; sourceTree = "<group>"; };
 		50AF4A7A1439CF8600E4A5EF /* SPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPUser.m; path = ../common/SPUser.m; sourceTree = "<group>"; };
+		50DE7F54147E833D005403A9 /* SPPlaylistInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaylistInternal.h; path = ../common/SPPlaylistInternal.h; sourceTree = "<group>"; };
+		50DE7F57147E834D005403A9 /* SPTrackInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPTrackInternal.h; path = ../common/SPTrackInternal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,7 @@
 			children = (
 				50AF4A341439CC5200E4A5EF /* Metadata */,
 				50AF4A671439CF8600E4A5EF /* SPPlaylist.h */,
+				50DE7F54147E833D005403A9 /* SPPlaylistInternal.h */,
 				50AF4A681439CF8600E4A5EF /* SPPlaylist.m */,
 				50AF4A691439CF8600E4A5EF /* SPPlaylistContainer.h */,
 				50AF4A6A1439CF8600E4A5EF /* SPPlaylistContainer.m */,
@@ -214,6 +219,7 @@
 				50AF4A731439CF8600E4A5EF /* SPSession.h */,
 				50AF4A741439CF8600E4A5EF /* SPSession.m */,
 				50AF4A771439CF8600E4A5EF /* SPTrack.h */,
+				50DE7F57147E834D005403A9 /* SPTrackInternal.h */,
 				50AF4A781439CF8600E4A5EF /* SPTrack.m */,
 				50AF4A791439CF8600E4A5EF /* SPUser.h */,
 				50AF4A7A1439CF8600E4A5EF /* SPUser.m */,
@@ -253,6 +259,8 @@
 				509840251460442600C0FC18 /* SPCommon.h in Headers */,
 				509840291460444100C0FC18 /* SPPlaylistItem.h in Headers */,
 				5098402B1460444100C0FC18 /* SPPlaylistItemInternal.h in Headers */,
+				50DE7F55147E833D005403A9 /* SPPlaylistInternal.h in Headers */,
+				50DE7F58147E834D005403A9 /* SPTrackInternal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

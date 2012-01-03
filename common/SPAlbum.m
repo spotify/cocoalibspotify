@@ -38,12 +38,18 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @interface SPAlbum ()
 
-@property (readwrite) sp_album *album;
-@property (readwrite, retain) SPSession *session;
-@property (readwrite, retain) SPImage *cover; 
-@property (readwrite, retain) SPArtist *artist;
-@property (readwrite, copy) NSURL *spotifyURL;
+@property (nonatomic, readwrite) sp_album *album;
+@property (nonatomic, readwrite, retain) SPSession *session;
+@property (nonatomic, readwrite, retain) SPImage *cover; 
+@property (nonatomic, readwrite, retain) SPArtist *artist;
+@property (nonatomic, readwrite, copy) NSURL *spotifyURL;
+@property (nonatomic, readwrite, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readwrite, getter=isAvailable) BOOL available;
+@property (nonatomic, readwrite, copy) NSString *name;
+@property (nonatomic, readwrite) sp_albumtype type;
+@property (nonatomic, readwrite) NSUInteger year;
 
+-(void)checkLoaded;
 -(void)loadAlbumData;
 
 @end
@@ -99,26 +105,20 @@ static NSMutableDictionary *albumCache;
             self.spotifyURL = [NSURL urlWithSpotifyLink:link];
             sp_link_release(link);
         }
-        
-        if (!sp_album_is_loaded(album)) {
-            [self performSelector:@selector(checkLoaded)
-                       withObject:nil
-                       afterDelay:.25];
-        } else {
-            [self loadAlbumData];
-        }
+		
+        [self checkLoaded];
     }
     return self;
 }
 
 -(void)checkLoaded {
-    BOOL loaded = sp_album_is_loaded(album);
-    if (!loaded) {
+    BOOL isLoaded = sp_album_is_loaded(album);
+    if (!isLoaded) {
         [self performSelector:_cmd
                    withObject:nil
                    afterDelay:.25];
     } else {
-        [self loadAlbumData];        
+        [self loadAlbumData];
     }
 }
 
@@ -135,18 +135,18 @@ static NSMutableDictionary *albumCache;
         [self setArtist:[SPArtist artistWithArtistStruct:spArtist]];
     }
     
-    // Fire KVO notifications
-    [self willChangeValueForKey:@"year"];
-    [self didChangeValueForKey:@"year"];
-    
-    [self willChangeValueForKey:@"type"];
-    [self didChangeValueForKey:@"type"];
-    
-    [self willChangeValueForKey:@"name"];
-    [self didChangeValueForKey:@"name"];
-    
-    [self willChangeValueForKey:@"available"];
-    [self didChangeValueForKey:@"available"];
+	const char *nameCharArray = sp_album_name(album);
+    if (nameCharArray != NULL) {
+        NSString *nameString = [NSString stringWithUTF8String:nameCharArray];
+        self.name = [nameString length] > 0 ? nameString : nil;
+    } else {
+        self.name = nil;
+    }
+
+	self.year = sp_album_year(album);
+	self.type = sp_album_type(album);
+	self.available = sp_album_is_available(album);
+	self.loaded = sp_album_is_loaded(album);
 }
 
 -(NSString *)description {
@@ -159,34 +159,16 @@ static NSMutableDictionary *albumCache;
 @synthesize artist;
 @synthesize spotifyURL;
 
--(BOOL)isAvailable {
-    return (BOOL)sp_album_is_available(album);
-}
-
--(BOOL)isLoaded {
-    return (BOOL)sp_album_is_loaded(album);
-}
-
--(NSUInteger)year {
-    return (NSUInteger)sp_album_year(album);
-}
-
--(sp_albumtype)type {
-    return sp_album_type(album);
-}
-
--(NSString *)name {
-    const char *name = sp_album_name(album);
-    if (name != NULL) {
-        NSString *nameString = [NSString stringWithUTF8String:name];
-        return [nameString length] > 0 ? nameString : nil;
-    } else {
-        return nil;
-    }
-}
+@synthesize available;
+@synthesize loaded;
+@synthesize year;
+@synthesize type;
+@synthesize name;
 
 -(void)dealloc {
     
+	self.name = nil;
+	
     self.spotifyURL = nil;
     self.session = nil;
     [self setCover:nil];

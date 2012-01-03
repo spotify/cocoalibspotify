@@ -60,13 +60,13 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  C LibSpotify API. The behaviour of CocoaLibSpotify is undefined if you use the C
  API directly on items that have CocoaLibSpotify objects associated with them. 
  */
-@property (readonly, assign) sp_playlistcontainer *container;
+@property (nonatomic, readonly, assign) sp_playlistcontainer *container;
 
 /* Returns `YES` if the playlist container has loaded all playlist and folder data, otherwise `NO`. */
-@property (readonly, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
 
 /** Returns the owner of the playlist list. */
-@property (readonly, retain) SPUser *owner;
+@property (nonatomic, readonly, retain) SPUser *owner;
 
 /** Returns an array of SPPlaylist and/or SPPlaylistFolders representing the owner's playlists.
  
@@ -77,10 +77,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
  @see movePlaylistOrFolderAtIndex:ofParent:toIndex:ofNewParent:error:
 */
-@property (readonly) NSMutableArray *playlists;
+@property (nonatomic, readonly) NSMutableArray *playlists;
 
 /** Returns the session the list is loaded in. */
-@property (readonly, assign) __weak SPSession *session;
+@property (nonatomic, readonly, assign) __weak SPSession *session;
 
 ///----------------------------
 /// @name Working with Playlists and Folders

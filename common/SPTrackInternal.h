@@ -1,3 +1,8 @@
+//
+//  SPTrackInternal.h
+//  CocoaLibSpotify Mac Framework
+//
+//  Created by Daniel Kennett on 24/11/2011.
 /*
  Copyright (c) 2011, Spotify AB
  All rights reserved.
@@ -28,16 +33,9 @@
 #import <Foundation/Foundation.h>
 #import "CocoaLibSpotifyPlatformImports.h"
 
-@interface SPPlaylistItem (SPPlaylistItemInternal)
+@interface SPTrack (SPTrackInternal)
 
--(id)initWithPlaceholderTrack:(sp_track *)track atIndex:(int)itemIndex inPlaylist:(SPPlaylist *)aPlaylist;
-
--(void)setDateCreatedFromLibSpotify:(NSDate *)date;
--(void)setCreatorFromLibSpotify:(SPUser *)user;
--(void)setUnreadFromLibSpotify:(BOOL)unread;
--(void)setMessageFromLibSpotify:(NSString *)msg;
--(void)setItemIndexFromLibSpotify:(int)newIndex;
-
-@property (nonatomic, readonly) int itemIndex;
+-(void)setStarredFromLibSpotifyUpdate:(BOOL)starred;
+-(void)setOfflineStatusFromLibSpotifyUpdate:(sp_track_offline_status)status;
 
 @end

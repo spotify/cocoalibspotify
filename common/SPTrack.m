@@ -31,6 +31,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #import "SPTrack.h"
+#import "SPTrackInternal.h"
 #import "SPAlbum.h"
 #import "SPArtist.h"
 #import "SPSession.h"
@@ -40,11 +41,38 @@ static const NSTimeInterval kCheckLoadedDuration = .25;
 
 @interface SPTrack ()
 
+-(void)checkLoaded;
 -(void)loadTrackData;
 
-@property (readwrite, retain) SPAlbum *album;
-@property (readwrite, retain) NSArray *artists;
-@property (readwrite, copy) NSURL *spotifyURL;
+@property (nonatomic, readwrite, retain) SPAlbum *album;
+@property (nonatomic, readwrite, retain) NSArray *artists;
+@property (nonatomic, readwrite, copy) NSURL *spotifyURL;
+
+@property (nonatomic, readwrite) sp_track_availability availability;
+@property (nonatomic, readwrite, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readwrite) sp_track_offline_status offlineStatus;
+@property (nonatomic, readwrite) NSUInteger discNumber;
+@property (nonatomic, readwrite) NSTimeInterval duration;
+@property (nonatomic, readwrite, copy) NSString *name;
+@property (nonatomic, readwrite) NSUInteger popularity;
+@property (nonatomic, readwrite) NSUInteger trackNumber;
+@property (nonatomic, readwrite, getter = isLocal) BOOL local;
+
+@property (nonatomic, assign, readwrite) __weak SPSession *session;
+	
+@end
+
+@implementation SPTrack (SPTrackInternal)
+
+-(void)setStarredFromLibSpotifyUpdate:(BOOL)starred {
+	[self willChangeValueForKey:@"starred"];
+	_starred = starred;
+	[self didChangeValueForKey:@"starred"];
+}
+
+-(void)setOfflineStatusFromLibSpotifyUpdate:(sp_track_offline_status)status {
+	self.offlineStatus = status;
+}
 
 @end
 
@@ -60,17 +88,11 @@ static const NSTimeInterval kCheckLoadedDuration = .25;
 
 -(id)initWithTrackStruct:(sp_track *)tr inSession:(SPSession *)aSession {
     if ((self = [super init])) {
-        session = aSession;
+        self.session = aSession;
         track = tr;
         sp_track_add_ref(track);
         
-        if (!sp_track_is_loaded(track)) {
-            [self performSelector:@selector(checkLoaded)
-                       withObject:nil
-                       afterDelay:kCheckLoadedDuration];
-        } else {
-            [self loadTrackData];
-        }
+        [self checkLoaded];
     }   
     return self;
 }
@@ -80,8 +102,7 @@ static const NSTimeInterval kCheckLoadedDuration = .25;
 }
          
 -(void)checkLoaded {
-    BOOL loaded = sp_track_is_loaded(track);
-    if (!loaded) {
+    if (!sp_track_is_loaded(track)) {
         [self performSelector:_cmd
                    withObject:nil
                    afterDelay:kCheckLoadedDuration];
@@ -122,30 +143,23 @@ static const NSTimeInterval kCheckLoadedDuration = .25;
         }
     }
     
-    // Fire KVO notifications
-    [self willChangeValueForKey:@"trackNumber"];
-    [self didChangeValueForKey:@"trackNumber"];
-    
-    [self willChangeValueForKey:@"discNumber"];
-    [self didChangeValueForKey:@"discNumber"];
-    
-    [self willChangeValueForKey:@"popularity"];
-    [self didChangeValueForKey:@"popularity"];
-    
-    [self willChangeValueForKey:@"duration"];
-    [self didChangeValueForKey:@"duration"];
-    
-    [self willChangeValueForKey:@"name"];
-    [self didChangeValueForKey:@"name"];
-    
-    [self willChangeValueForKey:@"availableForPlayback"];
-    [self didChangeValueForKey:@"availableForPlayback"];
-    
-    [self willChangeValueForKey:@"starred"];
-    [self didChangeValueForKey:@"starred"];
+	self.local = sp_track_is_local(session.session, track);
+	self.trackNumber = sp_track_index(track);
+	self.discNumber = sp_track_disc(track);
+	self.popularity = sp_track_popularity(track);
+	self.duration = (NSTimeInterval)sp_track_duration(track) / 1000.0;
+	self.availability = sp_track_get_availability(self.session.session, track);
+	self.offlineStatus = sp_track_offline_get_status(track);
+	self.loaded = sp_track_is_loaded(track);
+	[self setStarredFromLibSpotifyUpdate:sp_track_is_starred(self.session.session, track)];
 	
-	[self willChangeValueForKey:@"loaded"];
-    [self didChangeValueForKey:@"loaded"];
+	const char *nameCharArray = sp_track_name(track);
+    if (nameCharArray != NULL) {
+        NSString *nameString = [NSString stringWithUTF8String:nameCharArray];
+        self.name = [nameString length] > 0 ? nameString : nil;
+    } else {
+        self.name = nil;
+    }
 }
 
 #pragma mark -
@@ -153,6 +167,17 @@ static const NSTimeInterval kCheckLoadedDuration = .25;
 
 @synthesize album;
 @synthesize artists;
+@synthesize trackNumber;
+@synthesize discNumber;
+@synthesize popularity;
+@synthesize duration;
+@synthesize availability;
+@synthesize offlineStatus;
+@synthesize loaded;
+@synthesize name;
+@synthesize session;
+@synthesize starred = _starred;
+@synthesize local;
 
 +(NSSet *)keyPathsForValuesAffectingConsolidatedArtists {
 	return [NSSet setWithObject:@"artists"];
@@ -165,50 +190,9 @@ static const NSTimeInterval kCheckLoadedDuration = .25;
 	return [[[self.artists valueForKey:@"name"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] componentsJoinedByString:@", "];
 }
 
--(NSUInteger)trackNumber {
-    return (NSUInteger)sp_track_index(track);
-}
-
--(NSUInteger)discNumber {
-    return (NSUInteger)sp_track_disc(track);
-}
-
--(NSUInteger)popularity {
-    return (NSUInteger)sp_track_popularity(track);
-}
-
--(NSTimeInterval)duration {
-    return (NSTimeInterval)(double)sp_track_duration(track) / 1000.0;
-}
-
--(NSString *)name {
-    const char *name = sp_track_name(track);
-    if (name != NULL) {
-        NSString *nameString = [NSString stringWithUTF8String:name];
-        return [nameString length] > 0 ? nameString : nil;
-    } else {
-        return nil;
-    }
-}
-
--(sp_track_availability)availability {
-    return sp_track_get_availability([session session], track);
-}
-
--(BOOL)isLoaded {
-	return sp_track_is_loaded(track);
-}
-
--(BOOL)starred {
-    return sp_track_is_starred([session session], track);
-}
-
 -(void)setStarred:(BOOL)starred {
     sp_track_set_starred([session session], (sp_track *const *)&track, 1, starred);
-}
-
--(sp_track_offline_status)offlineStatus {
-	return sp_track_offline_get_status(self.track);
+	_starred = starred;
 }
 
 @synthesize spotifyURL;
@@ -216,6 +200,7 @@ static const NSTimeInterval kCheckLoadedDuration = .25;
 
 -(void)dealloc {
     
+	[self setName:nil];
     [self setAlbum:nil];
     [self setArtists:nil];
     

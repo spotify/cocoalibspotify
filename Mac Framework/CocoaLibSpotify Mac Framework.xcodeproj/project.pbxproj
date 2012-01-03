@@ -51,6 +51,8 @@
 		50B7850E136EC15400D51152 /* SPPlaylistFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 503D56B0131086DB00894014 /* SPPlaylistFolder.m */; };
 		50D9864713605B8000DA5542 /* SPSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D9864513605B8000DA5542 /* SPSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50D9864813605B8000DA5542 /* SPSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D9864613605B8000DA5542 /* SPSearch.m */; };
+		50DE7F42147E757E005403A9 /* SPPlaylistInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DE7F40147E757D005403A9 /* SPPlaylistInternal.h */; };
+		50DE7F4F147E7CCC005403A9 /* SPTrackInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DE7F4D147E7CCC005403A9 /* SPTrackInternal.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -115,6 +117,8 @@
 		50CE762B13117F890047543F /* SPArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPArtist.m; path = ../common/SPArtist.m; sourceTree = "<group>"; };
 		50D9864513605B8000DA5542 /* SPSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPSearch.h; path = ../common/SPSearch.h; sourceTree = "<group>"; };
 		50D9864613605B8000DA5542 /* SPSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPSearch.m; path = ../common/SPSearch.m; sourceTree = "<group>"; };
+		50DE7F40147E757D005403A9 /* SPPlaylistInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaylistInternal.h; path = ../common/SPPlaylistInternal.h; sourceTree = "<group>"; };
+		50DE7F4D147E7CCC005403A9 /* SPTrackInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPTrackInternal.h; path = ../common/SPTrackInternal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +202,7 @@
 				5028ECB6130937B200BF0B22 /* SPSession.h */,
 				5028ECB7130937B200BF0B22 /* SPSession.m */,
 				5028ECB913093B5800BF0B22 /* SPPlaylist.h */,
+				50DE7F40147E757D005403A9 /* SPPlaylistInternal.h */,
 				5028ECBA13093B5800BF0B22 /* SPPlaylist.m */,
 				50632D5C145E9AF100A51AC8 /* SPPlaylistItem.h */,
 				5098401A146035AA00C0FC18 /* SPPlaylistItemInternal.h */,
@@ -206,6 +211,7 @@
 				50437906137057D7001DD605 /* SPPlaylistFolderInternal.h */,
 				503D56B0131086DB00894014 /* SPPlaylistFolder.m */,
 				50749E121406E4AD00063404 /* SPTrack.h */,
+				50DE7F4D147E7CCC005403A9 /* SPTrackInternal.h */,
 				50749E131406E4AD00063404 /* SPTrack.m */,
 				503D56AB13107D4500894014 /* SPPlaylistContainer.h */,
 				504379011370564C001DD605 /* SPPlaylistContainerInternal.h */,
@@ -279,6 +285,8 @@
 				50632D5E145E9AF100A51AC8 /* SPPlaylistItem.h in Headers */,
 				50983C23145EBAD200C0FC18 /* SPCommon.h in Headers */,
 				5098401B146035AA00C0FC18 /* SPPlaylistItemInternal.h in Headers */,
+				50DE7F42147E757E005403A9 /* SPPlaylistInternal.h in Headers */,
+				50DE7F4F147E7CCC005403A9 /* SPTrackInternal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

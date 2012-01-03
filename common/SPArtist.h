@@ -42,6 +42,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     @private
     sp_artist *artist;
     NSURL *spotifyURL;
+	NSString *name;
 }
 
 ///----------------------------
@@ -92,16 +93,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  C LibSpotify API. The behaviour of CocoaLibSpotify is undefined if you use the C
  API directly on items that have CocoaLibSpotify objects associated with them. 
  */
-@property (readonly) sp_artist *artist;
+@property (nonatomic, readonly) sp_artist *artist;
 
 ///----------------------------
 /// @name Metadata
 ///----------------------------
 
 /** Returns the artist's name. */
-@property (readonly) NSString *name;
+@property (nonatomic, readonly, copy) NSString *name;
 
 /** Returns the Spotify URI of the track, for example: `spotify:artist:12EtLdLfJ41vUOoVzPZIUy` */
-@property (readonly, copy) NSURL *spotifyURL;
+@property (nonatomic, readonly, copy) NSURL *spotifyURL;
 
 @end

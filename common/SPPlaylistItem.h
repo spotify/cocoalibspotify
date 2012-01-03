@@ -40,6 +40,7 @@
 	NSDate *dateAdded;
 	SPUser *creator;
 	NSString *message;
+	BOOL _unread;
 }
 
 ///----------------------------
@@ -47,19 +48,19 @@
 ///----------------------------
 
 /** Returns the `Class` of the item this object represents. */
-@property (readonly) Class itemClass;
+@property (nonatomic, readonly) Class itemClass;
 
 /** Returns the Spotify URI of the item this object represents. */
-@property (readonly) NSURL *itemURL;
+@property (nonatomic, readonly) NSURL *itemURL;
 
 /** Returns the `sp_linktype` of the item this object represents. */
-@property (readonly) sp_linktype itemURLType;
+@property (nonatomic, readonly) sp_linktype itemURLType;
 
 /** Returns the item this object represents.
  
  The item is typically a track, artist, album or playlist.
  */
-@property (readonly, retain) id <SPPlaylistableItem> item;
+@property (nonatomic, readonly, retain) id <SPPlaylistableItem> item;
 
 ///----------------------------
 /// @name Metadata
@@ -71,7 +72,7 @@
  were collaborative, and represents the user that added the track to the
  playlist.
  */
-@property (readonly, retain) SPUser *creator;
+@property (nonatomic, readonly, retain) SPUser *creator;
 
 /** Returns the date that the item this object represents was added to the playlist. 
  
@@ -79,20 +80,20 @@
  were collaborative, and represents the date and time the track was
  added to the playlist.
  */
-@property (readonly, copy) NSDate *dateAdded;
+@property (nonatomic, readonly, copy) NSDate *dateAdded;
 
 /** Returns the message attached to the item this object represents. 
  
  This value is used in the user's inbox playlist and reflects the message
  the sender attached to the item when sending it.
  */
-@property (readonly, copy) NSString *message;
+@property (nonatomic, readonly, copy) NSString *message;
 
 /** Returns the "unread" status of the item this object represents. 
  
  This value is only normally used in the user's inbox playlist. In the
  Spotify client, unread tracks have a blue dot by them in the inbox.
  */
-@property (readwrite, getter = isUnread) BOOL unread;
+@property (nonatomic, readwrite, getter = isUnread) BOOL unread;
 
 @end

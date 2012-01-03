@@ -219,13 +219,13 @@ static SInt32 const kSPSearchDoNotSearchPageSize = 0;
 @property (nonatomic, readonly, copy) NSString *suggestedSearchQuery;
 
 /** Returns `YES` if the search service has indicated there are no more album results to find. */
-@property (readonly) BOOL hasExhaustedAlbumResults;
+@property (nonatomic, readonly) BOOL hasExhaustedAlbumResults;
 
 /** Returns `YES` if the search service has indicated there are no more artist results to find. */
-@property (readonly) BOOL hasExhaustedArtistResults;
+@property (nonatomic, readonly) BOOL hasExhaustedArtistResults;
 
 /** Returns `YES` if the search service has indicated there are no more track results to find. */
-@property (readonly) BOOL hasExhaustedTrackResults;
+@property (nonatomic, readonly) BOOL hasExhaustedTrackResults;
 
 /** Returns the album results of the search, or `nil` if the search has not loaded or there are no album results. */
 @property (nonatomic, readonly, retain) NSArray *albums;
@@ -244,7 +244,7 @@ static SInt32 const kSPSearchDoNotSearchPageSize = 0;
 @property (nonatomic, readonly, copy) NSError *searchError;
 
 /** Returns `YES` if a search is currently in progress, or `NO` if the search is complete (or has failed). */
-@property (readonly) BOOL searchInProgress;
+@property (nonatomic, readonly) BOOL searchInProgress;
 
 /** Returns the search query for this search. */
 @property (nonatomic, readonly, copy) NSString *searchQuery;

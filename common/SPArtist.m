@@ -35,7 +35,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @interface SPArtist ()
 
-@property (copy, readwrite) NSURL *spotifyURL;
+-(void)checkLoaded;
+@property (nonatomic, copy, readwrite) NSString *name;
+@property (nonatomic, copy, readwrite) NSURL *spotifyURL;
 
 @end
 
@@ -90,12 +92,7 @@ static NSMutableDictionary *artistCache;
             sp_link_release(link);
         }
 
-        
-        if (!sp_artist_is_loaded(artist)) {
-            [self performSelector:@selector(checkLoaded)
-                       withObject:nil
-                       afterDelay:.25];
-        }
+        [self checkLoaded];
     }
     return self;
 }
@@ -108,9 +105,13 @@ static NSMutableDictionary *artistCache;
                    afterDelay:.25];
     } else {
         
-        // Fire KVO notifications
-        [self willChangeValueForKey:@"name"];
-        [self didChangeValueForKey:@"name"];
+        const char *nameCharArray = sp_artist_name(artist);
+		if (nameCharArray != NULL) {
+			NSString *nameString = [NSString stringWithUTF8String:nameCharArray];
+			self.name = [nameString length] > 0 ? nameString : nil;
+		} else {
+			self.name = nil;
+		}
     }
 }
 
@@ -120,18 +121,10 @@ static NSMutableDictionary *artistCache;
 
 @synthesize artist;
 @synthesize spotifyURL;
-
--(NSString *)name {
-    const char *name = sp_artist_name(artist);
-    if (name != NULL) {
-        NSString *nameString = [NSString stringWithUTF8String:name];
-        return [nameString length] > 0 ? nameString : nil;
-    } else {
-        return nil;
-    }
-}
+@synthesize name;
 
 -(void)dealloc {
+	self.name = nil;
     self.spotifyURL = nil;
     sp_artist_release(artist);
     [super dealloc];

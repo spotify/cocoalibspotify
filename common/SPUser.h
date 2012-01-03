@@ -99,16 +99,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///----------------------------
 
 /** Returns the user's canonical username. */
-@property (readonly, copy) NSString *canonicalName;
+@property (nonatomic, readonly, copy) NSString *canonicalName;
 
 /** Returns the user's display name. If this information isn't available yet, returns the same as canonicalName. */
-@property (readonly, copy) NSString *displayName;
+@property (nonatomic, readonly, copy) NSString *displayName;
 
 /** Returns `YES` if the user has finished loading and all data is available. */ 
-@property (readonly, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
 
 /** Returns the Spotify URI of the user's profile, for example: `spotify:user:ikenndac` */
-@property (readonly, copy) NSURL *spotifyURL;
+@property (nonatomic, readonly, copy) NSURL *spotifyURL;
 
 /** Returns the opaque structure used by the C LibSpotify API. 
  
@@ -116,6 +116,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  C LibSpotify API. The behaviour of CocoaLibSpotify is undefined if you use the C
  API directly on items that have CocoaLibSpotify objects associated with them. 
  */
-@property (readonly) sp_user *user;
+@property (nonatomic, readonly) sp_user *user;
 
 @end

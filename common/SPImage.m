@@ -36,10 +36,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @interface SPImage ()
 
-@property (readwrite, retain) SPPlatformNativeImage *image;
-@property (readwrite) sp_image *spImage;
-@property (readwrite, getter=isLoaded) BOOL loaded;
-@property (readwrite, assign) __weak SPSession *session;
+@property (nonatomic, readwrite, retain) SPPlatformNativeImage *image;
+@property (nonatomic, readwrite) sp_image *spImage;
+@property (nonatomic, readwrite, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readwrite, assign) __weak SPSession *session;
+@property (nonatomic, readwrite, copy) NSURL *spotifyURL;
 
 @end
 
@@ -114,6 +115,14 @@ static NSMutableDictionary *imageCache;
 			sp_image_add_load_callback(spImage,
 									   &image_loaded,
 									   self);
+			
+			sp_link *link = sp_link_create_from_image(self.spImage);
+			
+			if (link != NULL) {
+				NSURL *url = [NSURL urlWithSpotifyLink:link];
+				self.spotifyURL = url;
+				sp_link_release(link);
+			}
         
 			self.loaded = sp_image_is_loaded(spImage);
         }
@@ -143,6 +152,7 @@ static NSMutableDictionary *imageCache;
 @synthesize spImage;
 @synthesize loaded;
 @synthesize session;
+@synthesize spotifyURL;
 
 -(SPPlatformNativeImage *)image {
 	if (image == nil && !hasRequestedImage)
@@ -181,20 +191,9 @@ static NSMutableDictionary *imageCache;
     return imageId;
 }
 
--(NSURL *)spotifyURL {
-	
-	sp_link *link = sp_link_create_from_image(self.spImage);
-	
-	if (link != NULL) {
-		NSURL *url = [NSURL urlWithSpotifyLink:link];
-		sp_link_release(link);
-		return url;
-	}
-	return nil;
-}
-
 -(void)dealloc {
     
+	self.spotifyURL = nil;
     [self removeObserver:self forKeyPath:@"loaded"];
     [self setImage:nil];
     

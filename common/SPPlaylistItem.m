@@ -34,10 +34,10 @@
 
 @interface SPPlaylistItem ()
 
-@property (readwrite, retain) id <SPPlaylistableItem> item;
-@property (readwrite, copy) NSDate *dateAdded;
-@property (readwrite, retain) SPUser *creator;
-@property (readwrite, copy) NSString *message;
+@property (nonatomic, readwrite, retain) id <SPPlaylistableItem> item;
+@property (nonatomic, readwrite, copy) NSDate *dateAdded;
+@property (nonatomic, readwrite, retain) SPUser *creator;
+@property (nonatomic, readwrite, copy) NSString *message;
 
 @end
 
@@ -84,6 +84,7 @@
 
 -(void)setUnreadFromLibSpotify:(BOOL)unread {
 	[self willChangeValueForKey:@"unread"];
+	_unread = unread;
 	[self didChangeValueForKey:@"unread"];
 }
 
@@ -134,12 +135,11 @@
 	return [self.item class];
 }
 
--(BOOL)isUnread {
-	return !sp_playlist_track_seen(playlist.playlist, itemIndex);
-}
+@synthesize unread = _unread;
 
 -(void)setUnread:(BOOL)unread {
 	sp_playlist_track_set_seen(playlist.playlist, itemIndex, !unread);
+	_unread = unread;
 }
 
 -(void)dealloc {

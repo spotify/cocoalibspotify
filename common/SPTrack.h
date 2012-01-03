@@ -48,6 +48,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     NSArray *artists;
     SPAlbum *album;
 	NSURL *spotifyURL;
+	BOOL _starred;
+	NSUInteger trackNumber;
+	NSUInteger discNumber;
+	NSUInteger popularity;
+	NSTimeInterval duration;
+	sp_track_availability availability;
+	sp_track_offline_status offlineStatus;
+	BOOL loaded;
+	BOOL local;
+	NSString *name;
 }
 
 
@@ -112,13 +122,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  SP_TRACK_AVAILABILITY_BANNED_BY_ARTIST
  Track not available on artist's reqeust
  */
-@property (readonly) sp_track_availability availability;
+@property (nonatomic, readonly) sp_track_availability availability;
 
 /** Returns `YES` if the track has finished loading and all data is available. */ 
-@property (readonly, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
+
+/** Returns `YES` if the track is a local file and requires separate playback. */
+@property (nonatomic, readonly, getter = isLocal) BOOL local;
 
 /** Returns the Spotify URI of the track, for example: `spotify:track:6JEK0CvvjDjjMUBFoXShNZ` */
-@property (readonly, copy) NSURL *spotifyURL;
+@property (nonatomic, readonly, copy) NSURL *spotifyURL;
 
 /** Returns the opaque structure used by the C LibSpotify API. 
  
@@ -126,10 +139,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  C LibSpotify API. The behaviour of CocoaLibSpotify is undefined if you use the C
  API directly on items that have CocoaLibSpotify objects associated with them. 
  */
-@property (readonly) sp_track *track;
+@property (nonatomic, readonly) sp_track *track;
 
 /** Returns `YES` if the track is in the logged-in user's starred list. */
-@property (readwrite) BOOL starred;
+@property (nonatomic, readwrite) BOOL starred;
 
 /** 
  Returns an `sp_track_offline_status` containing the offline status of the track.
@@ -145,24 +158,27 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 `SP_TRACK_OFFLINE_RATE_EXCEEDED`: Waiting because download rate limit is exceeded
 `SP_TRACK_OFFLINE_DONE_RESYNC`: Downloaded OK and available but scheduled for re-download
  */
-@property (readonly) sp_track_offline_status offlineStatus;
+@property (nonatomic, readonly) sp_track_offline_status offlineStatus;
+
+/** Returns the Spotify session the track is associated with. */
+@property (nonatomic, assign, readonly) __weak SPSession *session;
 
 ///----------------------------
 /// @name Metadata
 ///----------------------------
 
 /** Returns the album of the track. If no metadata is available for the track yet, returns `nil`. */
-@property (readonly, retain) SPAlbum *album;
+@property (nonatomic, readonly, retain) SPAlbum *album;
 
 /** Returns the artist(s) of the track. If no metadata is available for the track yet, returns `nil`. */
-@property (readonly, retain) NSArray *artists;
+@property (nonatomic, readonly, retain) NSArray *artists;
 
 /** Returns a string represention of the artist(s) of the track. If no metadata is available for the track yet, returns `nil`. 
  
  If the track has one artist, returns that artist's name. Otherwise, returns all artist names in alphabetical order, each 
  separated with a comma (,).
  */
-@property (readonly, copy) NSString *consolidatedArtists;
+@property (nonatomic, readonly, copy) NSString *consolidatedArtists;
 
 /** Returns the disc index of the track. 
  
@@ -173,16 +189,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  @see SPAlbumBrowse
  @see SPArtistBrowse
  */
-@property (readonly) NSUInteger discNumber;
+@property (nonatomic, readonly) NSUInteger discNumber;
 
 /** Returns the duration of the track. If no metadata is available for the track yet, returns 0. */
-@property (readonly) NSTimeInterval duration;
+@property (nonatomic, readonly) NSTimeInterval duration;
 
 /** Returns the name of the track.  If no metadata is available for the track yet, returns an empty string. */
-@property (readonly) NSString *name;
+@property (nonatomic, readonly, copy) NSString *name;
 
 /** Returns the popularity of the track in range 0 to 100. If no metadata is available for the track yet, returns 0.*/
-@property (readonly) NSUInteger popularity;
+@property (nonatomic, readonly) NSUInteger popularity;
 
 /** Returns the track position on a disc.
  
@@ -193,6 +209,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  @see SPAlbumBrowse
  @see SPArtistBrowse
  */
-@property (readonly) NSUInteger trackNumber;
+@property (nonatomic, readonly) NSUInteger trackNumber;
 
 @end

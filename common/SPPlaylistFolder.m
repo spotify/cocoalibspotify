@@ -46,7 +46,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @property (nonatomic, readwrite, assign) __weak SPPlaylistContainer *parentContainer;
 @property (readwrite, nonatomic, copy) NSString *name;
-@property (readwrite, assign) __weak SPSession *session;
+@property (nonatomic, readwrite, assign) __weak SPSession *session;
 
 -(void)performIntegrityCheck;
 -(NSRange)rangeOfChildObjects;

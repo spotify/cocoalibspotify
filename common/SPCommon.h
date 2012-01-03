@@ -29,9 +29,24 @@
  This file contains protocols and other things needed throughout the library.
  */
 
+@class SPTrack;
+@protocol SPSessionPlaybackDelegate;
+
 @protocol SPPlaylistableItem <NSObject>
 
 -(NSString *)name;
 -(NSURL *)spotifyURL;
+
+@end
+
+@protocol SPSessionPlaybackProvider <NSObject>
+
+@property (nonatomic, readwrite, getter=isPlaying) BOOL playing;
+@property (nonatomic, assign) __weak id <SPSessionPlaybackDelegate> playbackDelegate;
+
+-(BOOL)preloadTrackForPlayback:(SPTrack *)aTrack error:(NSError **)error;
+-(BOOL)playTrack:(SPTrack *)aTrack error:(NSError **)error;
+-(void)seekPlaybackToOffset:(NSTimeInterval)offset;
+-(void)unloadPlayback;
 
 @end

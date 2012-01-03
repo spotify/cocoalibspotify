@@ -55,11 +55,11 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 	
 	if (errorCode != SP_ERROR_OK) {
 		if ([operation.delegate respondsToSelector:@selector(postTracksToInboxOperation:didFailWithError:)]) {
-			[operation.delegate postTracksToInboxOperation:operation didFailWithError:[NSError spotifyErrorWithCode:errorCode]];
+			[(id <SPPostTracksToInboxOperationDelegate>)operation.delegate postTracksToInboxOperation:operation didFailWithError:[NSError spotifyErrorWithCode:errorCode]];
 		}
 	} else {
 		if ([operation.delegate respondsToSelector:@selector(postTracksToInboxOperationDidSucceed:)]) {
-			[operation.delegate postTracksToInboxOperationDidSucceed:operation];
+			[(id <SPPostTracksToInboxOperationDelegate>)operation.delegate postTracksToInboxOperationDidSucceed:operation];
 		}
 	}
 	
@@ -95,7 +95,7 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 			self.destinationUser = user;
 			self.message = aFriendlyGreeting;
 			self.tracks = tracksToSend;
-			self.delegate = completionDelegate;
+			self.delegate = (id)completionDelegate;
 			
 			
 			int trackCount = (int)[self.tracks count];

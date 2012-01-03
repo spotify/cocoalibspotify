@@ -69,7 +69,7 @@ static NSUInteger const kUpdateTrackPositionHz = 5;
     if ((self = [super init])) {
         
         self.playbackSession = aSession;
-		self.playbackSession.playbackDelegate = self;
+		self.playbackSession.playbackDelegate = (id)self;
 		self.volume = 1.0;
 		self.audioBuffer = [[[SPCircularBuffer alloc] initWithMaximumLength:kMaximumBytesInBuffer] autorelease];
 		

@@ -47,6 +47,7 @@ static NSUInteger const SPImageIdLength = 20;
     BOOL loaded;
 	BOOL hasRequestedImage;
 	__weak SPSession *session;
+	NSURL *spotifyURL;
 }
 
 ///----------------------------
@@ -101,16 +102,16 @@ static NSUInteger const SPImageIdLength = 20;
 ///----------------------------
 
 /** Returns an NSImage or UIImage representation of the image, or `nil` if the image has yet to be loaded. */
-@property (readonly, retain) SPPlatformNativeImage *image;
+@property (nonatomic, readonly, retain) SPPlatformNativeImage *image;
 
 /** Returns the ID of the image. */
--(const byte *)imageId;
+@property (nonatomic, readonly) const byte *imageId;
 
 /** Returns `YES` if the image has finished loading and all data is available. */ 
-@property (readonly, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
 
 /** Returns the session the image was loaded in. */
-@property (readonly) __weak SPSession *session;
+@property (nonatomic, readonly) __weak SPSession *session;
 
 /** Returns the opaque structure used by the C LibSpotify API, or NULL if the image has yet to be loaded.
  
@@ -118,9 +119,9 @@ static NSUInteger const SPImageIdLength = 20;
  C LibSpotify API. The behaviour of CocoaLibSpotify is undefined if you use the C
  API directly on items that have CocoaLibSpotify objects associated with them. 
  */
-@property (readonly) sp_image *spImage;
+@property (nonatomic, readonly) sp_image *spImage;
 
 /** Returns the Spotify URL of the image. */
--(NSURL *)spotifyURL;
+@property (nonatomic, readonly, copy) NSURL *spotifyURL;
 
 @end

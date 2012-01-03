@@ -65,10 +65,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  C LibSpotify API. The behaviour of CocoaLibSpotify is undefined if you use the C
  API directly on items that have CocoaLibSpotify objects associated with them. 
  */
-@property (readonly) sp_uint64 folderId;
+@property (nonatomic, readonly) sp_uint64 folderId;
 
 /** Returns the name of the folder. */
-@property (readonly, nonatomic, copy) NSString *name;
+@property (nonatomic, readonly, copy) NSString *name;
 
 /** Returns the folder's containing SPPlaylistContainer. */
 @property (nonatomic, readonly, assign) __weak SPPlaylistContainer *parentContainer;
@@ -88,9 +88,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
  @see [SPPlaylistContainer movePlaylistOrFolderAtIndex:ofParent:toIndex:ofNewParent:error:]
  */
-@property (readonly) NSMutableArray *playlists;
+@property (nonatomic, readonly) NSMutableArray *playlists;
 
 /** Returns the session the folder is loaded in. */
-@property (readonly, assign) __weak SPSession *session;
+@property (nonatomic, readonly, assign) __weak SPSession *session;
 
 @end

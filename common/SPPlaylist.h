@@ -57,6 +57,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	BOOL trackChangesAreFromLibSpotifyCallback;
 	NSMutableArray *itemWrapper;
 	NSArray *subscribers;
+	float offlineDownloadProgress;
+	sp_playlist_offline_status offlineStatus;
 }
 
 ///----------------------------
@@ -105,28 +107,28 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///----------------------------
 
 /** Returns the playlist's delegate object. */
-@property (readwrite, assign) __weak id <SPPlaylistDelegate> delegate;
+@property (nonatomic, readwrite, assign) __weak id <SPPlaylistDelegate> delegate;
 
 /** Returns `YES` if the playlist has changes not yet recognised by the Spotify servers, otherwise `NO`. */
-@property (readonly) BOOL hasPendingChanges;
+@property (nonatomic, readonly) BOOL hasPendingChanges;
 
 /** Returns `YES` if the playlist is collaborative (can be edited by users other than the owner), otherwise `NO`. */
-@property (readwrite, getter=isCollaborative) BOOL collaborative;
+@property (nonatomic, readwrite, getter=isCollaborative) BOOL collaborative;
 
 /** Returns `YES` if the playlist has finished loading and all data is available. */ 
-@property (readonly, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
 
 /** Returns `YES` if the playlist is marked for offline playback. */
-@property (readwrite, getter=isMarkedForOfflinePlayback) BOOL markedForOfflinePlayback;
+@property (nonatomic, readwrite, getter=isMarkedForOfflinePlayback) BOOL markedForOfflinePlayback;
 
 /** Returns `YES` if the playlist is being updated, otherwise `NO`. 
  
  Typically, you should delay UI updates while this property is set to `YES`.
  */ 
-@property (readonly, getter=isUpdating) BOOL updating;
+@property (nonatomic, readonly, getter=isUpdating) BOOL updating;
 
 /** Returns the download progress of the playlist (between 0 and 1) is it is marked for offline sync. */
-@property (readonly) float offlineDownloadProgress;
+@property (nonatomic, readonly) float offlineDownloadProgress;
 
 /** Returns the offline status of the playlist. Possible values:
  
@@ -142,10 +144,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  SP_PLAYLIST_OFFLINE_STATUS_WAITING 	
  Playlist is queued for download.
  */
-@property (readonly) sp_playlist_offline_status offlineStatus;
+@property (nonatomic, readonly) sp_playlist_offline_status offlineStatus;
 
 /** Returns the owner of the playlist, or `nil` if the playlist hasn't loaded yet. */
-@property (readonly, retain) SPUser *owner;
+@property (nonatomic, readonly, retain) SPUser *owner;
 
 /** Returns the opaque structure used by the C LibSpotify API. 
  
@@ -153,29 +155,29 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  C LibSpotify API. The behaviour of CocoaLibSpotify is undefined if you use the C
  API directly on items that have CocoaLibSpotify objects associated with them. 
  */
-@property (readonly) sp_playlist *playlist;
+@property (nonatomic, readonly) sp_playlist *playlist;
 
 /** Returns the session object the playlist is loaded in. */
-@property (readonly, assign) __weak SPSession *session;
+@property (nonatomic, readonly, assign) __weak SPSession *session;
 
 /** Returns the Spotify URI of the playlist profile, for example: `spotify:user:sarnesjo:playlist:3p2c7mmML3fIUh5fcZ8Hcq` */
-@property (readonly, copy) NSURL *spotifyURL;
+@property (nonatomic, readonly, copy) NSURL *spotifyURL;
 
 /** Returns the subscribers to the playlist as an array of Spotify usernames. */
-@property (readonly, retain) NSArray *subscribers;
+@property (nonatomic, readonly, retain) NSArray *subscribers;
 
 ///----------------------------
 /// @name Metadata
 ///----------------------------
 
 /** Returns the custom image for the playlist, or `nil` if the playlist hasn't loaded yet or it doesn't have a custom image. */
-@property (readonly, retain) SPImage *image;
+@property (nonatomic, readonly, retain) SPImage *image;
 
 /** Returns the name of the playlist, or `nil` if the playlist hasn't loaded yet. */
-@property (readwrite, copy) NSString *name;
+@property (nonatomic, readwrite, copy) NSString *name;
 
 /** Returns the custom description for the playlist, or `nil` if the playlist hasn't loaded yet or it doesn't have a custom description. */
-@property (readonly, copy) NSString *playlistDescription;
+@property (nonatomic, readonly, copy) NSString *playlistDescription;
 
 ///----------------------------
 /// @name Working with Items
@@ -193,7 +195,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
  @see -moveItemsAtIndexes:toIndex:error:
  */
-@property (readonly) NSMutableArray *items;
+@property (nonatomic, readonly) NSMutableArray *items;
 
 /** Move item(s) to another location in the list. 
  

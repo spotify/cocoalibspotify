@@ -49,6 +49,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     SPImage *cover;
     SPArtist *artist;
     NSURL *spotifyURL;
+	BOOL available;
+	BOOL loaded;
+	NSUInteger year;
+	sp_albumtype type;
+	NSString *name;
 }
 
 ///----------------------------
@@ -102,32 +107,32 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  C LibSpotify API. The behaviour of CocoaLibSpotify is undefined if you use the C
  API directly on items that have CocoaLibSpotify objects associated with them. 
  */
-@property (readonly) sp_album *album;
+@property (nonatomic, readonly) sp_album *album;
 
 /** Returns `YES` if the album metadata has finished loading. */ 
-@property (readonly, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
 
 /** Returns the session the album's metadata is loaded in. */
-@property (readonly, retain) SPSession *session;
+@property (nonatomic, readonly, retain) SPSession *session;
 
 ///----------------------------
 /// @name Metadata
 ///----------------------------
 
 /** Returns the album's artist, or `nil` if the metadata isn't loaded yet. */
-@property (readonly, retain) SPArtist *artist; 
+@property (nonatomic, readonly, retain) SPArtist *artist; 
 
 /** Returns the album's cover image. Returns `nil` if the metadata isn't loaded yet, or if the album doesn't have a cover image. */
-@property (readonly, retain) SPImage *cover;
+@property (nonatomic, readonly, retain) SPImage *cover;
 
 /** Returns `YES` if the album is available in the logged-in user's region. */
-@property (readonly, getter=isAvailable) BOOL available;
+@property (nonatomic, readonly, getter=isAvailable) BOOL available;
 
 /** Returns the name of the album. */
-@property (readonly) NSString *name;
+@property (nonatomic, readonly, copy) NSString *name;
 
 /** Returns the Spotify URI of the track, for example: `spotify:album:43p5dnBeVx4H2bzy0W1cGL` */
-@property (readonly, copy) NSURL *spotifyURL;
+@property (nonatomic, readonly, copy) NSURL *spotifyURL;
 
 /** Returns the album type.
  
@@ -145,9 +150,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  SP_ALBUMTYPE_UNKNOWN 	
  Unknown type. 
  */
-@property (readonly) sp_albumtype type;
+@property (nonatomic, readonly) sp_albumtype type;
 
 /** Returns the release year of the album. */
-@property (readonly) NSUInteger year;
+@property (nonatomic, readonly) NSUInteger year;
 
 @end

@@ -44,9 +44,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readwrite, retain) NSArray *artists;
 @property (nonatomic, readwrite, retain) NSArray *albums;
 
-@property (readwrite) BOOL hasExhaustedTrackResults;
-@property (readwrite) BOOL hasExhaustedArtistResults;
-@property (readwrite) BOOL hasExhaustedAlbumResults;
+@property (nonatomic, readwrite) BOOL hasExhaustedTrackResults;
+@property (nonatomic, readwrite) BOOL hasExhaustedArtistResults;
+@property (nonatomic, readwrite) BOOL hasExhaustedAlbumResults;
 
 @property (nonatomic, readwrite, copy) NSError *searchError;
 
@@ -55,7 +55,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @property (nonatomic, readwrite, copy) NSURL *spotifyURL;
 @property (nonatomic, readwrite, retain) SPSession *session;
-@property (readwrite) sp_search *activeSearch;
+@property (nonatomic, readwrite) sp_search *activeSearch;
 
 -(id)initWithSession:(SPSession *)aSession; // Designated initialiser.
 -(void)searchDidComplete:(sp_search *)search wasSearchingForTracks:(BOOL)searchTracks artists:(BOOL)searchArtists albums:(BOOL)searchAlbums;

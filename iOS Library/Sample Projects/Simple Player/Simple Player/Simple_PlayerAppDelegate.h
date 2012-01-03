@@ -34,7 +34,7 @@
 #import "CocoaLibSpotify.h"
 #import "SPPlaybackManager.h"
 
-@interface Simple_PlayerAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate> {
+@interface Simple_PlayerAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate, SPSessionPlaybackDelegate> {
 	UIViewController *_mainViewController;
 	UITextField *_trackURIField;
 	UILabel *_trackTitle;
