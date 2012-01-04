@@ -36,6 +36,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @interface SPImage ()
 
+-(void) cacheSpotifyURL;
+
 @property (nonatomic, readwrite, retain) SPPlatformNativeImage *image;
 @property (nonatomic, readwrite) sp_image *spImage;
 @property (nonatomic, readwrite, getter=isLoaded) BOOL loaded;
@@ -116,13 +118,7 @@ static NSMutableDictionary *imageCache;
 									   &image_loaded,
 									   self);
 			
-			sp_link *link = sp_link_create_from_image(self.spImage);
-			
-			if (link != NULL) {
-				NSURL *url = [NSURL urlWithSpotifyLink:link];
-				self.spotifyURL = url;
-				sp_link_release(link);
-			}
+			[self cacheSpotifyURL];
         
 			self.loaded = sp_image_is_loaded(spImage);
         }
@@ -181,6 +177,8 @@ static NSMutableDictionary *imageCache;
 	[self didChangeValueForKey:@"spImage"];
 	
 	if (spImage != NULL) {
+        [self cacheSpotifyURL];
+        
 		hasRequestedImage = YES;
 		sp_image_add_load_callback(spImage, &image_loaded, self);
 		self.loaded = sp_image_is_loaded(spImage);
@@ -201,6 +199,20 @@ static NSMutableDictionary *imageCache;
     sp_image_release(spImage);
     
     [super dealloc];
+}
+
+-(void) cacheSpotifyURL
+{
+    if (self.spotifyURL != NULL)
+        return;
+    
+    sp_link *link = sp_link_create_from_image(self.spImage);
+    
+    if (link != NULL) {
+        NSURL *url = [NSURL urlWithSpotifyLink:link];
+        self.spotifyURL = url;
+        sp_link_release(link);
+    }
 }
 
 @end
