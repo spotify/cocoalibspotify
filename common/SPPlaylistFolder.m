@@ -156,8 +156,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		return [self.parentContainer.session playlistFolderForFolderId:sp_playlistcontainer_playlist_folder_id(self.parentContainer.container, flattenedIndex)
 														   inContainer:self.parentContainer];
 	} else {
-		[NSException raise:@"Invalid index!" format:@""];
-		return nil;
+//		[NSException raise:@"Invalid index!" format:@""];
+//		return nil;
+		// the index seems invalid, but be sure to return an SPUnknownPlaylist object to let clients deal with the issue
+		return [self.parentContainer.session unknownPlaylistForPlaylistStruct:sp_playlistcontainer_playlist(self.parentContainer.container, flattenedIndex)];
 	}
 }
 

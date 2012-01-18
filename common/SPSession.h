@@ -58,6 +58,7 @@ Playback
 @class SPArtist;
 @class SPImage;
 @class SPPostTracksToInboxOperation;
+@class SPUnknownPlaylist;
 @protocol SPSessionDelegate;
 @protocol SPSessionPlaybackDelegate;
 @protocol SPPostTracksToInboxOperationDelegate;
@@ -395,6 +396,16 @@ Playback
  @return Returns the created or cached SPPlaylistFolder object.
  */
 -(SPPlaylistFolder *)playlistFolderForFolderId:(sp_uint64)playlistId inContainer:(SPPlaylistContainer *)aContainer;
+
+/** Create and cache an SPUnknownPlaylist (subclass of SPPlaylist) for the given sp_playlist struct from the C LibSpotify API.
+ 
+ This method caches SPUnknownPlaylist objects using the same cache the +[SPPlaylist playlist...] 
+ convenience methods use.
+ 
+ @param playlist The sp_playlist struct.
+ @return Returns the created or cached SPUnknownPlaylist object.
+ */
+-(SPUnknownPlaylist *)unknownPlaylistForPlaylistStruct:(sp_playlist *)playlist;
 
 /** Create and cache an SPTrack for the given sp_track struct from the C LibSpotify API.
  
