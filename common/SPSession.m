@@ -411,6 +411,24 @@ static sp_session_callbacks _callbacks = {
 
 static NSString * const kSPSessionKVOContext = @"kSPSessionKVOContext";
 
+
+
+@interface SPTrack (AlbumBrowseSpecific)
+-(void) updateAlbumBrowseSpecificMembers;
+@end 
+
+@implementation SPTrack (AlbumBrowseSpecific)
+-(void) updateAlbumBrowseSpecificMembers
+{
+    if (discNumber == 0)
+    {
+        discNumber = sp_track_disc( track );
+        trackNumber = sp_track_index( track );
+    }
+}
+@end
+
+
 @implementation SPSession
 
 static SPSession *sharedSession;
@@ -710,6 +728,9 @@ static SPSession *sharedSession;
     SPTrack *cachedTrack = [trackCache objectForKey:ptrValue];
     
     if (cachedTrack != nil) {
+        // track may have been cached without album browse specific fields
+        [cachedTrack updateAlbumBrowseSpecificMembers];
+        
         return cachedTrack;
     }
     
