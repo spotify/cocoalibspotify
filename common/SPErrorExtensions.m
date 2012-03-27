@@ -32,6 +32,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "SPErrorExtensions.h"
 
+AVOID_ALLFORCELOAD_FOR_CATEGORY(SPErrorExtensions)
+
 @implementation NSError (SCAdditions)
 
 + (NSError *)spotifyErrorWithDescription:(NSString *)msg code:(NSInteger)code {

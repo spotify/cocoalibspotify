@@ -32,6 +32,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "SPURLExtensions.h"
 
+AVOID_ALLFORCELOAD_FOR_CATEGORY(SPURLExtensions)
 
 @implementation NSURL (SPURLExtensions)
 
