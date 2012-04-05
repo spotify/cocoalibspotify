@@ -59,17 +59,17 @@
 	NSDate *gameStartDate;
 }
 
-@property (nonatomic, readwrite, retain) SPPlaybackManager *playbackManager;
+@property (nonatomic, readwrite, strong) SPPlaybackManager *playbackManager;
 
-@property (nonatomic, readwrite, retain) SPPlaylist	*playlist;
+@property (nonatomic, readwrite, strong) SPPlaylist	*playlist;
 
-@property (nonatomic, retain, readwrite) SPToplist *regionTopList;
-@property (nonatomic, retain, readwrite) SPToplist *userTopList;
+@property (nonatomic, strong, readwrite) SPToplist *regionTopList;
+@property (nonatomic, strong, readwrite) SPToplist *userTopList;
 
-@property (nonatomic, retain, readwrite) SPTrack *firstSuggestion;
-@property (nonatomic, retain, readwrite) SPTrack *secondSuggestion;
-@property (nonatomic, retain, readwrite) SPTrack *thirdSuggestion;
-@property (nonatomic, retain, readwrite) SPTrack *fourthSuggestion;
+@property (nonatomic, strong, readwrite) SPTrack *firstSuggestion;
+@property (nonatomic, strong, readwrite) SPTrack *secondSuggestion;
+@property (nonatomic, strong, readwrite) SPTrack *thirdSuggestion;
+@property (nonatomic, strong, readwrite) SPTrack *fourthSuggestion;
 
 @property (nonatomic, readwrite) BOOL canPushOne;
 @property (nonatomic, readwrite) BOOL canPushTwo;
@@ -80,32 +80,32 @@
 @property (nonatomic, readwrite) NSUInteger score;
 @property (nonatomic, readwrite, copy) NSDate *roundStartDate;
 @property (nonatomic, readwrite, copy) NSDate *gameStartDate;
-@property (nonatomic, readwrite, retain) NSMutableArray *trackPool;
-@property (nonatomic, readwrite, retain) NSTimer *roundTimer;
+@property (nonatomic, readwrite, strong) NSMutableArray *trackPool;
+@property (nonatomic, readwrite, strong) NSTimer *roundTimer;
 
-@property (nonatomic, retain) IBOutlet UILabel *multiplierLabel;
-@property (nonatomic, retain) IBOutlet UILabel *currentScoreLabel;
-@property (nonatomic, retain) IBOutlet UILabel *highScoreLabel;
-@property (nonatomic, retain) IBOutlet UIProgressView *roundProgressIndicator;
-@property (nonatomic, retain) IBOutlet UILabel *currentRoundScoreLabel;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *isLoadingView;
-@property (nonatomic, retain) IBOutlet UILabel *countdownLabel;
+@property (nonatomic, strong) IBOutlet UILabel *multiplierLabel;
+@property (nonatomic, strong) IBOutlet UILabel *currentScoreLabel;
+@property (nonatomic, strong) IBOutlet UILabel *highScoreLabel;
+@property (nonatomic, strong) IBOutlet UIProgressView *roundProgressIndicator;
+@property (nonatomic, strong) IBOutlet UILabel *currentRoundScoreLabel;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *isLoadingView;
+@property (nonatomic, strong) IBOutlet UILabel *countdownLabel;
 
-@property (nonatomic, retain) IBOutlet UIButton *track1Button;
-@property (nonatomic, retain) IBOutlet UILabel *track1TitleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *track1ArtistLabel;
+@property (nonatomic, strong) IBOutlet UIButton *track1Button;
+@property (nonatomic, strong) IBOutlet UILabel *track1TitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *track1ArtistLabel;
 
-@property (nonatomic, retain) IBOutlet UIButton *track2Button;
-@property (nonatomic, retain) IBOutlet UILabel *track2TitleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *track2ArtistLabel;
+@property (nonatomic, strong) IBOutlet UIButton *track2Button;
+@property (nonatomic, strong) IBOutlet UILabel *track2TitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *track2ArtistLabel;
 
-@property (nonatomic, retain) IBOutlet UIButton *track3Button;
-@property (nonatomic, retain) IBOutlet UILabel *track3TitleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *track3ArtistLabel;
+@property (nonatomic, strong) IBOutlet UIButton *track3Button;
+@property (nonatomic, strong) IBOutlet UILabel *track3TitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *track3ArtistLabel;
 
-@property (nonatomic, retain) IBOutlet UIButton *track4Button;
-@property (nonatomic, retain) IBOutlet UILabel *track4TitleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *track4ArtistLabel;
+@property (nonatomic, strong) IBOutlet UIButton *track4Button;
+@property (nonatomic, strong) IBOutlet UILabel *track4TitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *track4ArtistLabel;
 
 
 

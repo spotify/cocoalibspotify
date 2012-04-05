@@ -43,6 +43,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readwrite, copy) NSString *canonicalName;
 @property (nonatomic, readwrite, copy) NSString *displayName;
 @property (nonatomic, readwrite, getter=isLoaded) BOOL loaded;
+@property (nonatomic, readwrite) sp_user *user;
+@property (nonatomic, readwrite, assign) __unsafe_unretained SPSession *session;
 
 @end
 
@@ -59,14 +61,13 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -(id)initWithUserStruct:(sp_user *)aUser inSession:(SPSession *)aSession {
 	
 	if (aUser == NULL) {
-		[self release];
 		return nil;
 	}
 	
     if ((self = [super init])) {
-        user = aUser;
-        sp_user_add_ref(user);
-        session = aSession;
+        self.user = aUser;
+        sp_user_add_ref(self.user);
+        self.session = aSession;
         
         if (!sp_user_is_loaded(user)) {
             [aSession addLoadingObject:self];
@@ -91,23 +92,23 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -(void)loadUserData {
     
-    [self setLoaded:sp_user_is_loaded(user)];
+    [self setLoaded:sp_user_is_loaded(self.user)];
     
     if ([self isLoaded]) {
 		
-		sp_link *link = sp_link_create_from_user(user);
+		sp_link *link = sp_link_create_from_user(self.user);
 		if (link != NULL) {
 			[self setSpotifyURL:[NSURL urlWithSpotifyLink:link]];
 			sp_link_release(link);
 		}
      
-        const char *canonical = sp_user_canonical_name(user);
+        const char *canonical = sp_user_canonical_name(self.user);
         if (canonical != NULL) {
             NSString *canonicalString = [NSString stringWithUTF8String:canonical];
             [self setCanonicalName:[canonicalString length] > 0 ? canonicalString : nil];
         }
         
-        const char *display = sp_user_display_name(user);
+        const char *display = sp_user_display_name(self.user);
         if (display != NULL) {
             NSString *displayString = [NSString stringWithUTF8String:display];
             [self setDisplayName:[displayString length] > 0 ? displayString : nil];
@@ -120,15 +121,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @synthesize displayName;
 @synthesize loaded;
 @synthesize user;
+@synthesize session;
 
 -(void)dealloc {
-    [self setCanonicalName:nil];
-    [self setDisplayName:nil];
-	[self setSpotifyURL:nil];
-    
-    session = nil;
     sp_user_release(user);
-    [super dealloc];
 }
 
 @end

@@ -46,18 +46,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @class SPSession;
 @class SPArtist;
 
-@interface SPAlbumBrowse : NSObject {
-@private
-	BOOL loaded;
-	NSError *loadError;
-	SPSession *session;
-	SPAlbum *album;
-	SPArtist *artist;
-	NSArray *tracks;
-	NSArray *copyrights;
-	NSString *review;
-	sp_albumbrowse *browseOperation;
-}
+@interface SPAlbumBrowse : NSObject
 
 ///----------------------------
 /// @name Creating and Initializing Album Browses
@@ -107,25 +96,25 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readonly, copy) NSError *loadError;
 
 /** Returns the session the album's metadata is loaded in. */
-@property (nonatomic, readonly, retain) SPSession *session;
+@property (nonatomic, readonly, strong) SPSession *session;
 
 ///----------------------------
 /// @name Metadata
 ///----------------------------
 
 /** Returns the browse operation's album. */
-@property (nonatomic, readonly, retain) SPAlbum *album;
+@property (nonatomic, readonly, strong) SPAlbum *album;
 
 /** Returns the album's artist, or `nil` if the metadata isn't loaded yet. */
-@property (nonatomic, readonly, retain) SPArtist *artist;
+@property (nonatomic, readonly, strong) SPArtist *artist;
 
 /** Returns the album's copyrights as an array of NSString, or `nil` if the metadata isn't loaded yet. */
-@property (nonatomic, readonly, retain) NSArray *copyrights;
+@property (nonatomic, readonly, strong) NSArray *copyrights;
 
 /** Returns the album's review, or `nil` if the metadata isn't loaded yet. */
 @property (nonatomic, readonly, copy) NSString *review;
 
 /** Returns the album's tracks, or `nil` if the metadata isn't loaded yet. */
-@property (nonatomic, readonly, retain) NSArray *tracks;
+@property (nonatomic, readonly, strong) NSArray *tracks;
 
 @end

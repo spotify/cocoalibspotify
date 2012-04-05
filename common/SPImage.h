@@ -39,16 +39,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 static NSUInteger const SPImageIdLength = 20;
 
-@interface SPImage : NSObject {
-    @private
-    SPPlatformNativeImage *image;
-    sp_image *spImage;
-    const byte *imageId;
-    BOOL loaded;
-	BOOL hasRequestedImage;
-	__weak SPSession *session;
-	NSURL *spotifyURL;
-}
+@interface SPImage : NSObject
 
 ///----------------------------
 /// @name Creating and Initializing Images
@@ -102,7 +93,7 @@ static NSUInteger const SPImageIdLength = 20;
 ///----------------------------
 
 /** Returns an NSImage or UIImage representation of the image, or `nil` if the image has yet to be loaded. */
-@property (nonatomic, readonly, retain) SPPlatformNativeImage *image;
+@property (nonatomic, readonly, strong) SPPlatformNativeImage *image;
 
 /** Returns the ID of the image. */
 @property (nonatomic, readonly) const byte *imageId;
@@ -111,7 +102,7 @@ static NSUInteger const SPImageIdLength = 20;
 @property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
 
 /** Returns the session the image was loaded in. */
-@property (nonatomic, readonly) __weak SPSession *session;
+@property (nonatomic, readonly, assign) __unsafe_unretained SPSession *session;
 
 /** Returns the opaque structure used by the C LibSpotify API, or NULL if the image has yet to be loaded.
  

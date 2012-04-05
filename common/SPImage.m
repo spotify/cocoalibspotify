@@ -38,21 +38,25 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -(void) cacheSpotifyURL;
 
-@property (nonatomic, readwrite, retain) SPPlatformNativeImage *image;
+@property (nonatomic, readwrite) const byte *imageId;
+@property (nonatomic, readwrite, strong) SPPlatformNativeImage *image;
 @property (nonatomic, readwrite) sp_image *spImage;
 @property (nonatomic, readwrite, getter=isLoaded) BOOL loaded;
-@property (nonatomic, readwrite, assign) __weak SPSession *session;
+@property (nonatomic, readwrite) __unsafe_unretained SPSession *session;
 @property (nonatomic, readwrite, copy) NSURL *spotifyURL;
 
 @end
 
 static void image_loaded(sp_image *image, void *userdata) {
-    [(SPImage *)userdata setLoaded:sp_image_is_loaded(image)];
+    [(__bridge SPImage *)userdata setLoaded:sp_image_is_loaded(image)];
 }
 
 static NSString * const kSPImageKVOContext = @"kSPImageKVOContext";
 
-@implementation SPImage
+@implementation SPImage {
+	BOOL hasRequestedImage;
+	SPPlatformNativeImage *_image;
+}
 
 static NSMutableDictionary *imageCache;
 
@@ -76,7 +80,7 @@ static NSMutableDictionary *imageCache;
 											   imageId:imageId
 											 inSession:aSession];
 	[imageCache setObject:cachedImage forKey:imageIdAsData];
-	return [cachedImage autorelease];
+	return cachedImage;
 }
 
 +(SPImage *)imageWithImageURL:(NSURL *)imageURL inSession:(SPSession *)aSession {
@@ -104,39 +108,39 @@ static NSMutableDictionary *imageCache;
     if ((self = [super init])) {
 		
 		self.session = aSession;
-		imageId = anId;
+		self.imageId = anId;
         
         [self addObserver:self
                forKeyPath:@"loaded"
                   options:0
-                  context:kSPImageKVOContext];
+                  context:(__bridge void *)kSPImageKVOContext];
 		
 		if (anImage != NULL) {
-			spImage = anImage;
-			sp_image_add_ref(spImage);
-			sp_image_add_load_callback(spImage,
+			self.spImage = anImage;
+			sp_image_add_ref(self.spImage);
+			sp_image_add_load_callback(self.spImage,
 									   &image_loaded,
-									   self);
+									   (__bridge void *)(self));
 			
 			[self cacheSpotifyURL];
         
-			self.loaded = sp_image_is_loaded(spImage);
+			self.loaded = sp_image_is_loaded(self.spImage);
         }
     }
     return self;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (context == kSPImageKVOContext) {
+    if (context == (__bridge void *)kSPImageKVOContext) {
         if ([keyPath isEqualToString:@"loaded"] && [self isLoaded] && ([self image] == nil)) {
-            if (sp_image_format(spImage) == SP_IMAGE_FORMAT_JPEG) {
+            if (sp_image_format(self.spImage) == SP_IMAGE_FORMAT_JPEG) {
                 
                 size_t size;
-                const byte *data = sp_image_data(spImage, &size);
+                const byte *data = sp_image_data(self.spImage, &size);
                 
                 if (size > 0) {
                     NSData *imageData = [NSData dataWithBytes:data length:size];
-                    [self setImage:[[[SPPlatformNativeImage alloc] initWithData:imageData] autorelease]];
+                    [self setImage:[[SPPlatformNativeImage alloc] initWithData:imageData]];
                 }
             }
         }
@@ -149,18 +153,17 @@ static NSMutableDictionary *imageCache;
 @synthesize loaded;
 @synthesize session;
 @synthesize spotifyURL;
+@synthesize imageId;
 
 -(SPPlatformNativeImage *)image {
-	if (image == nil && !hasRequestedImage)
+	if (self.spImage == nil && !hasRequestedImage)
 		[self beginLoading];
-	return image;
+	return _image;
 }
 
 -(void)setImage:(SPPlatformNativeImage *)anImage {
-	if (image != anImage) {
-		[anImage retain];
-		[image release];
-		image = anImage;
+	if (_image != anImage) {
+		_image = anImage;
 	}
 }
 
@@ -172,7 +175,7 @@ static NSMutableDictionary *imageCache;
 		return;
 	
 	[self willChangeValueForKey:@"spImage"];
-	sp_image *newImage = sp_image_create(self.session.session, imageId);
+	sp_image *newImage = sp_image_create(self.session.session, self.imageId);
 	spImage = newImage;
 	[self didChangeValueForKey:@"spImage"];
 	
@@ -180,25 +183,18 @@ static NSMutableDictionary *imageCache;
         [self cacheSpotifyURL];
         
 		hasRequestedImage = YES;
-		sp_image_add_load_callback(spImage, &image_loaded, self);
+		sp_image_add_load_callback(spImage, &image_loaded, (__bridge void *)(self));
 		self.loaded = sp_image_is_loaded(spImage);
 	}
 }
 
--(const byte *)imageId {
-    return imageId;
-}
-
 -(void)dealloc {
     
-	self.spotifyURL = nil;
     [self removeObserver:self forKeyPath:@"loaded"];
-    [self setImage:nil];
     
-    sp_image_remove_load_callback(spImage, &image_loaded, self);
-    sp_image_release(spImage);
+    sp_image_remove_load_callback(self.spImage, &image_loaded, (__bridge void *)(self));
+    sp_image_release(self.spImage);
     
-    [super dealloc];
 }
 
 -(void) cacheSpotifyURL

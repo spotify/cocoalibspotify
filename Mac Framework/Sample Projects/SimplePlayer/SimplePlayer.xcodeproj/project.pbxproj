@@ -17,8 +17,6 @@
 		504E0908140CCE41008A20D9 /* CocoaLibSpotify.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 504E0904140CCE23008A20D9 /* CocoaLibSpotify.framework */; };
 		506DA59613718B47009A8D1F /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506DA59513718B47009A8D1F /* AudioUnit.framework */; };
 		506DA59A13718B72009A8D1F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506DA59913718B72009A8D1F /* CoreAudio.framework */; };
-		50A26BD81439D6B000A0C876 /* SPCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A26BD51439D6B000A0C876 /* SPCircularBuffer.m */; };
-		50A26BD91439D6B000A0C876 /* SPPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A26BD71439D6B000A0C876 /* SPPlaybackManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,10 +66,6 @@
 		504E08FC140CCE23008A20D9 /* CocoaLibSpotify Mac Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify Mac Framework.xcodeproj"; path = "../../CocoaLibSpotify Mac Framework.xcodeproj"; sourceTree = "<group>"; };
 		506DA59513718B47009A8D1F /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = /System/Library/Frameworks/AudioUnit.framework; sourceTree = "<absolute>"; };
 		506DA59913718B72009A8D1F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
-		50A26BD41439D6B000A0C876 /* SPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPCircularBuffer.h; path = "../../../../Playback Helper Classes/SPCircularBuffer.h"; sourceTree = "<group>"; };
-		50A26BD51439D6B000A0C876 /* SPCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPCircularBuffer.m; path = "../../../../Playback Helper Classes/SPCircularBuffer.m"; sourceTree = "<group>"; };
-		50A26BD61439D6B000A0C876 /* SPPlaybackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaybackManager.h; path = "../../../../Playback Helper Classes/SPPlaybackManager.h"; sourceTree = "<group>"; };
-		50A26BD71439D6B000A0C876 /* SPPlaybackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPPlaybackManager.m; path = "../../../../Playback Helper Classes/SPPlaybackManager.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +129,6 @@
 				5006F165137161D800AF4418 /* SimplePlayerAppDelegate.h */,
 				5006F166137161D800AF4418 /* SimplePlayerAppDelegate.m */,
 				5006F168137161D800AF4418 /* MainMenu.xib */,
-				506DA55E1371800C009A8D1F /* Playback Helpers */,
 			);
 			path = SimplePlayer;
 			sourceTree = "<group>";
@@ -159,17 +152,6 @@
 				504E0904140CCE23008A20D9 /* CocoaLibSpotify.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		506DA55E1371800C009A8D1F /* Playback Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				50A26BD41439D6B000A0C876 /* SPCircularBuffer.h */,
-				50A26BD51439D6B000A0C876 /* SPCircularBuffer.m */,
-				50A26BD61439D6B000A0C876 /* SPPlaybackManager.h */,
-				50A26BD71439D6B000A0C876 /* SPPlaybackManager.m */,
-			);
-			name = "Playback Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +238,6 @@
 			files = (
 				5006F161137161D800AF4418 /* main.m in Sources */,
 				5006F167137161D800AF4418 /* SimplePlayerAppDelegate.m in Sources */,
-				50A26BD81439D6B000A0C876 /* SPCircularBuffer.m in Sources */,
-				50A26BD91439D6B000A0C876 /* SPPlaybackManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +295,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_PLUGIN_SEARCH_PATHS = "$(SRCROOT)";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -334,7 +313,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_PLUGIN_SEARCH_PATHS = "$(SRCROOT)";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -343,6 +321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -354,7 +333,6 @@
 				GCC_PREFIX_HEADER = "SimplePlayer/SimplePlayer-Prefix.pch";
 				INFOPLIST_FILE = "SimplePlayer/SimplePlayer-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -364,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -375,7 +354,6 @@
 				GCC_PREFIX_HEADER = "SimplePlayer/SimplePlayer-Prefix.pch";
 				INFOPLIST_FILE = "SimplePlayer/SimplePlayer-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

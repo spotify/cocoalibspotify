@@ -1,0 +1,983 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>SPPlaybackManager Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">CocoaLibSpotify </a></h1>
+				<a id="developerHome" href="../index.html">Spotify AB</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">SPPlaybackManager Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/currentTrack">&nbsp;&nbsp;&nbsp;&nbsp;currentTrack</option>
+	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	<option value="//api/name/isPlaying">&nbsp;&nbsp;&nbsp;&nbsp;isPlaying</option>
+	
+	<option value="//api/name/playbackSession">&nbsp;&nbsp;&nbsp;&nbsp;playbackSession</option>
+	
+	<option value="//api/name/trackPosition">&nbsp;&nbsp;&nbsp;&nbsp;trackPosition</option>
+	
+	<option value="//api/name/volume">&nbsp;&nbsp;&nbsp;&nbsp;volume</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/coreAudioController:didOutputAudioOfDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- coreAudioController:didOutputAudioOfDuration:</option>
+	
+	<option value="//api/name/initWithAudioController:playbackSession:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithAudioController:playbackSession:</option>
+	
+	<option value="//api/name/initWithPlaybackSession:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPlaybackSession:</option>
+	
+	<option value="//api/name/playTrack:error:">&nbsp;&nbsp;&nbsp;&nbsp;- playTrack:error:</option>
+	
+	<option value="//api/name/seekToTrackPosition:">&nbsp;&nbsp;&nbsp;&nbsp;- seekToTrackPosition:</option>
+	
+	<option value="//api/name/sessionDidEndPlayback:">&nbsp;&nbsp;&nbsp;&nbsp;- sessionDidEndPlayback:</option>
+	
+	<option value="//api/name/sessionDidLosePlayToken:">&nbsp;&nbsp;&nbsp;&nbsp;- sessionDidLosePlayToken:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Controlling Playback">Controlling Playback</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentTrack">currentTrack</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isPlaying">isPlaying</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/playbackSession">playbackSession</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/trackPosition">trackPosition</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/volume">volume</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/coreAudioController:didOutputAudioOfDuration:">coreAudioController:didOutputAudioOfDuration:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithAudioController:playbackSession:">initWithAudioController:playbackSession:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPlaybackSession:">initWithPlaybackSession:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/playTrack:error:">playTrack:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/seekToTrackPosition:">seekToTrackPosition:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sessionDidEndPlayback:">sessionDidEndPlayback:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sessionDidLosePlayToken:">sessionDidLosePlayToken:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="SPPlaybackManager Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">SPPlaybackManager Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/SPCoreAudioControllerDelegate.html">SPCoreAudioControllerDelegate</a><br /><a href="../Protocols/SPSessionPlaybackDelegate.html">SPSessionPlaybackDelegate</a></td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">SPPlaybackManager.h<br />SPPlaybackManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This class provides a very basic interface for playing a track. For advanced control of playback,
+either subclass this class or implement your own using <a href="../Classes/SPCoreAudioController.html">SPCoreAudioController</a> for the audio pipeline.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithPlaybackSession:">&ndash;&nbsp;initWithPlaybackSession:</a></code>
+		<span class="tooltip"><p>Initialize a new SPPlaybackManager object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithAudioController:playbackSession:">&ndash;&nbsp;initWithAudioController:playbackSession:</a></code>
+		<span class="tooltip"><p>Initialize a new SPPlaybackManager object with a custom audio controller.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentTrack">&nbsp;&nbsp;currentTrack</a></code>
+		<span class="tooltip"><p>Returns the currently playing track, or <code>nil</code> if nothing is playing.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Returns the manager&rsquo;s delegate.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/playbackSession">&nbsp;&nbsp;playbackSession</a></code>
+		<span class="tooltip"><p>Returns the session that is performing decoding and playback.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Controlling Playback" name="task_Controlling Playback"></a>
+						<h3 class="subsubtitle task-title">Controlling Playback</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isPlaying">&nbsp;&nbsp;isPlaying</a></code>
+		<span class="tooltip"><p>Returns <code>YES</code> if the track is currently playing, <code>NO</code> if not.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/playTrack:error:">&ndash;&nbsp;playTrack:error:</a></code>
+		<span class="tooltip"><p>Plays the given track.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/seekToTrackPosition:">&ndash;&nbsp;seekToTrackPosition:</a></code>
+		<span class="tooltip"><p>Seek the current playback position to the given time.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/trackPosition">&nbsp;&nbsp;trackPosition</a></code>
+		<span class="tooltip"><p>Returns the playback position of the current track, in the range 0.0 to the current track&rsquo;s duration.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/volume">&nbsp;&nbsp;volume</a></code>
+		<span class="tooltip"><p>Returns the current playback volume, in the range 0.0 to 1.0.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/coreAudioController:didOutputAudioOfDuration:">&ndash;&nbsp;coreAudioController:didOutputAudioOfDuration:</a></code>
+		<span class="tooltip"><p>Called repeatedly during audio playback when audio is pushed to the system&rsquo;s audio output.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sessionDidLosePlayToken:">&ndash;&nbsp;sessionDidLosePlayToken:</a></code>
+		<span class="tooltip"><p>Called when playback was paused because the Spotify account was used elsewhere.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sessionDidEndPlayback:">&ndash;&nbsp;sessionDidEndPlayback:</a></code>
+		<span class="tooltip"><p>Called when playback stopped naturally at the end of a track.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/currentTrack" title="currentTrack"></a>
+	<h3 class="subsubtitle method-title">currentTrack</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the currently playing track, or <code>nil</code> if nothing is playing.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, strong) SPTrack *currentTrack</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the manager&rsquo;s delegate.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, assign) __unsafe_unretained id&lt;&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isPlaying" title="isPlaying"></a>
+	<h3 class="subsubtitle method-title">isPlaying</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns <code>YES</code> if the track is currently playing, <code>NO</code> if not.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (readwrite) BOOL isPlaying</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If <a href="#//api/name/currentTrack">currentTrack</a> is not <code>nil</code>, playback is paused.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/playbackSession" title="playbackSession"></a>
+	<h3 class="subsubtitle method-title">playbackSession</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the session that is performing decoding and playback.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, strong) SPSession *playbackSession</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/trackPosition" title="trackPosition"></a>
+	<h3 class="subsubtitle method-title">trackPosition</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the playback position of the current track, in the range 0.0 to the current track&rsquo;s duration.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (readonly) NSTimeInterval trackPosition</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/volume" title="volume"></a>
+	<h3 class="subsubtitle method-title">volume</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the current playback volume, in the range 0.0 to 1.0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (readwrite) double volume</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/coreAudioController:didOutputAudioOfDuration:" title="coreAudioController:didOutputAudioOfDuration:"></a>
+	<h3 class="subsubtitle method-title">coreAudioController:didOutputAudioOfDuration:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called repeatedly during audio playback when audio is pushed to the system&rsquo;s audio output.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)coreAudioController:(SPCoreAudioController *)<em>controller</em> didOutputAudioOfDuration:(NSTimeInterval)<em>audioDuration</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>controller</em></dt>
+			<dd><p>The <a href="../Classes/SPCoreAudioController.html">SPCoreAudioController</a> that pushed audio.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This can be used to keep track of how much audio has been played back for progress indicators and so on.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPCoreAudioController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithAudioController:playbackSession:" title="initWithAudioController:playbackSession:"></a>
+	<h3 class="subsubtitle method-title">initWithAudioController:playbackSession:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new SPPlaybackManager object with a custom audio controller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithAudioController:(SPCoreAudioController *)<em>aController</em> playbackSession:(SPSession *)<em>aSession</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>aController</em></dt>
+			<dd><p>The <a href="../Classes/SPCoreAudioController.html"><code>SPCoreAudioController</code></a> this instance should use.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>aSession</em></dt>
+			<dd><p>The session that should stream and decode audio data.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the created playback manager.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithPlaybackSession:" title="initWithPlaybackSession:"></a>
+	<h3 class="subsubtitle method-title">initWithPlaybackSession:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new SPPlaybackManager object.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithPlaybackSession:(SPSession *)<em>aSession</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>aSession</em></dt>
+			<dd><p>The session that should stream and decode audio data.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the created playback manager.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/playTrack:error:" title="playTrack:error:"></a>
+	<h3 class="subsubtitle method-title">playTrack:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Plays the given track.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)playTrack:(SPTrack *)<em>trackToPlay</em> error:(NSError **)<em>error</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>trackToPlay</em></dt>
+			<dd><p>The track that should be played.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>An <code>NSError</code> pointer reference that, if not <code>NULL</code>, will be filled with an error describing any failure.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>YES</code> is playback started successfully, <code>NO</code> if not.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/seekToTrackPosition:" title="seekToTrackPosition:"></a>
+	<h3 class="subsubtitle method-title">seekToTrackPosition:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Seek the current playback position to the given time.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)seekToTrackPosition:(NSTimeInterval)<em>newPosition</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>newPosition</em></dt>
+			<dd><p>The time at which to seek to. Must be between 0.0 and the duration of the playing track.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPPlaybackManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sessionDidEndPlayback:" title="sessionDidEndPlayback:"></a>
+	<h3 class="subsubtitle method-title">sessionDidEndPlayback:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when playback stopped naturally at the end of a track.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)sessionDidEndPlayback:(SPSession *)<em>aSession</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>aSession</em></dt>
+			<dd><p>The session that stopped playback.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPSession.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sessionDidLosePlayToken:" title="sessionDidLosePlayToken:"></a>
+	<h3 class="subsubtitle method-title">sessionDidLosePlayToken:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when playback was paused because the Spotify account was used elsewhere.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)sessionDidLosePlayToken:(SPSession *)<em>aSession</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>aSession</em></dt>
+			<dd><p>The session that paused playback.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPSession.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Spotify AB. All rights reserved. (Last updated: 2012-04-02)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

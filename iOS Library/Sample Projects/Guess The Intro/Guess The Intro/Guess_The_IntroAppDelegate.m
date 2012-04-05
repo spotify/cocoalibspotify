@@ -28,8 +28,8 @@
 	
 	[SPSession sharedSession].delegate = (id)self.viewController;
 	
-	self.viewController.playbackManager = [[[SPPlaybackManager alloc] 
-							 initWithPlaybackSession:[SPSession sharedSession]] autorelease];
+	self.viewController.playbackManager = [[SPPlaybackManager alloc] 
+							 initWithPlaybackSession:[SPSession sharedSession]];
 	self.viewController.playbackManager.delegate = self.viewController;
 	
 	self.window.rootViewController = self.viewController;
@@ -41,11 +41,9 @@
 }
 
 -(void)showLoginView {
-	
 	SPLoginViewController *controller = [SPLoginViewController loginControllerForSession:[SPSession sharedSession]];
 	controller.allowsCancel = NO;
 	[self.viewController presentModalViewController:controller animated:NO];
-	 
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -90,11 +88,5 @@
 	[[SPSession sharedSession] logout];
 }
 
-- (void)dealloc
-{
-	[_window release];
-	[_viewController release];
-    [super dealloc];
-}
 
 @end

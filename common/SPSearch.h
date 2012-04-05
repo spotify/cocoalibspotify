@@ -42,33 +42,7 @@ static SInt32 const kSPSearchDefaultSearchPageSize = 75;
 /** The "do not search" page size. Used if you don't want to search for a particular kind of result. */
 static SInt32 const kSPSearchDoNotSearchPageSize = 0;
 
-@interface SPSearch : NSObject {
-@private
-	SPSession *session;
-	sp_search *activeSearch;
-	sp_search_type searchType;
-	
-	NSArray *tracks;
-	NSArray *artists;
-	NSArray *albums;
-	NSArray *playlists;
-	BOOL loaded;
-	NSString *searchQuery;
-	NSString *suggestedSearchQuery;
-	NSURL *spotifyURL;
-	
-	NSError *searchError;
-	
-	BOOL hasExhaustedTrackResults;
-	BOOL hasExhaustedArtistResults;
-	BOOL hasExhaustedAlbumResults;
-	BOOL hasExhaustedPlaylistResults;
-	NSInteger requestedTrackResults;
-	NSInteger requestedArtistResults;
-	NSInteger requestedAlbumResults;
-	NSInteger requestedPlaylistResults;
-	NSInteger pageSize;
-}
+@interface SPSearch : NSObject
 
 ///----------------------------
 /// @name Creating and Initializing Searches
@@ -301,16 +275,16 @@ static SInt32 const kSPSearchDoNotSearchPageSize = 0;
 @property (nonatomic, readonly) BOOL hasExhaustedPlaylistResults;
 
 /** Returns the album results of the search, or `nil` if the search has not loaded or there are no album results. */
-@property (nonatomic, readonly, retain) NSArray *albums;
+@property (nonatomic, readonly, strong) NSArray *albums;
 
 /** Returns the artist results of the search, or `nil` if the search has not loaded or there are no artist results. */
-@property (nonatomic, readonly, retain) NSArray *artists;
+@property (nonatomic, readonly, strong) NSArray *artists;
 
 /** Returns the track results of the search, or `nil` if the search has not loaded or there are no track results. */
-@property (nonatomic, readonly, retain) NSArray *tracks;
+@property (nonatomic, readonly, strong) NSArray *tracks;
 
 /** Returns the playlist results of the search, or `nil` if the search has not loaded or there are no playlist results. */
-@property (nonatomic, readonly, retain) NSArray *playlists;
+@property (nonatomic, readonly, strong) NSArray *playlists;
 
 ///----------------------------
 /// @name Properties
@@ -326,7 +300,7 @@ static SInt32 const kSPSearchDoNotSearchPageSize = 0;
 @property (nonatomic, readonly, copy) NSString *searchQuery;
 
 /** Returns the session the search is being performed in. */
-@property (nonatomic, readonly, retain) SPSession *session;
+@property (nonatomic, readonly, strong) SPSession *session;
 
 /** Returns the Spotify URI of the search, for example: `spotify:search:rick+astley` */
 @property (nonatomic, readonly, copy) NSURL *spotifyURL;

@@ -57,6 +57,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #import "SPSignupViewController.h"
 #import "SPLoginViewController.h"
 
+#import "SPCircularBuffer.h"
+#import "SPCoreAudioController.h"
+#import "SPPlaybackManager.h"
+
 #else
 
 #import <CocoaLibSpotify/SPErrorExtensions.h>
@@ -77,5 +81,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #import <CocoaLibSpotify/SPAlbumBrowse.h>
 #import <CocoaLibSpotify/SPToplist.h>
 #import <CocoaLibSpotify/SPUnknownPlaylist.h>
+#import <CocoaLibSpotify/SPCircularBuffer.h>
+#import <CocoaLibSpotify/SPCoreAudioController.h>
+#import <CocoaLibSpotify/SPPlaybackManager.h>
 
 #endif

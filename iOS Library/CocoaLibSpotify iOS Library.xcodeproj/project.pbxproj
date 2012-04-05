@@ -61,6 +61,12 @@
 		50B1F2071518B1DA00CB7186 /* SPSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F2051518B1DA00CB7186 /* SPSignupViewController.m */; };
 		50B1F28B1518E69A00CB7186 /* SPLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B1F2891518E69A00CB7186 /* SPLoginViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B1F28C1518E69A00CB7186 /* SPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F28A1518E69A00CB7186 /* SPLoginViewController.m */; };
+		50DB47FA1523166A0037A206 /* SPCircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DB47F41523166A0037A206 /* SPCircularBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50DB47FB1523166A0037A206 /* SPCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB47F51523166A0037A206 /* SPCircularBuffer.m */; };
+		50DB47FC1523166A0037A206 /* SPCoreAudioController.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DB47F61523166A0037A206 /* SPCoreAudioController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50DB47FD1523166A0037A206 /* SPCoreAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB47F71523166A0037A206 /* SPCoreAudioController.m */; };
+		50DB47FE1523166A0037A206 /* SPPlaybackManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DB47F81523166A0037A206 /* SPPlaybackManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50DB47FF1523166A0037A206 /* SPPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB47F91523166A0037A206 /* SPPlaybackManager.m */; };
 		50DBB5B815206AF900BF516F /* SPLicenseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DBB5B615206AF900BF516F /* SPLicenseViewController.h */; };
 		50DBB5B915206AF900BF516F /* SPLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB5B715206AF900BF516F /* SPLicenseViewController.m */; };
 		50DE7F55147E833D005403A9 /* SPPlaylistInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DE7F54147E833D005403A9 /* SPPlaylistInternal.h */; };
@@ -117,12 +123,18 @@
 		50AF4A781439CF8600E4A5EF /* SPTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPTrack.m; path = ../common/SPTrack.m; sourceTree = "<group>"; };
 		50AF4A791439CF8600E4A5EF /* SPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPUser.h; path = ../common/SPUser.h; sourceTree = "<group>"; };
 		50AF4A7A1439CF8600E4A5EF /* SPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPUser.m; path = ../common/SPUser.m; sourceTree = "<group>"; };
-		50B1F18715188A6D00CB7186 /* libspotify */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspotify; path = "libspotify-11.1.56-iOS-universal/libspotify.framework/Versions/11.1.56/libspotify"; sourceTree = "<group>"; };
-		50B1F18915188A7200CB7186 /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = api.h; path = "libspotify-11.1.56-iOS-universal/libspotify.framework/Versions/11.1.56/Headers/api.h"; sourceTree = "<group>"; };
+		50B1F18715188A6D00CB7186 /* libspotify */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspotify; path = "libspotify-11.1.60-iOS-universal/libspotify.framework/Versions/11.1.60/libspotify"; sourceTree = "<group>"; };
+		50B1F18915188A7200CB7186 /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = api.h; path = "libspotify-11.1.60-iOS-universal/libspotify.framework/Versions/11.1.60/Headers/api.h"; sourceTree = "<group>"; };
 		50B1F2041518B1DA00CB7186 /* SPSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPSignupViewController.h; path = "View Controllers/SPSignupViewController.h"; sourceTree = "<group>"; };
 		50B1F2051518B1DA00CB7186 /* SPSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPSignupViewController.m; path = "View Controllers/SPSignupViewController.m"; sourceTree = "<group>"; };
 		50B1F2891518E69A00CB7186 /* SPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPLoginViewController.h; path = "View Controllers/SPLoginViewController.h"; sourceTree = "<group>"; };
 		50B1F28A1518E69A00CB7186 /* SPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPLoginViewController.m; path = "View Controllers/SPLoginViewController.m"; sourceTree = "<group>"; };
+		50DB47F41523166A0037A206 /* SPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPCircularBuffer.h; path = ../common/SPCircularBuffer.h; sourceTree = "<group>"; };
+		50DB47F51523166A0037A206 /* SPCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPCircularBuffer.m; path = ../common/SPCircularBuffer.m; sourceTree = "<group>"; };
+		50DB47F61523166A0037A206 /* SPCoreAudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPCoreAudioController.h; path = ../common/SPCoreAudioController.h; sourceTree = "<group>"; };
+		50DB47F71523166A0037A206 /* SPCoreAudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPCoreAudioController.m; path = ../common/SPCoreAudioController.m; sourceTree = "<group>"; };
+		50DB47F81523166A0037A206 /* SPPlaybackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaybackManager.h; path = ../common/SPPlaybackManager.h; sourceTree = "<group>"; };
+		50DB47F91523166A0037A206 /* SPPlaybackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPPlaybackManager.m; path = ../common/SPPlaybackManager.m; sourceTree = "<group>"; };
 		50DBB5B615206AF900BF516F /* SPLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPLicenseViewController.h; path = "View Controllers/SPLicenseViewController.h"; sourceTree = "<group>"; };
 		50DBB5B715206AF900BF516F /* SPLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPLicenseViewController.m; path = "View Controllers/SPLicenseViewController.m"; sourceTree = "<group>"; };
 		50DE7F54147E833D005403A9 /* SPPlaylistInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaylistInternal.h; path = ../common/SPPlaylistInternal.h; sourceTree = "<group>"; };
@@ -196,6 +208,7 @@
 				50AF4A381439CC7100E4A5EF /* Extensions */,
 				50AF4A391439CC8B00E4A5EF /* Model */,
 				5046739A15135F6000F59AC4 /* Views */,
+				50DB47F2152316580037A206 /* Playback */,
 				50AF49E21439CBFE00E4A5EF /* Supporting Files */,
 			);
 			name = CocoaLibSpotify;
@@ -271,6 +284,19 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		50DB47F2152316580037A206 /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				50DB47F41523166A0037A206 /* SPCircularBuffer.h */,
+				50DB47F51523166A0037A206 /* SPCircularBuffer.m */,
+				50DB47F61523166A0037A206 /* SPCoreAudioController.h */,
+				50DB47F71523166A0037A206 /* SPCoreAudioController.m */,
+				50DB47F81523166A0037A206 /* SPPlaybackManager.h */,
+				50DB47F91523166A0037A206 /* SPPlaybackManager.m */,
+			);
+			name = Playback;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -312,6 +338,9 @@
 				5062AEFC151E484400095B3C /* SPFacebookPermissionsViewController.h in Headers */,
 				50DBB5B815206AF900BF516F /* SPLicenseViewController.h in Headers */,
 				501F7BE91521C2FB009CB9F4 /* SPLoginViewControllerInternal.h in Headers */,
+				50DB47FA1523166A0037A206 /* SPCircularBuffer.h in Headers */,
+				50DB47FC1523166A0037A206 /* SPCoreAudioController.h in Headers */,
+				50DB47FE1523166A0037A206 /* SPPlaybackManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/python;
-			shellScript = "import urllib\nimport zipfile\nimport os\nimport sys\nimport commands\n\nlibspotifyFileName = \"libspotify-11.1.56-iOS-universal.zip\"\nlibspotifyRemoteLocation = \"http://developer.spotify.com/download/libspotify/\"\nprojectDir = os.environ.get('PROJECT_DIR')\nlibspotifyDirectoryDir = os.path.join(projectDir, \"libspotify-11.1.56-iOS-universal\")\nlibspotifyZipDir = os.path.join(projectDir, libspotifyFileName)\n\nif (os.path.exists(libspotifyDirectoryDir)):\n    print \"LibSpotify is present, no download needed.\"\n    sys.exit(0)\n\nprint \"LibSpotify not present, downloading...\"\n\ntry:\n    urllib.urlretrieve(libspotifyRemoteLocation + libspotifyFileName, libspotifyZipDir)\nexcept OSError:\n    print \"Could not download \" + libspotifyRemoteLocation + libspotifyFileName + \".\"\n    sys.exit(1)\n\nunzipCommand = 'unzip -q \"' + libspotifyZipDir + '\"' + ' -d \"' + projectDir + '\"'\nunzipResult = commands.getstatusoutput(unzipCommand)\n\nif (unzipResult[0] != 0):\n    print \"Could not untar \" + libspotifyFileName + \".\"\n    sys.exit(1)\n\ncommands.getstatusoutput('rm -rf \"' + projectDir + '/__MACOSX\"') \n\ntry:\n    os.remove(libspotifyZipDir)\nexcept OSError:\n    print \"Could not remove downloaded file.\"\n\nprint \"Complete.\"";
+			shellScript = "import urllib\nimport zipfile\nimport os\nimport sys\nimport commands\n\nlibspotifyFileName = \"libspotify-11.1.60-iOS-universal.zip\"\nlibspotifyRemoteLocation = \"http://developer.spotify.com/download/libspotify/\"\nprojectDir = os.environ.get('PROJECT_DIR')\nlibspotifyDirectoryDir = os.path.join(projectDir, \"libspotify-11.1.60-iOS-universal\")\nlibspotifyZipDir = os.path.join(projectDir, libspotifyFileName)\n\nif (os.path.exists(libspotifyDirectoryDir)):\n    print \"LibSpotify is present, no download needed.\"\n    sys.exit(0)\n\nprint \"LibSpotify not present, downloading...\"\n\ntry:\n    urllib.urlretrieve(libspotifyRemoteLocation + libspotifyFileName, libspotifyZipDir)\nexcept OSError:\n    print \"Could not download \" + libspotifyRemoteLocation + libspotifyFileName + \".\"\n    sys.exit(1)\n\nunzipCommand = 'unzip -q \"' + libspotifyZipDir + '\"' + ' -d \"' + projectDir + '\"'\nunzipResult = commands.getstatusoutput(unzipCommand)\n\nif (unzipResult[0] != 0):\n    print \"Could not untar \" + libspotifyFileName + \".\"\n    sys.exit(1)\n\ncommands.getstatusoutput('rm -rf \"' + projectDir + '/__MACOSX\"') \n\ntry:\n    os.remove(libspotifyZipDir)\nexcept OSError:\n    print \"Could not remove downloaded file.\"\n\nprint \"Complete.\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -405,6 +434,9 @@
 				5062AEE5151DE0A900095B3C /* SPLoginLogicViewController.m in Sources */,
 				5062AEFD151E484400095B3C /* SPFacebookPermissionsViewController.m in Sources */,
 				50DBB5B915206AF900BF516F /* SPLicenseViewController.m in Sources */,
+				50DB47FB1523166A0037A206 /* SPCircularBuffer.m in Sources */,
+				50DB47FD1523166A0037A206 /* SPCoreAudioController.m in Sources */,
+				50DB47FF1523166A0037A206 /* SPPlaybackManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -424,11 +457,10 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -437,13 +469,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -452,17 +484,15 @@
 		50AF49EA1439CBFE00E4A5EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/CocoaLibSpotify_iOS_Library.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CocoaLibSpotify iOS Library-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/libspotify-11.1.56-iOS-universal/libspotify.framework/Versions/11.1.56\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-frtti",
+					"\"$(SRCROOT)/libspotify-11.1.60-iOS-universal/libspotify.framework/Versions/11.1.60\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include;
@@ -475,17 +505,15 @@
 		50AF49EB1439CBFE00E4A5EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/CocoaLibSpotify_iOS_Library.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CocoaLibSpotify iOS Library-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/libspotify-11.1.56-iOS-universal/libspotify.framework/Versions/11.1.56\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-frtti",
+					"\"$(SRCROOT)/libspotify-11.1.60-iOS-universal/libspotify.framework/Versions/11.1.60\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include;

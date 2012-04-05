@@ -52,7 +52,7 @@
 
 @end
 
-/** This class provides a Spotify-designed login and signup flow for your application. 
+/** This class provides a Spotify-designed login and signup flow for your application. iOS only.
  
  @warning *Important:* You must also include the provided `SPLoginResources.bundle` bundle 
  as a resource in your application to use this class.
@@ -60,7 +60,7 @@
 @interface SPLoginViewController : UINavigationController <SPSignupPageDelegate> {
 	SPSession *session;
 	BOOL waitingForFacebookPermissions;
-	id <SPLoginViewControllerDelegate> loginDelegate;
+	id <SPLoginViewControllerDelegate> __unsafe_unretained loginDelegate;
 }
 
 /** Returns an SPLoginViewController instance for the given session. 
@@ -74,7 +74,7 @@
 @property (nonatomic, readwrite) BOOL allowsCancel;
 
 /** Returns the controller's loginDelegate object. */
-@property (nonatomic, readwrite, assign) id <SPLoginViewControllerDelegate> loginDelegate;
+@property (nonatomic, readwrite, unsafe_unretained) id <SPLoginViewControllerDelegate> loginDelegate;
 
 @end
 

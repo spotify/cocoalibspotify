@@ -166,7 +166,6 @@
 								<string key="NSFrame">{{234, 414}, {300, 300}}</string>
 								<reference key="NSSuperview" ref="938301153"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:544</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -287,6 +286,41 @@
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUINumberOfLines">0</int>
 								<int key="IBUILineBreakMode">0</int>
+								<reference key="IBUIFontDescription" ref="845274097"/>
+								<reference key="IBUIFont" ref="626627008"/>
+							</object>
+							<object class="IBUISlider" id="308213377">
+								<reference key="NSNextResponder" ref="938301153"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{326, 760}, {200, 23}}</string>
+								<reference key="NSSuperview" ref="938301153"/>
+								<reference key="NSWindow"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<float key="IBUIValue">1</float>
+							</object>
+							<object class="IBUILabel" id="879236436">
+								<reference key="NSNextResponder" ref="938301153"/>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{244, 759}, {76, 21}}</string>
+								<reference key="NSSuperview" ref="938301153"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="308213377"/>
+								<string key="NSReuseIdentifierKey">_NS:327</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">7</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<string key="IBUIText">Volume:</string>
+								<reference key="IBUITextColor" ref="879742409"/>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="845274097"/>
 								<reference key="IBUIFont" ref="626627008"/>
 							</object>
@@ -428,6 +462,15 @@
 					</object>
 					<int key="connectionID">33</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">setVolume:</string>
+						<reference key="source" ref="308213377"/>
+						<reference key="destination" ref="250404236"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">36</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -484,6 +527,8 @@
 							<reference ref="734621280"/>
 							<reference ref="360089561"/>
 							<reference ref="841019623"/>
+							<reference ref="308213377"/>
+							<reference ref="879236436"/>
 						</object>
 						<reference key="parent" ref="62075450"/>
 					</object>
@@ -532,6 +577,16 @@
 						<reference key="object" ref="841019623"/>
 						<reference key="parent" ref="938301153"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">34</int>
+						<reference key="object" ref="308213377"/>
+						<reference key="parent" ref="938301153"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">35</int>
+						<reference key="object" ref="879236436"/>
+						<reference key="parent" ref="938301153"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -555,6 +610,8 @@
 					<string>28.IBPluginDependency</string>
 					<string>31.IBPluginDependency</string>
 					<string>32.IBPluginDependency</string>
+					<string>34.IBPluginDependency</string>
+					<string>35.IBPluginDependency</string>
 					<string>6.CustomClassName</string>
 					<string>6.IBPluginDependency</string>
 				</object>
@@ -565,6 +622,8 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>RotatableViewController</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -593,7 +652,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">33</int>
+			<int key="maxID">36</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -615,9 +674,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>playTrack:</string>
 							<string>setTrackPosition:</string>
+							<string>setVolume:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -628,6 +689,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>playTrack:</string>
 							<string>setTrackPosition:</string>
+							<string>setVolume:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -637,6 +699,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">setTrackPosition:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">setVolume:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

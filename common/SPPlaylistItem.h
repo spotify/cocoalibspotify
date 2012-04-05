@@ -34,12 +34,6 @@
 @class SPUser;
 
 @interface SPPlaylistItem : NSObject {
-	id item;
-	__weak SPPlaylist *playlist;
-	int itemIndex;
-	NSDate *dateAdded;
-	SPUser *creator;
-	NSString *message;
 	BOOL _unread;
 }
 
@@ -48,7 +42,7 @@
 ///----------------------------
 
 /** Returns the `Class` of the item this object represents. */
-@property (nonatomic, readonly) Class itemClass;
+@property (nonatomic, unsafe_unretained, readonly) Class itemClass;
 
 /** Returns the Spotify URI of the item this object represents. */
 @property (nonatomic, readonly) NSURL *itemURL;
@@ -60,7 +54,7 @@
  
  The item is typically a track, artist, album or playlist.
  */
-@property (nonatomic, readonly, retain) id <SPPlaylistableItem> item;
+@property (nonatomic, readonly, strong) id <SPPlaylistableItem> item;
 
 ///----------------------------
 /// @name Metadata
@@ -72,7 +66,7 @@
  were collaborative, and represents the user that added the track to the
  playlist.
  */
-@property (nonatomic, readonly, retain) SPUser *creator;
+@property (nonatomic, readonly, strong) SPUser *creator;
 
 /** Returns the date that the item this object represents was added to the playlist. 
  

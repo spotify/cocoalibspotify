@@ -34,10 +34,12 @@
 
 @interface SPPlaylistItem ()
 
-@property (nonatomic, readwrite, retain) id <SPPlaylistableItem> item;
+@property (nonatomic, readwrite, strong) id <SPPlaylistableItem> item;
 @property (nonatomic, readwrite, copy) NSDate *dateAdded;
-@property (nonatomic, readwrite, retain) SPUser *creator;
+@property (nonatomic, readwrite, strong) SPUser *creator;
 @property (nonatomic, readwrite, copy) NSString *message;
+@property (nonatomic, readwrite, assign) __unsafe_unretained SPPlaylist *playlist;
+@property (nonatomic, readwrite) int itemIndex;
 
 @end
 
@@ -46,32 +48,24 @@
 -(id)initWithPlaceholderTrack:(sp_track *)track atIndex:(int)index inPlaylist:(SPPlaylist *)aPlaylist {
 	
 	if ((self = [super init])) {
-		playlist = aPlaylist;
-		itemIndex = index;
+		self.playlist = aPlaylist;
+		self.itemIndex = index;
 		if (sp_track_is_placeholder(track)) {
-			self.item = [playlist.session objectRepresentationForSpotifyURL:[NSURL urlWithSpotifyLink:sp_link_create_from_track(track, 0)] linkType:NULL];
+			self.item = [self.playlist.session objectRepresentationForSpotifyURL:[NSURL urlWithSpotifyLink:sp_link_create_from_track(track, 0)] linkType:NULL];
 		} else {
-			self.item = [SPTrack trackForTrackStruct:track inSession:playlist.session];
+			self.item = [SPTrack trackForTrackStruct:track inSession:self.playlist.session];
 		}
 		
-		self.dateAdded = [NSDate dateWithTimeIntervalSince1970:sp_playlist_track_create_time(playlist.playlist, index)];
-		self.creator = [SPUser userWithUserStruct:sp_playlist_track_creator(playlist.playlist, index)
-										inSession:playlist.session];
+		self.dateAdded = [NSDate dateWithTimeIntervalSince1970:sp_playlist_track_create_time(self.playlist.playlist, index)];
+		self.creator = [SPUser userWithUserStruct:sp_playlist_track_creator(self.playlist.playlist, index)
+										inSession:self.playlist.session];
 		
-		const char *msg = sp_playlist_track_message(playlist.playlist, index);
+		const char *msg = sp_playlist_track_message(self.playlist.playlist, index);
 		if (msg != NULL)
 			self.message = [NSString stringWithUTF8String:msg];
 		
 	}
 	return self;
-}
-
--(int)itemIndex {
-	return itemIndex;
-}
-
--(void)setItemIndex:(int)index {
-	itemIndex = index;
 }
 
 -(void)setDateCreatedFromLibSpotify:(NSDate *)date {
@@ -93,19 +87,19 @@
 }
 
 -(void)setItemIndexFromLibSpotify:(int)newIndex {
-	itemIndex = newIndex;
+	self.itemIndex = newIndex;
 }
 
 @end
 
 @implementation SPPlaylistItem
 
-
-
 @synthesize item;
 @synthesize dateAdded;
 @synthesize creator;
 @synthesize message;
+@synthesize itemIndex;
+@synthesize playlist;
 
 -(NSString *)description {
 	return [NSString stringWithFormat:@"%@: %@", [super description], [self.item description]];
@@ -138,17 +132,8 @@
 @synthesize unread = _unread;
 
 -(void)setUnread:(BOOL)unread {
-	sp_playlist_track_set_seen(playlist.playlist, itemIndex, !unread);
+	sp_playlist_track_set_seen(self.playlist.playlist, self.itemIndex, !unread);
 	_unread = unread;
-}
-
--(void)dealloc {
-	self.message = nil;
-	self.creator = nil;
-	self.dateAdded = nil;
-	self.item = nil;
-	playlist = nil;
-	[super dealloc];
 }
 
 @end

@@ -51,20 +51,20 @@ AVOID_ALLFORCELOAD_FOR_CATEGORY(SPURLExtensions)
 }
 
 +(NSString *)urlDecodedStringForString:(NSString *)encodedString {
-	NSString *decoded = (NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
-																							(CFStringRef)[encodedString stringByReplacingOccurrencesOfString:@"+" withString:@" "], 
+	NSString *decoded = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+																							(__bridge CFStringRef)[encodedString stringByReplacingOccurrencesOfString:@"+" withString:@" "], 
 																							CFSTR(""), 
 																							kCFStringEncodingUTF8);
-	return [decoded autorelease];
+	return decoded;
 }
 
 +(NSString *)urlEncodedStringForString:(NSString *)plainOldString {
-	NSString *encoded = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
-																			(CFStringRef)plainOldString,
+	NSString *encoded = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
+																			(__bridge CFStringRef)plainOldString,
 																			NULL,
 																			(CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
 																			kCFStringEncodingUTF8);
-	return [encoded autorelease];
+	return encoded;
 }
 
 -(sp_link *)createSpotifyLink {

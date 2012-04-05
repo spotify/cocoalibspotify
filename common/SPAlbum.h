@@ -42,19 +42,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @class SPImage;
 @class SPArtist;
 
-@interface SPAlbum : NSObject <SPPlaylistableItem> {
-    @private
-    sp_album *album;
-	SPSession *session;
-    SPImage *cover;
-    SPArtist *artist;
-    NSURL *spotifyURL;
-	BOOL available;
-	BOOL loaded;
-	NSUInteger year;
-	sp_albumtype type;
-	NSString *name;
-}
+@interface SPAlbum : NSObject <SPPlaylistableItem>
 
 ///----------------------------
 /// @name Creating and Initializing Albums
@@ -113,17 +101,17 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
 
 /** Returns the session the album's metadata is loaded in. */
-@property (nonatomic, readonly, retain) SPSession *session;
+@property (nonatomic, readonly, strong) SPSession *session;
 
 ///----------------------------
 /// @name Metadata
 ///----------------------------
 
 /** Returns the album's artist, or `nil` if the metadata isn't loaded yet. */
-@property (nonatomic, readonly, retain) SPArtist *artist; 
+@property (nonatomic, readonly, strong) SPArtist *artist; 
 
 /** Returns the album's cover image. Returns `nil` if the metadata isn't loaded yet, or if the album doesn't have a cover image. */
-@property (nonatomic, readonly, retain) SPImage *cover;
+@property (nonatomic, readonly, strong) SPImage *cover;
 
 /** Returns `YES` if the album is available in the logged-in user's region. */
 @property (nonatomic, readonly, getter=isAvailable) BOOL available;

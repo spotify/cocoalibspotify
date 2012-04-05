@@ -46,7 +46,7 @@
 	BOOL allowsCancel;
 }
 
-@property (nonatomic, retain) SPSession *session;
+@property (nonatomic) SPSession *session;
 @property (nonatomic) BOOL allowsCancel;
 @property (nonatomic) BOOL remembersCredentials;
 

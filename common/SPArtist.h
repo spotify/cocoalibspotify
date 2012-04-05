@@ -40,12 +40,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @class SPSession;
 
-@interface SPArtist : NSObject <SPPlaylistableItem> {
-    @private
-    sp_artist *artist;
-    NSURL *spotifyURL;
-	NSString *name;
-}
+@interface SPArtist : NSObject <SPPlaylistableItem>
 
 ///----------------------------
 /// @name Creating and Initializing Artists

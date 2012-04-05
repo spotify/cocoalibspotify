@@ -65,30 +65,7 @@ Playback
 @protocol SPPostTracksToInboxOperationDelegate;
 @protocol SPSessionPlaybackProvider;
 
-@interface SPSession : NSObject <SPSessionPlaybackProvider> {
-    @private
-    sp_session *session;
-	BOOL playing;
-    SPPlaylist *inboxPlaylist;
-    SPPlaylist *starredPlaylist;
-    SPPlaylistContainer *userPlaylists;
-    NSMutableDictionary *trackCache;
-    NSMutableDictionary *userCache;
-	NSMutableDictionary *playlistCache;
-    __weak id <SPSessionDelegate> delegate;
-    __weak id <SPSessionPlaybackDelegate> playbackDelegate;
-	__weak id <SPSessionAudioDeliveryDelegate> audioDeliveryDelegate;
-    SPUser *user;
-	NSLocale *locale;
-	NSError *offlineSyncError;
-    NSString *userAgent;
-	sp_connectionstate _connectionState;
-	NSDictionary *offlineStatistics;
-	NSUInteger offlinePlaylistsRemaining;
-	NSUInteger offlineTracksRemaining;
-	BOOL offlineSyncing;
-	NSSet *loadingObjects;
-}
+@interface SPSession : NSObject <SPSessionPlaybackProvider>
 
 /** Returns a shared SPSession object. 
  
@@ -118,8 +95,9 @@ Playback
  @param appKey Your application key as an NSData.
  @param userAgent Your application's user agent (for example, com.yourcompany.MyGreatApp).
  @param error An error pointer to be filled with an NSError should a login problem occur. 
+ @return `YES` the the shared session was initialized correctly, otherwise `NO`.
  */
-+(void)initializeSharedSessionWithApplicationKey:(NSData *)appKey
++(BOOL)initializeSharedSessionWithApplicationKey:(NSData *)appKey
 									   userAgent:(NSString *)userAgent
 										   error:(NSError **)error;
 
@@ -259,7 +237,7 @@ Playback
 ///----------------------------
 
 /** Returns the current delegate object. */
-@property (nonatomic, assign) __weak id <SPSessionDelegate> delegate;
+@property (nonatomic, readwrite, assign) __unsafe_unretained id <SPSessionDelegate> delegate;
 
 /** Returns the opaque structure used by the C LibSpotify API. 
  
@@ -292,7 +270,7 @@ Playback
 @property (nonatomic, readonly) NSTimeInterval offlineKeyTimeRemaining;
 
 /** Returns the last error encountered during offline syncing, or `nil` if there is no problem. */
-@property (nonatomic, readonly, retain) NSError *offlineSyncError;
+@property (nonatomic, readonly, strong) NSError *offlineSyncError;
 
 ///----------------------------
 /// @name User Content
@@ -302,27 +280,27 @@ Playback
  
  The inbox playlist contains tracks sent to the user by other Spotify users, and is 
  updated as new tracks are sent to the user. 
- */ 
-@property (nonatomic, readonly, retain) SPPlaylist *inboxPlaylist;
+ */
+@property (nonatomic, readonly, strong) SPPlaylist *inboxPlaylist;
 
 /** Returns the locale of the logged-in user. */
-@property (nonatomic, readonly, retain) NSLocale *locale;
+@property (nonatomic, readonly, strong) NSLocale *locale;
 
 /** Returns the logged in user's starred playlist.
  
  The starred playlist contains tracks starred by the user, and is updated as new tracks are
  starred or unstarred.
  */ 
-@property (nonatomic, readonly, retain) SPPlaylist *starredPlaylist;
+@property (nonatomic, readonly, strong) SPPlaylist *starredPlaylist;
 
 /** Returns the current logged in user. */
-@property (nonatomic, readonly, retain) SPUser *user;
+@property (nonatomic, readonly, strong) SPUser *user;
 
 /** Returns an SPPlaylistContainer object that contains the user's playlists.
  
  @see SPPlaylistContainer
  */
-@property (nonatomic, readonly, retain) SPPlaylistContainer *userPlaylists;
+@property (nonatomic, readonly, strong) SPPlaylistContainer *userPlaylists;
 
 /** Send tracks to another Spotify user.
  
@@ -472,14 +450,14 @@ Playback
  The playback delegate is responsible for dealing with playback events from CocoaLibSpotify, such as
  playback ending or being paused because the account is being used for playback elsewhere.
  */
-@property (nonatomic, nonatomic, assign) __weak id <SPSessionPlaybackDelegate> playbackDelegate;
+@property (nonatomic, readwrite, assign) __unsafe_unretained id <SPSessionPlaybackDelegate> playbackDelegate;
 
 /** Returns the session's audio delivery delegate object.
  
  The audio delivery delegate is responsible for pushing raw audio data provided by the session
  to the system's audio output. See the SimplePlayback sample project for an example of how to do this.
 */
-@property (nonatomic, nonatomic, assign) __weak id <SPSessionAudioDeliveryDelegate> audioDeliveryDelegate;
+@property (nonatomic, readwrite, assign) __unsafe_unretained id <SPSessionAudioDeliveryDelegate> audioDeliveryDelegate;
 
 /** Preloads playback assets for the given track.
  

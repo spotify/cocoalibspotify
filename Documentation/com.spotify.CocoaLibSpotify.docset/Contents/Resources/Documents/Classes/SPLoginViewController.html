@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>SPPostTracksToInboxOperationDelegate Protocol Reference</title>
+		<title>SPLoginViewController Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">SPPostTracksToInboxOperationDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">SPLoginViewController Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,15 +38,20 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/allowsCancel">&nbsp;&nbsp;&nbsp;&nbsp;allowsCancel</option>
+	
+	<option value="//api/name/loginDelegate">&nbsp;&nbsp;&nbsp;&nbsp;loginDelegate</option>
 	
 	
 	
 	
-	<option value="instance_methods">Instance Methods</option>
+	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/postTracksToInboxOperation:didFailWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- postTracksToInboxOperation:didFailWithError:</option>
+	<option value="//api/name/loginControllerForSession:">&nbsp;&nbsp;&nbsp;&nbsp;+ loginControllerForSession:</option>
 	
-	<option value="//api/name/postTracksToInboxOperationDidSucceed:">&nbsp;&nbsp;&nbsp;&nbsp;- postTracksToInboxOperationDidSucceed:</option>
+	
 	
 	
 	
@@ -70,24 +75,30 @@
 
 
 
-
-
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postTracksToInboxOperation:didFailWithError:">postTracksToInboxOperation:didFailWithError:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allowsCancel">allowsCancel</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postTracksToInboxOperationDidSucceed:">postTracksToInboxOperationDidSucceed:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loginDelegate">loginDelegate</a></span></li>
 	
 </ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loginControllerForSession:">loginControllerForSession:</a></span></li>
+	
+</ul></li>
+
+
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="SPPostTracksToInboxOperationDelegate Protocol Reference" name="top"></a>
+				<a title="SPLoginViewController Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -96,18 +107,21 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">SPPostTracksToInboxOperationDelegate Protocol Reference</h1>
+						<h1 class="title title-header">SPLoginViewController Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UINavigationController</td>
+</tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-value">SPSignupPageDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">SPPostTracksToInboxOperation.h</td>
+	<td class="specification-value">SPLoginViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -117,7 +131,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Delegate callbacks from <a href="../Classes/SPPostTracksToInboxOperation.html">SPPostTracksToInboxOperation</a> on success or failure.</p>
+						<p>This class provides a Spotify-designed login and signup flow for your application. iOS only.</p><div class="warning"><p><strong>Warning:</strong> <em>Important:</em> You must also include the provided <code>SPLoginResources.bundle</code> bundle
+as a resource in your application to use this class.</p></div>
 					</div>
 					
 					
@@ -135,17 +150,24 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/postTracksToInboxOperationDidSucceed:">&ndash;&nbsp;postTracksToInboxOperationDidSucceed:</a></code>
-		<span class="tooltip"><p>Called when the given post operation succeeded.</p></span>
+		<code><a href="#//api/name/loginControllerForSession:">+&nbsp;loginControllerForSession:</a></code>
+		<span class="tooltip"><p>Returns an SPLoginViewController instance for the given session.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/postTracksToInboxOperation:didFailWithError:">&ndash;&nbsp;postTracksToInboxOperation:didFailWithError:</a></code>
-		<span class="tooltip"><p>Called when the given post operation failed.</p></span>
+		<code><a href="#//api/name/allowsCancel">&nbsp;&nbsp;allowsCancel</a></code>
+		<span class="tooltip"><p>Returns whether the view controller allows the user to cancel the login process or not. Defaults to <code>YES</code>.</p></span>
 	</span>
+	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loginDelegate">&nbsp;&nbsp;loginDelegate</a></code>
+		<span class="tooltip"><p>Returns the controller&rsquo;s loginDelegate object.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -156,42 +178,23 @@
 					
 					
 					
-					
-					
-					
-					
 					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/postTracksToInboxOperation:didFailWithError:" title="postTracksToInboxOperation:didFailWithError:"></a>
-	<h3 class="subsubtitle method-title">postTracksToInboxOperation:didFailWithError:</h3>
+	<a name="//api/name/allowsCancel" title="allowsCancel"></a>
+	<h3 class="subsubtitle method-title">allowsCancel</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when the given post operation failed.</p>
+		<p>Returns whether the view controller allows the user to cancel the login process or not. Defaults to <code>YES</code>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)postTracksToInboxOperation:(SPPostTracksToInboxOperation *)<em>operation</em> didFailWithError:(NSError *)<em>error</em></code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite) BOOL allowsCancel</code></div>
 	
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>operation</em></dt>
-			<dd><p>The operation that failed.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>error</em></dt>
-			<dd><p>The error that caused the failure.</p></dd>
-		</dl>
-		
-	</div>
 	
 	
 	
@@ -207,35 +210,25 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPPostTracksToInboxOperation.h</code><br />
+		<code class="declared-in-ref">SPLoginViewController.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/postTracksToInboxOperationDidSucceed:" title="postTracksToInboxOperationDidSucceed:"></a>
-	<h3 class="subsubtitle method-title">postTracksToInboxOperationDidSucceed:</h3>
+	<a name="//api/name/loginDelegate" title="loginDelegate"></a>
+	<h3 class="subsubtitle method-title">loginDelegate</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when the given post operation succeeded.</p>
+		<p>Returns the controller&rsquo;s loginDelegate object.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)postTracksToInboxOperationDidSucceed:(SPPostTracksToInboxOperation *)<em>operation</em></code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, unsafe_unretained) id&lt;&gt; loginDelegate</code></div>
 	
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>operation</em></dt>
-			<dd><p>The operation that succeeded.</p></dd>
-		</dl>
-		
-	</div>
 	
 	
 	
@@ -251,13 +244,72 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPPostTracksToInboxOperation.h</code><br />
+		<code class="declared-in-ref">SPLoginViewController.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/loginControllerForSession:" title="loginControllerForSession:"></a>
+	<h3 class="subsubtitle method-title">loginControllerForSession:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an SPLoginViewController instance for the given session.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (SPLoginViewController *)loginControllerForSession:(SPSession *)<em>session</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>session</em></dt>
+			<dd><p>The session to create the SPLoginViewController instance for.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The created SPLoginViewController instance.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPLoginViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
 					
 					
 				</div>

@@ -15,8 +15,6 @@
 		508464AD1372A93D00A9493B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508464AB1372A93D00A9493B /* MainMenu.xib */; };
 		5094F3801407E57600BA3106 /* CocoaLibSpotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5094F37F1407E56D00BA3106 /* CocoaLibSpotify.framework */; };
 		5094F3831407E58700BA3106 /* CocoaLibSpotify.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5094F37F1407E56D00BA3106 /* CocoaLibSpotify.framework */; };
-		50A26BC91439D68E00A0C876 /* SPCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A26BC61439D68E00A0C876 /* SPCircularBuffer.m */; };
-		50A26BCA1439D68E00A0C876 /* SPPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A26BC81439D68E00A0C876 /* SPPlaybackManager.m */; };
 		50EA72F91372F1C90047BD78 /* SPArrayExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EA72F81372F1C90047BD78 /* SPArrayExtensions.m */; };
 		50EA73001373092C0047BD78 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EA72FF1373092C0047BD78 /* CoreAudio.framework */; };
 		50EA7302137309320047BD78 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EA7301137309320047BD78 /* AudioUnit.framework */; };
@@ -67,10 +65,6 @@
 		508464A91372A93C00A9493B /* Guess_The_IntroAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Guess_The_IntroAppDelegate.m; sourceTree = "<group>"; };
 		508464AC1372A93D00A9493B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5094F3771407E56D00BA3106 /* CocoaLibSpotify Mac Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify Mac Framework.xcodeproj"; path = "../../CocoaLibSpotify Mac Framework.xcodeproj"; sourceTree = "<group>"; };
-		50A26BC51439D68E00A0C876 /* SPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPCircularBuffer.h; path = "../../../../Playback Helper Classes/SPCircularBuffer.h"; sourceTree = "<group>"; };
-		50A26BC61439D68E00A0C876 /* SPCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPCircularBuffer.m; path = "../../../../Playback Helper Classes/SPCircularBuffer.m"; sourceTree = "<group>"; };
-		50A26BC71439D68E00A0C876 /* SPPlaybackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaybackManager.h; path = "../../../../Playback Helper Classes/SPPlaybackManager.h"; sourceTree = "<group>"; };
-		50A26BC81439D68E00A0C876 /* SPPlaybackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPPlaybackManager.m; path = "../../../../Playback Helper Classes/SPPlaybackManager.m"; sourceTree = "<group>"; };
 		50EA72F71372F1C90047BD78 /* SPArrayExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPArrayExtensions.h; sourceTree = "<group>"; };
 		50EA72F81372F1C90047BD78 /* SPArrayExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPArrayExtensions.m; sourceTree = "<group>"; };
 		50EA72FA1372F60E0047BD78 /* appkey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = appkey.c; sourceTree = "<group>"; };
@@ -139,7 +133,6 @@
 				508464A91372A93C00A9493B /* Guess_The_IntroAppDelegate.m */,
 				50EA72FA1372F60E0047BD78 /* appkey.c */,
 				508464AB1372A93D00A9493B /* MainMenu.xib */,
-				50F9098B143903E400833EEF /* Playback Helpers */,
 				50EA72F61372F1B00047BD78 /* Extensions */,
 				5084649D1372A93C00A9493B /* Supporting Files */,
 			);
@@ -173,17 +166,6 @@
 				50EA72F81372F1C90047BD78 /* SPArrayExtensions.m */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		50F9098B143903E400833EEF /* Playback Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				50A26BC51439D68E00A0C876 /* SPCircularBuffer.h */,
-				50A26BC61439D68E00A0C876 /* SPCircularBuffer.m */,
-				50A26BC71439D68E00A0C876 /* SPPlaybackManager.h */,
-				50A26BC81439D68E00A0C876 /* SPPlaybackManager.m */,
-			);
-			name = "Playback Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +253,6 @@
 				508464A41372A93C00A9493B /* main.m in Sources */,
 				508464AA1372A93C00A9493B /* Guess_The_IntroAppDelegate.m in Sources */,
 				50EA72F91372F1C90047BD78 /* SPArrayExtensions.m in Sources */,
-				50A26BC91439D68E00A0C876 /* SPCircularBuffer.m in Sources */,
-				50A26BCA1439D68E00A0C876 /* SPPlaybackManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +312,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -353,7 +332,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -362,6 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -372,7 +351,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Guess The Intro/Guess The Intro-Prefix.pch";
 				INFOPLIST_FILE = "Guess The Intro/Guess The Intro-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -382,6 +360,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -392,7 +371,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Guess The Intro/Guess The Intro-Prefix.pch";
 				INFOPLIST_FILE = "Guess The Intro/Guess The Intro-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

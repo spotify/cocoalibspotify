@@ -40,18 +40,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @class SPSession;
 
-@interface SPUser : NSObject {
-	@private
-    sp_user *user;
-    __weak SPSession *session;
-	
-	NSURL *spotifyURL;
-	NSURL *imageURL;
-	NSString *canonicalName;
-	NSString *displayName;
-	NSString *fullName;
-	BOOL loaded;
-}
+@interface SPUser : NSObject
 
 ///----------------------------
 /// @name Creating and Initializing Users

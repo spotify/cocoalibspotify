@@ -42,22 +42,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @class SPSession;
 
 @interface SPTrack : NSObject <SPPlaylistableItem> {
-    @private
-    sp_track *track;
-    __weak SPSession *session;
-    NSArray *artists;
-    SPAlbum *album;
-	NSURL *spotifyURL;
 	BOOL _starred;
-	NSUInteger trackNumber;
-	NSUInteger discNumber;
-	NSUInteger popularity;
-	NSTimeInterval duration;
-	sp_track_availability availability;
-	sp_track_offline_status offlineStatus;
-	BOOL loaded;
-	BOOL local;
-	NSString *name;
+	sp_track *track;
 }
 
 
@@ -171,17 +157,17 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readonly) sp_track_offline_status offlineStatus;
 
 /** Returns the Spotify session the track is associated with. */
-@property (nonatomic, assign, readonly) __weak SPSession *session;
+@property (nonatomic, readonly, assign) __unsafe_unretained SPSession *session;
 
 ///----------------------------
 /// @name Metadata
 ///----------------------------
 
 /** Returns the album of the track. If no metadata is available for the track yet, returns `nil`. */
-@property (nonatomic, readonly, retain) SPAlbum *album;
+@property (nonatomic, readonly, strong) SPAlbum *album;
 
 /** Returns the artist(s) of the track. If no metadata is available for the track yet, returns `nil`. */
-@property (nonatomic, readonly, retain) NSArray *artists;
+@property (nonatomic, readonly, strong) NSArray *artists;
 
 /** Returns a string represention of the artist(s) of the track. If no metadata is available for the track yet, returns `nil`. 
  

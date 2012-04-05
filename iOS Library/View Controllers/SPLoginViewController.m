@@ -42,7 +42,7 @@
 -(void)showIfNeeded;
 
 @property (nonatomic, readwrite, getter = isShown) BOOL shown;
-@property (nonatomic, readwrite, retain) SPSession *session;
+@property (nonatomic, readwrite) SPSession *session;
 @property (nonatomic, readwrite) BOOL didReceiveSignupFlow;
 
 @property (nonatomic, readwrite) BOOL waitingForFacebookPermissions;
@@ -96,8 +96,6 @@ static NSMutableDictionary *loginControllerCache;
 													name:SPSessionLoginDidSucceedNotification
 												  object:self.session];
 	
-	[session release];
-	[super dealloc];
 }
 
 #pragma mark -
@@ -124,11 +122,11 @@ static NSMutableDictionary *loginControllerCache;
 	int num_licenses = sp_session_signup_get_unaccepted_licenses(self.session.session, NULL, 0);
 	
 	if (num_licenses > 0) {
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"T&C and Privacy Policy"
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"T&C and Privacy Policy"
 														 message:@"I have read and accept Spotify's Terms and Conditions of Use and Privacy Policy."
 														delegate:self
 											   cancelButtonTitle:@"Show terms"
-											   otherButtonTitles:@"Accept", nil] autorelease];
+											   otherButtonTitles:@"Accept", nil];
 		[alert show];
 	}
 	
@@ -153,8 +151,8 @@ static NSMutableDictionary *loginControllerCache;
 		
 		free(licenses);
 		
-		SPLicenseViewController *agreement = [[[SPLicenseViewController alloc] initWithVersion:licenseToView] autorelease];
-		UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:agreement] autorelease];
+		SPLicenseViewController *agreement = [[SPLicenseViewController alloc] initWithVersion:licenseToView];
+		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:agreement];
 		nav.navigationBar.barStyle = UIBarStyleBlack;
 		nav.modalPresentationStyle = UIModalPresentationFormSheet;
 		
@@ -299,13 +297,13 @@ static NSMutableDictionary *loginControllerCache;
 				[viewController loadDocument:page stillLoading:isLoading recentUser:name features:features];
 			[self popToViewController:viewController animated:YES];
 		} else {
-			viewController = [[[SPSignupViewController alloc] initWithSession:self.session] autorelease];
+			viewController = [[SPSignupViewController alloc] initWithSession:self.session];
 			[viewController loadDocument:page stillLoading:isLoading recentUser:name features:features];
 			
 			[self pushViewController:viewController animated:YES];
 			
 			SEL action = (self.viewControllers.count == 2) ? @selector(signupDidPushCancel) : @selector(signupDidPushBack);
-			viewController.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:action] autorelease];
+			viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:action];
 		}
 	} else if ([[self topViewController] respondsToSelector:@selector(loadDocument:stillLoading:recentUser:features:)]) {
 		[(id)[self topViewController] loadDocument:page stillLoading:isLoading recentUser:name features:features];
@@ -321,7 +319,7 @@ static NSMutableDictionary *loginControllerCache;
 												   delegate:nil
 										  cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	
-	[[alert autorelease] show];
+	[alert show];
 }
 
 -(void)handleConnectToFacebookWithPermissions:(NSArray *)permissions {
@@ -336,7 +334,6 @@ static NSMutableDictionary *loginControllerCache;
 	controller.delegate = self;
 	
 	[self pushViewController:controller animated:alreadyShowing];
-	[controller release];
 }
 
 

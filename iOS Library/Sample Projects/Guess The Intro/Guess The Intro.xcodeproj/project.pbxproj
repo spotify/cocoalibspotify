@@ -18,8 +18,6 @@
 		50A0D83C143AF62100458686 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50A0D83A143AF62100458686 /* MainWindow.xib */; };
 		50A0D83F143AF62100458686 /* Guess_The_IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A0D83E143AF62100458686 /* Guess_The_IntroViewController.m */; };
 		50A0D842143AF62100458686 /* Guess_The_IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50A0D840143AF62100458686 /* Guess_The_IntroViewController.xib */; };
-		50A0D856143AFF1000458686 /* SPCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A0D853143AFF1000458686 /* SPCircularBuffer.m */; };
-		50A0D857143AFF1000458686 /* SPPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A0D855143AFF1000458686 /* SPPlaybackManager.m */; };
 		50A0D863143AFF3400458686 /* libCocoaLibSpotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A0D860143AFF2100458686 /* libCocoaLibSpotify.a */; };
 		50A0D865143B001D00458686 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A0D864143B001D00458686 /* SystemConfiguration.framework */; };
 		50A0D867143B002300458686 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A0D866143B002300458686 /* libstdc++.dylib */; };
@@ -64,10 +62,6 @@
 		50A0D83D143AF62100458686 /* Guess_The_IntroViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Guess_The_IntroViewController.h; sourceTree = "<group>"; };
 		50A0D83E143AF62100458686 /* Guess_The_IntroViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Guess_The_IntroViewController.m; sourceTree = "<group>"; };
 		50A0D841143AF62100458686 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Guess_The_IntroViewController.xib; sourceTree = "<group>"; };
-		50A0D852143AFF1000458686 /* SPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCircularBuffer.h; sourceTree = "<group>"; };
-		50A0D853143AFF1000458686 /* SPCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCircularBuffer.m; sourceTree = "<group>"; };
-		50A0D854143AFF1000458686 /* SPPlaybackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlaybackManager.h; sourceTree = "<group>"; };
-		50A0D855143AFF1000458686 /* SPPlaybackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlaybackManager.m; sourceTree = "<group>"; };
 		50A0D858143AFF2100458686 /* CocoaLibSpotify iOS Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify iOS Library.xcodeproj"; path = "../../CocoaLibSpotify iOS Library.xcodeproj"; sourceTree = "<group>"; };
 		50A0D864143B001D00458686 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		50A0D866143B002300458686 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -152,7 +146,6 @@
 				50A0D840143AF62100458686 /* Guess_The_IntroViewController.xib */,
 				5073D8C71520C5DC0058AA4F /* SPLoginResources.bundle */,
 				50297180143B0A9000B8C31D /* Extensions */,
-				50A0D851143AFF1000458686 /* Playback Helpers */,
 				50A0D82F143AF62100458686 /* Supporting Files */,
 			);
 			path = "Guess The Intro";
@@ -167,18 +160,6 @@
 				50A0D836143AF62100458686 /* Guess The Intro-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		50A0D851143AFF1000458686 /* Playback Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				50A0D852143AFF1000458686 /* SPCircularBuffer.h */,
-				50A0D853143AFF1000458686 /* SPCircularBuffer.m */,
-				50A0D854143AFF1000458686 /* SPPlaybackManager.h */,
-				50A0D855143AFF1000458686 /* SPPlaybackManager.m */,
-			);
-			name = "Playback Helpers";
-			path = "../../../../Playback Helper Classes";
 			sourceTree = "<group>";
 		};
 		50A0D859143AFF2100458686 /* Products */ = {
@@ -273,8 +254,6 @@
 				50A0D835143AF62100458686 /* main.m in Sources */,
 				50A0D839143AF62100458686 /* Guess_The_IntroAppDelegate.m in Sources */,
 				50A0D83F143AF62100458686 /* Guess_The_IntroViewController.m in Sources */,
-				50A0D856143AFF1000458686 /* SPCircularBuffer.m in Sources */,
-				50A0D857143AFF1000458686 /* SPPlaybackManager.m in Sources */,
 				5029717F143B0A8600B8C31D /* SPArrayExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,7 +315,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -354,7 +333,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -365,11 +344,13 @@
 		50A0D846143AF62200458686 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Guess The Intro/Guess The Intro-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
 				INFOPLIST_FILE = "Guess The Intro/Guess The Intro-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -382,11 +363,13 @@
 		50A0D847143AF62200458686 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Guess The Intro/Guess The Intro-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
 				INFOPLIST_FILE = "Guess The Intro/Guess The Intro-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

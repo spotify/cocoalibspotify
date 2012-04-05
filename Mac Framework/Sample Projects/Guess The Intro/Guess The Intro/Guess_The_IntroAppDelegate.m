@@ -98,7 +98,7 @@ static NSTimeInterval const kGameCountdownThreshold = 30.0;
 	
 	[[SPSession sharedSession] setDelegate:self];
 	
-	self.playbackManager = [[[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]] autorelease];
+	self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
 	self.playbackManager.delegate = self;
 	
 	self.multiplier = 1;
@@ -111,7 +111,7 @@ static NSTimeInterval const kGameCountdownThreshold = 30.0;
 	if ([[self.userNameField stringValue] length] > 0)
 		[self.passwordField becomeFirstResponder];
 	
-	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterShortStyle];
 	[formatter setTimeStyle:NSDateFormatterShortStyle];
 	[self.playlistNameField setStringValue:[NSString stringWithFormat:@"Guess The Intro: %@", [formatter stringFromDate:[NSDate date]]]];
@@ -528,7 +528,7 @@ static NSTimeInterval const kGameCountdownThreshold = 30.0;
 	[self.roundTimer invalidate];
 	self.roundTimer = nil;
 
-	NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
+	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
 	[formatter setFormat:@"#,###,###,###,##0"];
 	
 	NSInteger result = [[NSAlert alertWithMessageText:reason

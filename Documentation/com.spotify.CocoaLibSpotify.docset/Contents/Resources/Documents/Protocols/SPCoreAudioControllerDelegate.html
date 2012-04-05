@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>SPPostTracksToInboxOperationDelegate Protocol Reference</title>
+		<title>SPCoreAudioControllerDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">SPPostTracksToInboxOperationDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">SPCoreAudioControllerDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -44,9 +44,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/postTracksToInboxOperation:didFailWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- postTracksToInboxOperation:didFailWithError:</option>
-	
-	<option value="//api/name/postTracksToInboxOperationDidSucceed:">&nbsp;&nbsp;&nbsp;&nbsp;- postTracksToInboxOperationDidSucceed:</option>
+	<option value="//api/name/coreAudioController:didOutputAudioOfDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- coreAudioController:didOutputAudioOfDuration:</option>
 	
 	
 	
@@ -76,9 +74,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postTracksToInboxOperation:didFailWithError:">postTracksToInboxOperation:didFailWithError:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postTracksToInboxOperationDidSucceed:">postTracksToInboxOperationDidSucceed:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/coreAudioController:didOutputAudioOfDuration:">coreAudioController:didOutputAudioOfDuration:</a></span></li>
 	
 </ul></li>
 
@@ -87,7 +83,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="SPPostTracksToInboxOperationDelegate Protocol Reference" name="top"></a>
+				<a title="SPCoreAudioControllerDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -96,7 +92,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">SPPostTracksToInboxOperationDelegate Protocol Reference</h1>
+						<h1 class="title title-header">SPCoreAudioControllerDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -107,7 +103,7 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">SPPostTracksToInboxOperation.h</td>
+	<td class="specification-value">SPCoreAudioController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -117,7 +113,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Delegate callbacks from <a href="../Classes/SPPostTracksToInboxOperation.html">SPPostTracksToInboxOperation</a> on success or failure.</p>
+						<p>Provides delegate callbacks for <a href="../Classes/SPCoreAudioController.html">SPCoreAudioController</a>.</p>
 					</div>
 					
 					
@@ -135,18 +131,11 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/postTracksToInboxOperationDidSucceed:">&ndash;&nbsp;postTracksToInboxOperationDidSucceed:</a></code>
-		<span class="tooltip"><p>Called when the given post operation succeeded.</p></span>
+		<code><a href="#//api/name/coreAudioController:didOutputAudioOfDuration:">&ndash;&nbsp;coreAudioController:didOutputAudioOfDuration:</a></code>
+		<span class="tooltip"><p>Called repeatedly during audio playback when audio is pushed to the system&rsquo;s audio output.</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/postTracksToInboxOperation:didFailWithError:">&ndash;&nbsp;postTracksToInboxOperation:didFailWithError:</a></code>
-		<span class="tooltip"><p>Called when the given post operation failed.</p></span>
-	</span>
-	
-	
+	<span class="task-item-suffix">required method</span>
 </li>
 						</ul>
 						
@@ -165,30 +154,25 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/postTracksToInboxOperation:didFailWithError:" title="postTracksToInboxOperation:didFailWithError:"></a>
-	<h3 class="subsubtitle method-title">postTracksToInboxOperation:didFailWithError:</h3>
+	<a name="//api/name/coreAudioController:didOutputAudioOfDuration:" title="coreAudioController:didOutputAudioOfDuration:"></a>
+	<h3 class="subsubtitle method-title">coreAudioController:didOutputAudioOfDuration:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when the given post operation failed.</p>
+		<p>Called repeatedly during audio playback when audio is pushed to the system&rsquo;s audio output.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)postTracksToInboxOperation:(SPPostTracksToInboxOperation *)<em>operation</em> didFailWithError:(NSError *)<em>error</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)coreAudioController:(SPCoreAudioController *)<em>controller</em> didOutputAudioOfDuration:(NSTimeInterval)<em>audioDuration</em></code></div>
 	
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>operation</em></dt>
-			<dd><p>The operation that failed.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>error</em></dt>
-			<dd><p>The error that caused the failure.</p></dd>
+			<dt><em>controller</em></dt>
+			<dd><p>The <a href="../Classes/SPCoreAudioController.html">SPCoreAudioController</a> that pushed audio.</p></dd>
 		</dl>
 		
 	</div>
@@ -199,42 +183,9 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPPostTracksToInboxOperation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/postTracksToInboxOperationDidSucceed:" title="postTracksToInboxOperationDidSucceed:"></a>
-	<h3 class="subsubtitle method-title">postTracksToInboxOperationDidSucceed:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Called when the given post operation succeeded.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)postTracksToInboxOperationDidSucceed:(SPPostTracksToInboxOperation *)<em>operation</em></code></div>
-	
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>operation</em></dt>
-			<dd><p>The operation that succeeded.</p></dd>
-		</dl>
-		
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This can be used to keep track of how much audio has been played back for progress indicators and so on.</p>
 	</div>
 	
 	
@@ -243,15 +194,9 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPPostTracksToInboxOperation.h</code><br />
+		<code class="declared-in-ref">SPCoreAudioController.h</code><br />
 	</div>				
 	
 	

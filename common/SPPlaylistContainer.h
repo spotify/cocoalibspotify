@@ -41,14 +41,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @class SPPlaylist;
 @class SPPlaylistFolder;
 
-@interface SPPlaylistContainer : NSObject {
-    @private
-    sp_playlistcontainer *container;
-    __weak SPSession *session;
-    SPPlaylistFolder *rootFolder;
-    SPUser *owner;
-	BOOL loaded;
-}
+@interface SPPlaylistContainer : NSObject
 
 ///----------------------------
 /// @name Properties
@@ -66,7 +59,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
 
 /** Returns the owner of the playlist list. */
-@property (nonatomic, readonly, retain) SPUser *owner;
+@property (nonatomic, readonly, strong) SPUser *owner;
 
 /** Returns an array of SPPlaylist and/or SPPlaylistFolders representing the owner's playlists.
  
@@ -80,7 +73,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readonly) NSMutableArray *playlists;
 
 /** Returns the session the list is loaded in. */
-@property (nonatomic, readonly, assign) __weak SPSession *session;
+@property (nonatomic, readonly, assign) __unsafe_unretained SPSession *session;
 
 ///----------------------------
 /// @name Working with Playlists and Folders

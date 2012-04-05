@@ -11,8 +11,6 @@
 		5002BD7D1439E8E800FEAB3C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5002BD7C1439E8E800FEAB3C /* SystemConfiguration.framework */; };
 		5002BD7F1439E8FC00FEAB3C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5002BD7E1439E8FC00FEAB3C /* CFNetwork.framework */; };
 		5002BD811439E90400FEAB3C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5002BD801439E90400FEAB3C /* libstdc++.dylib */; };
-		50A26BE81439D73F00A0C876 /* SPCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A26BE51439D73F00A0C876 /* SPCircularBuffer.m */; };
-		50A26BE91439D73F00A0C876 /* SPPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A26BE71439D73F00A0C876 /* SPPlaybackManager.m */; };
 		50A26BEA1439D79D00A0C876 /* libCocoaLibSpotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500EC8CA1439D54E00E8A60C /* libCocoaLibSpotify.a */; };
 		50A26BEC1439D7AA00A0C876 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A26BEB1439D7AA00A0C876 /* CoreAudio.framework */; };
 		50AF49AD1439CB6D00E4A5EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AF49AC1439CB6D00E4A5EF /* UIKit.framework */; };
@@ -51,10 +49,6 @@
 		5002BD7E1439E8FC00FEAB3C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5002BD801439E90400FEAB3C /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		500EC8C21439D54E00E8A60C /* CocoaLibSpotify iOS Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify iOS Library.xcodeproj"; path = "../../CocoaLibSpotify iOS Library.xcodeproj"; sourceTree = "<group>"; };
-		50A26BE41439D73F00A0C876 /* SPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCircularBuffer.h; sourceTree = "<group>"; };
-		50A26BE51439D73F00A0C876 /* SPCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCircularBuffer.m; sourceTree = "<group>"; };
-		50A26BE61439D73F00A0C876 /* SPPlaybackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlaybackManager.h; sourceTree = "<group>"; };
-		50A26BE71439D73F00A0C876 /* SPPlaybackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlaybackManager.m; sourceTree = "<group>"; };
 		50A26BEB1439D7AA00A0C876 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		50AF49A81439CB6D00E4A5EF /* Simple Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AF49AC1439CB6D00E4A5EF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -103,18 +97,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		50A26BE31439D73F00A0C876 /* Playback Helper Classes */ = {
-			isa = PBXGroup;
-			children = (
-				50A26BE41439D73F00A0C876 /* SPCircularBuffer.h */,
-				50A26BE51439D73F00A0C876 /* SPCircularBuffer.m */,
-				50A26BE61439D73F00A0C876 /* SPPlaybackManager.h */,
-				50A26BE71439D73F00A0C876 /* SPPlaybackManager.m */,
-			);
-			name = "Playback Helper Classes";
-			path = "../../../../Playback Helper Classes";
-			sourceTree = "<group>";
-		};
 		50AF499D1439CB6D00E4A5EF = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +141,6 @@
 				50AF49C21439CB6D00E4A5EF /* MainWindow_iPhone.xib */,
 				50AF49C91439CB6D00E4A5EF /* MainWindow_iPad.xib */,
 				50DBB5E01520BF6100BF516F /* SPLoginResources.bundle */,
-				50A26BE31439D73F00A0C876 /* Playback Helper Classes */,
 				50AF49B31439CB6D00E4A5EF /* Supporting Files */,
 			);
 			path = "Simple Player";
@@ -260,8 +241,6 @@
 			files = (
 				50AF49B91439CB6D00E4A5EF /* main.m in Sources */,
 				50AF49BD1439CB6D00E4A5EF /* Simple_PlayerAppDelegate.m in Sources */,
-				50A26BE81439D73F00A0C876 /* SPCircularBuffer.m in Sources */,
-				50A26BE91439D73F00A0C876 /* SPPlaybackManager.m in Sources */,
 				50DBB5E41520C2B800BF516F /* RotatableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +287,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -323,7 +303,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -333,6 +313,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -341,7 +322,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -352,14 +333,12 @@
 		50AF49CF1439CB6E00E4A5EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simple Player/Simple Player-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Simple Player/Simple Player-Info.plist";
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-frtti",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -372,10 +351,12 @@
 		50AF49D01439CB6E00E4A5EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simple Player/Simple Player-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Simple Player/Simple Player-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

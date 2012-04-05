@@ -42,8 +42,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -(BOOL)checkLoaded;
 -(void)loadTrackData;
 
-@property (nonatomic, readwrite, retain) SPAlbum *album;
-@property (nonatomic, readwrite, retain) NSArray *artists;
+@property (nonatomic, readwrite, strong) SPAlbum *album;
+@property (nonatomic, readwrite, strong) NSArray *artists;
 @property (nonatomic, readwrite, copy) NSURL *spotifyURL;
 
 @property (nonatomic, readwrite) sp_track_availability availability;
@@ -55,8 +55,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readwrite) NSUInteger popularity;
 @property (nonatomic, readwrite) NSUInteger trackNumber;
 @property (nonatomic, readwrite, getter = isLocal) BOOL local;
+@property (nonatomic, readwrite) sp_track *track;
 
-@property (nonatomic, assign, readwrite) __weak SPSession *session;
+@property (nonatomic, readwrite, assign) __unsafe_unretained SPSession *session;
 	
 @end
 
@@ -73,10 +74,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 -(void)updateAlbumBrowseSpecificMembers {
-    if (discNumber == 0)
+    if (self.discNumber == 0)
     {
-        discNumber = sp_track_disc( track );
-        trackNumber = sp_track_index( track );
+        self.discNumber = sp_track_disc( track );
+        self.trackNumber = sp_track_index( track );
     }
 }
 
@@ -95,8 +96,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -(id)initWithTrackStruct:(sp_track *)tr inSession:(SPSession *)aSession {
     if ((self = [super init])) {
         self.session = aSession;
-        track = tr;
-        sp_track_add_ref(track);
+        self.track = tr;
+        sp_track_add_ref(self.track);
         
         if (!sp_track_is_loaded(track)) {
             [aSession addLoadingObject:self];
@@ -121,26 +122,26 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -(void)loadTrackData {
 	
-	sp_link *link = sp_link_create_from_track(track, 0);
+	sp_link *link = sp_link_create_from_track(self.track, 0);
 	if (link != NULL) {
 		[self setSpotifyURL:[NSURL urlWithSpotifyLink:link]];
 		sp_link_release(link);
 	}
     
-    sp_album *spAlbum = sp_track_album(track);
+    sp_album *spAlbum = sp_track_album(self.track);
     
     if (spAlbum != NULL) {
         [self setAlbum:[SPAlbum albumWithAlbumStruct:spAlbum
-                                                  inSession:session]];
+                                                  inSession:self.session]];
     }
     
-    NSUInteger artistCount = sp_track_num_artists(track);
+    NSUInteger artistCount = sp_track_num_artists(self.track);
     
     if (artistCount > 0) {
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:artistCount];
         NSUInteger currentArtist = 0;
         for (currentArtist = 0; currentArtist < artistCount; currentArtist++) {
-            sp_artist *artist = sp_track_artist(track, (int)currentArtist);
+            sp_artist *artist = sp_track_artist(self.track, (int)currentArtist);
             if (artist != NULL) {
                 [array addObject:[SPArtist artistWithArtistStruct:artist inSession:session]];
             }
@@ -151,17 +152,17 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         }
     }
     
-	self.local = sp_track_is_local(session.session, track);
-	self.trackNumber = sp_track_index(track);
-	self.discNumber = sp_track_disc(track);
-	self.popularity = sp_track_popularity(track);
-	self.duration = (NSTimeInterval)sp_track_duration(track) / 1000.0;
-	self.availability = sp_track_get_availability(self.session.session, track);
-	self.offlineStatus = sp_track_offline_get_status(track);
-	self.loaded = sp_track_is_loaded(track);
-	[self setStarredFromLibSpotifyUpdate:sp_track_is_starred(self.session.session, track)];
+	self.local = sp_track_is_local(self.session.session, self.track);
+	self.trackNumber = sp_track_index(self.track);
+	self.discNumber = sp_track_disc(self.track);
+	self.popularity = sp_track_popularity(self.track);
+	self.duration = (NSTimeInterval)sp_track_duration(self.track) / 1000.0;
+	self.availability = sp_track_get_availability(self.session.session, self.track);
+	self.offlineStatus = sp_track_offline_get_status(self.track);
+	self.loaded = sp_track_is_loaded(self.track);
+	[self setStarredFromLibSpotifyUpdate:sp_track_is_starred(self.session.session, self.track)];
 	
-	const char *nameCharArray = sp_track_name(track);
+	const char *nameCharArray = sp_track_name(self.track);
     if (nameCharArray != NULL) {
         NSString *nameString = [NSString stringWithUTF8String:nameCharArray];
         self.name = [nameString length] > 0 ? nameString : nil;
@@ -222,15 +223,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @synthesize track;
 
 -(void)dealloc {
-    
-	[self setName:nil];
-    [self setAlbum:nil];
-    [self setArtists:nil];
-    
     sp_track_release(track);
     session = nil;
-    
-    [super dealloc];
 }
 
 @end

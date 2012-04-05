@@ -39,6 +39,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -(BOOL)checkLoaded;
 @property (nonatomic, copy, readwrite) NSString *name;
 @property (nonatomic, copy, readwrite) NSURL *spotifyURL;
+@property (nonatomic, readwrite) sp_artist *artist;
 
 @end
 
@@ -62,7 +63,7 @@ static NSMutableDictionary *artistCache;
     cachedArtist = [[SPArtist alloc] initWithArtistStruct:anArtist inSession:aSession];
     
     [artistCache setObject:cachedArtist forKey:ptrValue];
-    return [cachedArtist autorelease];
+    return cachedArtist;
 }
 
 +(SPArtist *)artistWithArtistURL:(NSURL *)aURL inSession:(SPSession *)aSession {
@@ -85,8 +86,8 @@ static NSMutableDictionary *artistCache;
 
 -(id)initWithArtistStruct:(sp_artist *)anArtist inSession:(SPSession *)aSession {
     if ((self = [super init])) {
-        artist = anArtist;
-        sp_artist_add_ref(artist);
+        self.artist = anArtist;
+        sp_artist_add_ref(self.artist);
         sp_link *link = sp_link_create_from_artist(anArtist);
         if (link != NULL) {
             self.spotifyURL = [NSURL urlWithSpotifyLink:link];
@@ -100,10 +101,11 @@ static NSMutableDictionary *artistCache;
     return self;
 }
 
+
 -(BOOL)checkLoaded {
-    BOOL loaded = sp_artist_is_loaded(artist);
+    BOOL loaded = sp_artist_is_loaded(self.artist);
     if (loaded) {
-        const char *nameCharArray = sp_artist_name(artist);
+        const char *nameCharArray = sp_artist_name(self.artist);
 		if (nameCharArray != NULL) {
 			NSString *nameString = [NSString stringWithUTF8String:nameCharArray];
 			self.name = [nameString length] > 0 ? nameString : nil;
@@ -123,10 +125,7 @@ static NSMutableDictionary *artistCache;
 @synthesize name;
 
 -(void)dealloc {
-	self.name = nil;
-    self.spotifyURL = nil;
     sp_artist_release(artist);
-    [super dealloc];
 }
 
 @end

@@ -45,8 +45,8 @@
 	if (self) {
 		self.permissions = somePermissions;
 		
-		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
-		self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered  target:self action:@selector(add)] autorelease];
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered  target:self action:@selector(add)];
 		
 		NSMutableArray *jsPermissions = [NSMutableArray arrayWithCapacity:self.permissions.count];
 		for (NSString *permission in self.permissions) {
@@ -67,10 +67,6 @@
 	return self;
 }
 
--(void)dealloc {
-	[permissions release];
-	[super dealloc];
-}
 
 @synthesize permissions;
 @synthesize delegate;

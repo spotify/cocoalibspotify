@@ -32,34 +32,33 @@
 
 #import <Cocoa/Cocoa.h>
 #import <CocoaLibSpotify/CocoaLibSpotify.h>
-#import "SPPlaybackManager.h"
 
 @interface SimplePlayerAppDelegate : NSObject  <NSApplicationDelegate, SPSessionDelegate> {
 @private
-	NSWindow *window;
-	NSPanel *loginSheet;
-	NSTextField *userNameField;
-	NSSecureTextField *passwordField;
+	NSWindow *__unsafe_unretained window;
+	NSPanel *__unsafe_unretained loginSheet;
+	NSTextField *__weak userNameField;
+	NSSecureTextField *__weak passwordField;
 	NSTimeInterval currentTrackPosition;
 	
 	SPPlaybackManager *playbackManager;
-	NSTextField *trackURLField;
-	NSSlider *playbackProgressSlider;
+	NSTextField *__weak trackURLField;
+	NSSlider *__weak playbackProgressSlider;
 }
 
-@property (assign) IBOutlet NSSlider *playbackProgressSlider;
-@property (assign) IBOutlet NSTextField *trackURLField;
-@property (assign) IBOutlet NSTextField *userNameField;
-@property (assign) IBOutlet NSSecureTextField *passwordField;
-@property (assign) IBOutlet NSPanel *loginSheet;
-@property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSSlider *playbackProgressSlider;
+@property (weak) IBOutlet NSTextField *trackURLField;
+@property (weak) IBOutlet NSTextField *userNameField;
+@property (weak) IBOutlet NSSecureTextField *passwordField;
+@property (unsafe_unretained) IBOutlet NSPanel *loginSheet;
+@property (unsafe_unretained) IBOutlet NSWindow *window;
 
 - (IBAction)login:(id)sender;
 - (IBAction)quitFromLoginSheet:(id)sender;
 
 #pragma mark -
 
-@property (nonatomic, readwrite, retain) SPPlaybackManager *playbackManager;
+@property (nonatomic, readwrite, strong) SPPlaybackManager *playbackManager;
 
 - (IBAction)playTrack:(id)sender;
 - (IBAction)seekToPosition:(id)sender;

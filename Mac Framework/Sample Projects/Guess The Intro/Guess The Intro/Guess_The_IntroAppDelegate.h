@@ -32,23 +32,22 @@
 
 #import <Cocoa/Cocoa.h>
 #import <CocoaLibSpotify/CocoaLibSpotify.h>
-#import "SPPlaybackManager.h"
 
 @interface Guess_The_IntroAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, SPSessionDelegate, SPPlaybackManagerDelegate> {
 	
 @private
 	
-	NSTextField *userNameField;
-	NSSecureTextField *passwordField;
-	NSTextField *playlistNameField;
-	NSView *loginView;
+	NSTextField *__weak userNameField;
+	NSSecureTextField *__weak passwordField;
+	NSTextField *__weak playlistNameField;
+	NSView *__weak loginView;
 	
-	NSWindow *window;
-	NSButton *oneButton;
-	NSButton *twoButton;
-	NSButton *threeButton;
-	NSButton *fourButton;
-	NSProgressIndicator *countdownProgress;
+	NSWindow *__unsafe_unretained window;
+	NSButton *__weak oneButton;
+	NSButton *__weak twoButton;
+	NSButton *__weak threeButton;
+	NSButton *__weak fourButton;
+	NSProgressIndicator *__weak countdownProgress;
 	
 	NSUInteger loginAttempts;
 	
@@ -78,31 +77,31 @@
 	NSDate *gameStartDate;
 }
 
-@property (assign) IBOutlet NSTextField *userNameField;
-@property (assign) IBOutlet NSSecureTextField *passwordField;
-@property (assign) IBOutlet NSTextField *playlistNameField;
-@property (assign) IBOutlet NSView *loginView;
+@property (weak) IBOutlet NSTextField *userNameField;
+@property (weak) IBOutlet NSSecureTextField *passwordField;
+@property (weak) IBOutlet NSTextField *playlistNameField;
+@property (weak) IBOutlet NSView *loginView;
 
-@property (nonatomic, readwrite, retain) SPPlaybackManager *playbackManager;
+@property (nonatomic, readwrite, strong) SPPlaybackManager *playbackManager;
 
-@property (nonatomic, readwrite, retain) SPPlaylist	*playlist;
+@property (nonatomic, readwrite, strong) SPPlaylist	*playlist;
 
 - (IBAction)login:(id)sender;
 
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet NSButton *oneButton;
-@property (assign) IBOutlet NSButton *twoButton;
-@property (assign) IBOutlet NSButton *threeButton;
-@property (assign) IBOutlet NSButton *fourButton;
-@property (assign) IBOutlet NSProgressIndicator *countdownProgress;
+@property (unsafe_unretained) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSButton *oneButton;
+@property (weak) IBOutlet NSButton *twoButton;
+@property (weak) IBOutlet NSButton *threeButton;
+@property (weak) IBOutlet NSButton *fourButton;
+@property (weak) IBOutlet NSProgressIndicator *countdownProgress;
 
-@property (nonatomic, retain, readwrite) SPToplist *regionTopList;
-@property (nonatomic, retain, readwrite) SPToplist *userTopList;
+@property (nonatomic, strong, readwrite) SPToplist *regionTopList;
+@property (nonatomic, strong, readwrite) SPToplist *userTopList;
 
-@property (nonatomic, retain, readwrite) SPTrack *firstSuggestion;
-@property (nonatomic, retain, readwrite) SPTrack *secondSuggestion;
-@property (nonatomic, retain, readwrite) SPTrack *thirdSuggestion;
-@property (nonatomic, retain, readwrite) SPTrack *fourthSuggestion;
+@property (nonatomic, strong, readwrite) SPTrack *firstSuggestion;
+@property (nonatomic, strong, readwrite) SPTrack *secondSuggestion;
+@property (nonatomic, strong, readwrite) SPTrack *thirdSuggestion;
+@property (nonatomic, strong, readwrite) SPTrack *fourthSuggestion;
 
 @property (nonatomic, readwrite) BOOL canPushOne;
 @property (nonatomic, readwrite) BOOL canPushTwo;
@@ -113,8 +112,8 @@
 @property (nonatomic, readwrite) NSUInteger score;
 @property (nonatomic, readwrite, copy) NSDate *roundStartDate;
 @property (nonatomic, readwrite, copy) NSDate *gameStartDate;
-@property (nonatomic, readwrite, retain) NSMutableArray *trackPool;
-@property (nonatomic, readwrite, retain) NSTimer *roundTimer;
+@property (nonatomic, readwrite, strong) NSMutableArray *trackPool;
+@property (nonatomic, readwrite, strong) NSTimer *roundTimer;
 
 // Calculated Properties
 @property (nonatomic, readonly) NSTimeInterval roundTimeRemaining;

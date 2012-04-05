@@ -31,10 +31,10 @@
 
 @interface SPSignupViewController ()
 
-@property (nonatomic, readwrite, retain) NSMutableArray *jsQueue;
+@property (nonatomic, readwrite) NSMutableArray *jsQueue;
 @property (nonatomic, readwrite, getter = isLoaded) BOOL loaded;
 @property (nonatomic, readwrite, copy) NSString *currentPage;
-@property (nonatomic, readwrite, retain) SPSession *session;
+@property (nonatomic, readwrite) SPSession *session;
 
 -(void)loadDocument:(sp_signup_page)page stillLoading:(BOOL)isLoading recentUser:(NSString *)existingUser features:(NSUInteger)featureMask;
 
@@ -72,13 +72,6 @@
 	return self;
 }
 
--(void)dealloc {
-	
-	[session release];
-	[jsQueue release];
-	
-	[super dealloc];
-}
 
 @synthesize jsQueue;
 @synthesize loaded;
@@ -103,7 +96,7 @@
 -(void)loadView {
 	
 	CGRect bounds = CGRectMake(0, 0, 320, 460);
-	UIWebView *web = [[[UIWebView alloc] initWithFrame:bounds] autorelease];
+	UIWebView *web = [[UIWebView alloc] initWithFrame:bounds];
 	web.delegate = self;
 	
 	for(id maybeScroll in web.subviews) {
@@ -265,8 +258,8 @@
 }
 
 -(void)readTos:(NSURLRequest*)req {
-	SPLicenseViewController *agreement = [[[SPLicenseViewController alloc] initWithVersion:nil] autorelease];
-	UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:agreement] autorelease];
+	SPLicenseViewController *agreement = [[SPLicenseViewController alloc] initWithVersion:nil];
+	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:agreement];
 	nav.navigationBar.barStyle = UIBarStyleBlack;
 	nav.modalPresentationStyle = UIModalPresentationFormSheet;
  

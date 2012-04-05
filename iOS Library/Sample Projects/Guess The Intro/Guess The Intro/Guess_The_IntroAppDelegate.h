@@ -12,8 +12,8 @@
 
 @interface Guess_The_IntroAppDelegate : NSObject <UIApplicationDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet Guess_The_IntroViewController *viewController;
+@property (nonatomic, strong) IBOutlet Guess_The_IntroViewController *viewController;
 
 @end

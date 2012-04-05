@@ -42,9 +42,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @interface SPPlaylistContainer ()
 
 -(void)rebuildPlaylists;
-@property (nonatomic, readwrite, retain) SPUser *owner;
-@property (nonatomic, readwrite, retain) SPPlaylistFolder *rootFolder;
-@property (nonatomic, readwrite, assign) __weak SPSession *session;
+
+@property (nonatomic, readwrite, strong) SPUser *owner;
+@property (nonatomic, readwrite, strong) SPPlaylistFolder *rootFolder;
+@property (nonatomic, readwrite, assign) __unsafe_unretained SPSession *session;
 @property (nonatomic, readwrite, getter=isLoaded) BOOL loaded;
 
 @end
@@ -70,7 +71,7 @@ static void playlist_moved(sp_playlistcontainer *pc, sp_playlist *playlist, int 
 
 
 static void container_loaded(sp_playlistcontainer *pc, void *userdata) {
-	SPPlaylistContainer *container = userdata;
+	SPPlaylistContainer *container = (__bridge SPPlaylistContainer *)userdata;
 	container.loaded = YES;
 	[container rebuildPlaylists];
 }
@@ -130,9 +131,9 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 	sp_error errorCode = sp_playlistcontainer_add_folder(self.container, 0, [name UTF8String]);
 	
 	if (errorCode == SP_ERROR_OK)
-		return [[[SPPlaylistFolder alloc] initWithPlaylistFolderId:sp_playlistcontainer_playlist_folder_id(self.container, 0)
-												container:self
-												inSession:self.session] autorelease];
+		return [[SPPlaylistFolder alloc] initWithPlaylistFolderId:sp_playlistcontainer_playlist_folder_id(self.container, 0)
+														container:self
+														inSession:self.session];
 	else if (error != NULL)
 		*error = [NSError spotifyErrorWithCode:errorCode];
 	
@@ -170,7 +171,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 		NSUInteger targetIndex = newFlattenedIndex;
 		NSUInteger sourceIndex = oldFlattenedIndex;
 		
-		sp_playlistcontainer_remove_callbacks(container, &playlistcontainer_callbacks, self);
+		sp_playlistcontainer_remove_callbacks(container, &playlistcontainer_callbacks, (__bridge void *)(self));
 		
 		for (NSUInteger entriesToMove = folderToMove.containerPlaylistRange.length; entriesToMove > 0; entriesToMove--) {
 			
@@ -188,9 +189,9 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 			}
 		}
 		
-		sp_playlistcontainer_add_callbacks(container, &playlistcontainer_callbacks, self);
+		sp_playlistcontainer_add_callbacks(container, &playlistcontainer_callbacks, (__bridge void *)(self));
 		if (sp_playlistcontainer_is_loaded(container))
-			container_loaded(container, self);
+			container_loaded(container, (__bridge void *)(self));
 		
 		return YES;
 	}
@@ -200,13 +201,10 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 -(void)dealloc {
     
     self.session = nil;
-	self.rootFolder = nil;
-	self.owner = nil;
     
-    sp_playlistcontainer_remove_callbacks(container, &playlistcontainer_callbacks, self);
+    sp_playlistcontainer_remove_callbacks(container, &playlistcontainer_callbacks, (__bridge void *)(self));
     sp_playlistcontainer_release(container);
     
-    [super dealloc];
 }
 
 @end
@@ -220,10 +218,10 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
         sp_playlistcontainer_add_ref(container);
         self.session = aSession;
 		
-		self.rootFolder = [[[SPPlaylistFolder alloc] initWithPlaylistFolderId:0 container:self inSession:self.session] autorelease];
+		self.rootFolder = [[SPPlaylistFolder alloc] initWithPlaylistFolderId:0 container:self inSession:self.session];
 		[self rebuildPlaylists];
         
-        sp_playlistcontainer_add_callbacks(container, &playlistcontainer_callbacks, self);
+        sp_playlistcontainer_add_callbacks(container, &playlistcontainer_callbacks, (__bridge void *)(self));
     }
     return self;
 }
@@ -231,7 +229,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 -(void)removeFolderFromTree:(SPPlaylistFolder *)aFolder {
 	
 	// Remove callbacks, since we have to remove two playlists and reacting to list change notifications halfway through would be bad.
-	sp_playlistcontainer_remove_callbacks(container, &playlistcontainer_callbacks, self);
+	sp_playlistcontainer_remove_callbacks(container, &playlistcontainer_callbacks, (__bridge void *)(self));
 	
 	NSUInteger folderIndex = aFolder.containerPlaylistRange.location;
 	NSUInteger entriesToRemove = aFolder.containerPlaylistRange.length;
@@ -241,7 +239,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 		entriesToRemove--;
 	}
 	
-	sp_playlistcontainer_add_callbacks(container, &playlistcontainer_callbacks, self);
+	sp_playlistcontainer_add_callbacks(container, &playlistcontainer_callbacks, (__bridge void *)(self));
 }
 
 @end

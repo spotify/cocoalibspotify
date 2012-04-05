@@ -32,7 +32,6 @@
 
 #import <UIKit/UIKit.h>
 #import "CocoaLibSpotify.h"
-#import "SPPlaybackManager.h"
 
 @interface Simple_PlayerAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate, SPSessionPlaybackDelegate> {
 	UIViewController *_mainViewController;
@@ -46,19 +45,20 @@
 }
 
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UIViewController *mainViewController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UIViewController *mainViewController;
 
-@property (nonatomic, retain) IBOutlet UITextField *trackURIField;
-@property (nonatomic, retain) IBOutlet UILabel *trackTitle;
-@property (nonatomic, retain) IBOutlet UILabel *trackArtist;
-@property (nonatomic, retain) IBOutlet UIImageView *coverView;
-@property (nonatomic, retain) IBOutlet UISlider *positionSlider;
+@property (nonatomic, strong) IBOutlet UITextField *trackURIField;
+@property (nonatomic, strong) IBOutlet UILabel *trackTitle;
+@property (nonatomic, strong) IBOutlet UILabel *trackArtist;
+@property (nonatomic, strong) IBOutlet UIImageView *coverView;
+@property (nonatomic, strong) IBOutlet UISlider *positionSlider;
 
-@property (nonatomic, retain) SPTrack *currentTrack;
-@property (nonatomic, retain) SPPlaybackManager *playbackManager;
+@property (nonatomic, strong) SPTrack *currentTrack;
+@property (nonatomic, strong) SPPlaybackManager *playbackManager;
 
 - (IBAction)playTrack:(id)sender;
 - (IBAction)setTrackPosition:(id)sender;
+- (IBAction)setVolume:(id)sender;
 
 @end

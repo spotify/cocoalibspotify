@@ -58,7 +58,7 @@
 	
 	[[SPSession sharedSession] setDelegate:self];
 	
-	self.playbackManager = [[[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]] autorelease];
+	self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
 	
 	[self addObserver:self
 		   forKeyPath:@"playbackManager.trackPosition"

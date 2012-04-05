@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>SPPostTracksToInboxOperationDelegate Protocol Reference</title>
+		<title>SPLoginViewControllerDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">SPPostTracksToInboxOperationDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">SPLoginViewControllerDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -44,9 +44,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/postTracksToInboxOperation:didFailWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- postTracksToInboxOperation:didFailWithError:</option>
-	
-	<option value="//api/name/postTracksToInboxOperationDidSucceed:">&nbsp;&nbsp;&nbsp;&nbsp;- postTracksToInboxOperationDidSucceed:</option>
+	<option value="//api/name/loginViewController:didCompleteSuccessfully:">&nbsp;&nbsp;&nbsp;&nbsp;- loginViewController:didCompleteSuccessfully:</option>
 	
 	
 	
@@ -76,9 +74,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postTracksToInboxOperation:didFailWithError:">postTracksToInboxOperation:didFailWithError:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postTracksToInboxOperationDidSucceed:">postTracksToInboxOperationDidSucceed:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loginViewController:didCompleteSuccessfully:">loginViewController:didCompleteSuccessfully:</a></span></li>
 	
 </ul></li>
 
@@ -87,7 +83,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="SPPostTracksToInboxOperationDelegate Protocol Reference" name="top"></a>
+				<a title="SPLoginViewControllerDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -96,7 +92,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">SPPostTracksToInboxOperationDelegate Protocol Reference</h1>
+						<h1 class="title title-header">SPLoginViewControllerDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -107,7 +103,7 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">SPPostTracksToInboxOperation.h</td>
+	<td class="specification-value">SPLoginViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -117,7 +113,9 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Delegate callbacks from <a href="../Classes/SPPostTracksToInboxOperation.html">SPPostTracksToInboxOperation</a> on success or failure.</p>
+						<p>Provides a completion callback from <a href="../Classes/SPLoginViewController.html">SPLoginViewController</a>. <a href="../Classes/SPLoginViewController.html">SPLoginViewController</a>
+can cause multiple login and logout events during the login and signup process. This
+delegate informs you when the process is complete.</p>
 					</div>
 					
 					
@@ -135,18 +133,11 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/postTracksToInboxOperationDidSucceed:">&ndash;&nbsp;postTracksToInboxOperationDidSucceed:</a></code>
-		<span class="tooltip"><p>Called when the given post operation succeeded.</p></span>
+		<code><a href="#//api/name/loginViewController:didCompleteSuccessfully:">&ndash;&nbsp;loginViewController:didCompleteSuccessfully:</a></code>
+		<span class="tooltip"><p>Called when the login/signup process has completed.</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/postTracksToInboxOperation:didFailWithError:">&ndash;&nbsp;postTracksToInboxOperation:didFailWithError:</a></code>
-		<span class="tooltip"><p>Called when the given post operation failed.</p></span>
-	</span>
-	
-	
+	<span class="task-item-suffix">required method</span>
 </li>
 						</ul>
 						
@@ -165,30 +156,30 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/postTracksToInboxOperation:didFailWithError:" title="postTracksToInboxOperation:didFailWithError:"></a>
-	<h3 class="subsubtitle method-title">postTracksToInboxOperation:didFailWithError:</h3>
+	<a name="//api/name/loginViewController:didCompleteSuccessfully:" title="loginViewController:didCompleteSuccessfully:"></a>
+	<h3 class="subsubtitle method-title">loginViewController:didCompleteSuccessfully:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when the given post operation failed.</p>
+		<p>Called when the login/signup process has completed.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)postTracksToInboxOperation:(SPPostTracksToInboxOperation *)<em>operation</em> didFailWithError:(NSError *)<em>error</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)loginViewController:(SPLoginViewController *)<em>controller</em> didCompleteSuccessfully:(BOOL)<em>didLogin</em></code></div>
 	
 	
 	<div class="method-subsection arguments-section parameters">
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>operation</em></dt>
-			<dd><p>The operation that failed.</p></dd>
+			<dt><em>controller</em></dt>
+			<dd><p>The <a href="../Classes/SPLoginViewController.html">SPLoginViewController</a> instance that generated the message.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>error</em></dt>
-			<dd><p>The error that caused the failure.</p></dd>
+			<dt><em>didLogin</em></dt>
+			<dd><p><code>YES</code> if the user successfully logged in, otherwise <code>NO</code>..</p></dd>
 		</dl>
 		
 	</div>
@@ -207,51 +198,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPPostTracksToInboxOperation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/postTracksToInboxOperationDidSucceed:" title="postTracksToInboxOperationDidSucceed:"></a>
-	<h3 class="subsubtitle method-title">postTracksToInboxOperationDidSucceed:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Called when the given post operation succeeded.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)postTracksToInboxOperationDidSucceed:(SPPostTracksToInboxOperation *)<em>operation</em></code></div>
-	
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>operation</em></dt>
-			<dd><p>The operation that succeeded.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SPPostTracksToInboxOperation.h</code><br />
+		<code class="declared-in-ref">SPLoginViewController.h</code><br />
 	</div>				
 	
 	

@@ -44,22 +44,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @class SPUser;
 @class SPSession;
 
-@interface SPToplist : NSObject {
-@private
-    NSLocale *locale;
-	NSString *username;
-	SPSession *session;
-	NSArray *tracks;
-	NSArray *albums;
-	NSArray *artists;
-	BOOL tracksLoaded;
-	BOOL artistsLoaded;
-	BOOL albumsLoaded;
-	NSError *loadError;
-	sp_toplistbrowse *albumBrowseOperation;
-	sp_toplistbrowse *artistBrowseOperation;
-	sp_toplistbrowse *trackBrowseOperation;
-}
+@interface SPToplist : NSObject
 
 ///----------------------------
 /// @name Creating and Initializing Toplists
@@ -128,10 +113,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///----------------------------
 
 /** Returns the albums in the toplist in descending order of popularity. */
-@property (nonatomic, readonly, retain) NSArray *albums;
+@property (nonatomic, readonly, strong) NSArray *albums;
 
 /** Returns the artists in the toplist in descending order of popularity. */
-@property (nonatomic, readonly, retain) NSArray *artists;
+@property (nonatomic, readonly, strong) NSArray *artists;
 
 /** Returns `YES` if the toplist has finished loading. */ 
 @property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
@@ -140,13 +125,13 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readonly, copy) NSError *loadError;
 
 /** Returns the locale of the toplist, if the toplist is a locale toplist. */
-@property (nonatomic, readonly, retain) NSLocale *locale;
+@property (nonatomic, readonly, strong) NSLocale *locale;
 
 /** Returns the tracks in the toplist in descending order of popularity. */
-@property (nonatomic, readonly, retain) NSArray *tracks;
+@property (nonatomic, readonly, strong) NSArray *tracks;
 
 /** Returns the session the toplist is loaded in. */
-@property (nonatomic, readonly, retain) SPSession *session;
+@property (nonatomic, readonly, strong) SPSession *session;
 
 /** Returns the username of the toplist, if the toplist is a user toplist. */
 @property (nonatomic, readonly, copy) NSString *username;

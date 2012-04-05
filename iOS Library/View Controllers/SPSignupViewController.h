@@ -51,7 +51,7 @@ static NSString * const kSignupPageMerge = @"merge.en.html";
 -(void)loadDocument:(NSString *)documentName inFolder:(NSString *)folderName page:(sp_signup_page)page stillLoading:(BOOL)isLoading recentUser:(NSString *)existingUser features:(NSUInteger)featureMask;
 
 @property (nonatomic, readonly, getter = isLoaded) BOOL loaded;
-@property (nonatomic, readonly, retain) SPSession *session;
+@property (nonatomic, readonly) SPSession *session;
 @property (nonatomic, readonly, copy) NSString *currentPage;
 
 @end

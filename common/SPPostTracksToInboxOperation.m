@@ -37,36 +37,37 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @interface SPPostTracksToInboxOperation ()
 
-@property (nonatomic, readwrite, retain) SPSession *session;
+@property (nonatomic, readwrite, strong) SPSession *session;
 @property (nonatomic, readwrite, copy) NSString *destinationUser;
 @property (nonatomic, readwrite, copy) NSArray *tracks;
 @property (nonatomic, readwrite, copy) NSString *message;
 
-@property (nonatomic, readwrite, assign) __weak id <SPPostTracksToInboxOperationDelegate> delegate;
+@property (nonatomic, readwrite, assign) __unsafe_unretained id <SPPostTracksToInboxOperationDelegate> delegate;
 
 @end
 
 void inboxpost_complete(sp_inbox *result, void *userdata);
 void inboxpost_complete(sp_inbox *result, void *userdata) {
 	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	SPPostTracksToInboxOperation *operation = userdata;
-	sp_error errorCode = sp_inbox_error(result);
-	
-	if (errorCode != SP_ERROR_OK) {
-		if ([operation.delegate respondsToSelector:@selector(postTracksToInboxOperation:didFailWithError:)]) {
-			[(id <SPPostTracksToInboxOperationDelegate>)operation.delegate postTracksToInboxOperation:operation didFailWithError:[NSError spotifyErrorWithCode:errorCode]];
+	@autoreleasepool {
+		SPPostTracksToInboxOperation *operation = (__bridge SPPostTracksToInboxOperation *)userdata;
+		sp_error errorCode = sp_inbox_error(result);
+		
+		if (errorCode != SP_ERROR_OK) {
+			if ([operation.delegate respondsToSelector:@selector(postTracksToInboxOperation:didFailWithError:)]) {
+				[(id <SPPostTracksToInboxOperationDelegate>)operation.delegate postTracksToInboxOperation:operation didFailWithError:[NSError spotifyErrorWithCode:errorCode]];
+			}
+		} else {
+			if ([operation.delegate respondsToSelector:@selector(postTracksToInboxOperationDidSucceed:)]) {
+				[(id <SPPostTracksToInboxOperationDelegate>)operation.delegate postTracksToInboxOperationDidSucceed:operation];
+			}
 		}
-	} else {
-		if ([operation.delegate respondsToSelector:@selector(postTracksToInboxOperationDidSucceed:)]) {
-			[(id <SPPostTracksToInboxOperationDelegate>)operation.delegate postTracksToInboxOperationDidSucceed:operation];
-		}
-	}
-	
-	[pool drain]; 
+	} 
 }
 
-@implementation SPPostTracksToInboxOperation
+@implementation SPPostTracksToInboxOperation {
+	sp_inbox *inboxOperation;
+}
 
 +(SPPostTracksToInboxOperation *)sendTracks:(NSArray *)tracksToSend
 									 toUser:(NSString *)user 
@@ -74,11 +75,11 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 								  inSession:(SPSession *)aSession
 								   delegate:(id <SPPostTracksToInboxOperationDelegate>)completionDelegate {
 	
-	return [[[SPPostTracksToInboxOperation alloc] initBySendingTracks:tracksToSend
+	return [[SPPostTracksToInboxOperation alloc] initBySendingTracks:tracksToSend
 															   toUser:user
 															  message:aFriendlyGreeting
 															inSession:aSession
-															 delegate:completionDelegate] autorelease];
+															 delegate:completionDelegate];
 }
 
 -(id)initBySendingTracks:(NSArray *)tracksToSend
@@ -113,9 +114,8 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 												  trackCount, 
 												  [self.message UTF8String], 
 												  &inboxpost_complete, 
-												  self);
+												  (__bridge void *)(self));
 		} else {
-			[self release];
 			return nil;
 		}
 	}
@@ -135,10 +135,6 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 @synthesize inboxOperation;
 
 - (void)dealloc {
-	self.session = nil;
-	self.destinationUser = nil;
-	self.message = nil;
-	self.tracks = nil;
 	self.delegate = nil;
 	
 	if (inboxOperation != NULL) {
@@ -146,7 +142,6 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 		inboxOperation = NULL;
 	}
 	
-    [super dealloc];
 }
 
 @end

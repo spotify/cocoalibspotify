@@ -51,7 +51,7 @@
 }
 
 -(void)clear {
-	@synchronized(buffer) {
+	@synchronized(self) {
 		memset(buffer, 0, maximumLength);
 		dataStartOffset = 0;
 		dataEndOffset = 0;
@@ -63,7 +63,7 @@
     
     NSUInteger availableBufferSpace = self.maximumLength - self.length;
     
-	@synchronized(buffer) {
+	@synchronized(self) {
         
 		if (availableBufferSpace == 0)
 			return 0;
@@ -97,7 +97,7 @@
 	
     NSUInteger usedBufferSpace = self.length;
     
-	@synchronized(buffer) {
+	@synchronized(self) {
 		
 		if (usedBufferSpace == 0) {
 			return 0;
@@ -127,7 +127,7 @@
 -(NSUInteger)length {
 	// Length is the distance between the start offset (start of the data)
 	// and the end offset (end).
-	@synchronized(buffer) {
+	@synchronized(self) {
 		if (dataStartOffset == dataEndOffset) {
 			// Empty!
 			return 0;
@@ -142,10 +142,9 @@
 @synthesize maximumLength;
 
 - (void)dealloc {
-	@synchronized(buffer) {
+	@synchronized(self) {
 		memset(buffer, 0, maximumLength);
 		free(buffer);
-		[super dealloc];
 	}
 }
 

@@ -38,7 +38,7 @@ static NSString * const kSPLicensesFormatter = @"http://www.spotify.com/mobile/e
 
 @interface SPLicenseViewController ()
 
-@property (nonatomic,retain) UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, readwrite, copy) NSString *version;
 
 @end
@@ -55,11 +55,6 @@ static NSString * const kSPLicensesFormatter = @"http://www.spotify.com/mobile/e
 	return self;
 }
 
--(void)dealloc {
-	[version release];
-	[spinner release];
-	[super dealloc];
-}
 
 @synthesize spinner;
 @synthesize version;
@@ -87,11 +82,11 @@ static NSString * const kSPLicensesFormatter = @"http://www.spotify.com/mobile/e
 -(void)loadView {
 	
 	self.title = @"T&Cs and Privacy Policy";
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 																							target:self
-																							action:@selector(done)] autorelease];
+																							action:@selector(done)];
 	CGRect bounds = CGRectMake(0, 0, 320, 460);
-	UIWebView *web = [[[UIWebView alloc] initWithFrame:bounds] autorelease];
+	UIWebView *web = [[UIWebView alloc] initWithFrame:bounds];
 	web.delegate = self;
 	
 	NSURL *licenseUrl = nil;
@@ -110,7 +105,7 @@ static NSString * const kSPLicensesFormatter = @"http://www.spotify.com/mobile/e
 	
 	self.view = web;
 	
-	self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+	self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	self.spinner.hidesWhenStopped = YES;
 	[self.view addSubview:self.spinner];
 	

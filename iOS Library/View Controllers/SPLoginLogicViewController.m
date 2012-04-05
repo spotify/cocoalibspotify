@@ -38,18 +38,18 @@
 -(void)switchViewToLoggingInState:(BOOL)isLoggingIn;
 -(void)positionLoggingInView;
 
-@property (nonatomic, retain) UITextField *usernameField;
-@property (nonatomic, retain) UITextField *passwordField;
-@property (retain, nonatomic) UIView *loggingInView;
-@property (retain, nonatomic) UILabel *loginLabel;
-@property (retain, nonatomic) UILabel *passwordLabel;
-@property (retain, nonatomic) UIView *loginAreaSeparator;
-@property (retain, nonatomic) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UITextField *usernameField;
+@property (nonatomic, strong) UITextField *passwordField;
+@property (nonatomic, strong) UIView *loggingInView;
+@property (nonatomic, strong) UILabel *loginLabel;
+@property (nonatomic, strong) UILabel *passwordLabel;
+@property (nonatomic, strong) UIView *loginAreaSeparator;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 
-@property (retain, nonatomic) UIBarButtonItem *cancelButton;
-@property (retain, nonatomic) UIBarButtonItem *loginButton;
+@property (nonatomic, strong) UIBarButtonItem *cancelButton;
+@property (nonatomic, strong) UIBarButtonItem *loginButton;
 
-@property (retain, nonatomic) IBOutlet UIView *loginFormView;
+@property (nonatomic, strong) IBOutlet UIView *loginFormView;
 
 @end
 
@@ -130,7 +130,7 @@
 													   delegate:nil
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
-		[[alert autorelease] show];
+		[alert show];
 		
 		return;
 	}
@@ -160,7 +160,7 @@
 												   delegate:nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
-	[[alert autorelease] show];
+	[alert show];
 	
 	[self switchViewToLoggingInState:NO];
 }
@@ -180,10 +180,10 @@
 	NSURL *bundlePath = [[NSBundle mainBundle] URLForResource:@"SPLoginResources" withExtension:@"bundle"];
 	NSBundle *resourcesBundle = [NSBundle bundleWithURL:bundlePath];
 	
-	self.view = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 416.0)] autorelease];
+	self.view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 416.0)];
 	self.view.backgroundColor = [UIColor redColor];
 
-	self.backgroundImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 416.0)] autorelease];
+	self.backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 416.0)];
 	self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
 	self.backgroundImageView.backgroundColor = [UIColor blueColor];
 	self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -197,21 +197,21 @@
 	
 	// Login form background
 	
-	UIView *loginContainerView = [[[UIView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 185.0)] autorelease];
+	UIView *loginContainerView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 185.0)];
 	loginContainerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 	[self.view addSubview:loginContainerView];
 	
-	UIImageView *blueRect = [[[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 185.0)] autorelease];
+	UIImageView *blueRect = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 185.0)];
 	blueRect.contentMode = UIViewContentModeBottom;
 	blueRect.image = [UIImage imageWithContentsOfFile:[resourcesBundle pathForResource:@"SPLoginViewFacebookBackground" ofType:@"png"]];
 	[loginContainerView addSubview:blueRect];
 	
-	UIImageView *facebookIcon = [[[UIImageView alloc] initWithFrame:CGRectMake(30.0, 29.0, 22.0, 23.0)] autorelease];
+	UIImageView *facebookIcon = [[UIImageView alloc] initWithFrame:CGRectMake(30.0, 29.0, 22.0, 23.0)];
 	facebookIcon.contentMode = UIViewContentModeBottom;
 	facebookIcon.image = [UIImage imageWithContentsOfFile:[resourcesBundle pathForResource:@"SPLoginViewFacebookIcon" ofType:@"png"]];
 	[blueRect addSubview:facebookIcon];
 	
-	UILabel *loginHeader = [[[UILabel alloc] initWithFrame:CGRectMake(59.0, 30.0, 212.0, 21.0)] autorelease];
+	UILabel *loginHeader = [[UILabel alloc] initWithFrame:CGRectMake(59.0, 30.0, 212.0, 21.0)];
 	loginHeader.text = @"Login with Facebook or Spotify";
 	loginHeader.textColor = [UIColor whiteColor];
 	loginHeader.font = [UIFont boldSystemFontOfSize:14.0];
@@ -220,29 +220,29 @@
 	loginHeader.backgroundColor = [UIColor clearColor];
 	[blueRect addSubview:loginHeader];
 	
-	self.loginFormView = [[[UIView alloc] initWithFrame:CGRectMake(20.0, 77.0, 260.0, 87.0)] autorelease];
+	self.loginFormView = [[UIView alloc] initWithFrame:CGRectMake(20.0, 77.0, 260.0, 87.0)];
 	[loginContainerView addSubview:self.loginFormView];
 	
-	UIImageView *textFieldBg = [[[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 260.0, 87.0)] autorelease];
+	UIImageView *textFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 260.0, 87.0)];
 	textFieldBg.contentMode = UIViewContentModeBottom;
 	textFieldBg.image = [UIImage imageWithContentsOfFile:[resourcesBundle pathForResource:@"SPLoginFormBackground" ofType:@"png"]];
 	[self.loginFormView addSubview:textFieldBg];
 	
-	self.loginAreaSeparator = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 43.0, 260.0, 1.0)] autorelease];
+	self.loginAreaSeparator = [[UIView alloc] initWithFrame:CGRectMake(0.0, 43.0, 260.0, 1.0)];
 	[self.loginAreaSeparator setBackgroundColor:[UIColor colorWithWhite:0.54 alpha:1.0]];
 	[self.loginFormView addSubview:self.loginAreaSeparator];
 
-	self.loginLabel = [[[UILabel alloc] initWithFrame:CGRectMake(12.0, 12.0, 69.0, 21.0)] autorelease];
+	self.loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(12.0, 12.0, 69.0, 21.0)];
 	self.loginLabel.text = @"Username";
 	self.loginLabel.font = [UIFont boldSystemFontOfSize:14.0];
 	[self.loginFormView addSubview:self.loginLabel];
 	
-	self.passwordLabel = [[[UILabel alloc] initWithFrame:CGRectMake(12.0, 55.0, 69.0, 21.0)] autorelease];
+	self.passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(12.0, 55.0, 69.0, 21.0)];
 	self.passwordLabel.text = @"Password";
 	self.passwordLabel.font = [UIFont boldSystemFontOfSize:14.0];
 	[self.loginFormView addSubview:self.passwordLabel];
 	
-	self.usernameField = [[[UITextField alloc] initWithFrame:CGRectMake(88.0, 10.0, 162.0, 26.0)] autorelease];
+	self.usernameField = [[UITextField alloc] initWithFrame:CGRectMake(88.0, 10.0, 162.0, 26.0)];
 	self.usernameField.font = [UIFont systemFontOfSize:14.0];
 	self.usernameField.placeholder = @"or Facebook email";
 	self.usernameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -250,7 +250,7 @@
 	self.usernameField.returnKeyType = UIReturnKeyNext;
 	[self.loginFormView addSubview:self.usernameField];
 	
-	self.passwordField = [[[UITextField alloc] initWithFrame:CGRectMake(88.0, 52.0, 162.0, 26.0)] autorelease];
+	self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(88.0, 52.0, 162.0, 26.0)];
 	self.passwordField.font = [UIFont systemFontOfSize:14.0];
 	self.passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 	self.passwordField.delegate = self;
@@ -261,7 +261,7 @@
 	self.loggingInView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 127.0, 49.0)];
 	self.loggingInView.backgroundColor = [UIColor whiteColor];
 	
-	UILabel *loggingInLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 14.0, 127.0, 21.0)] autorelease];
+	UILabel *loggingInLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 14.0, 127.0, 21.0)];
 	loggingInLabel.text = @"Logging in…";
 	loggingInLabel.font = [UIFont systemFontOfSize:14.0];
 	loggingInLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
@@ -374,18 +374,6 @@
 													name:SPSessionLoginDidFailNotification
 												  object:self.session];
 	
-	[session release];
-	[usernameField release];
-	[passwordField release];
-	[loggingInView release];
-	[loginLabel release];
-	[passwordLabel release];
-	[loginAreaSeparator release];
-	[backgroundImageView release];
-	[loginFormView release];
-	[cancelButton release];
-	[loginButton release];
-	[super dealloc];
 }
 
 @end

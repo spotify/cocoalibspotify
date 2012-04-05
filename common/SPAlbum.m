@@ -39,9 +39,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @interface SPAlbum ()
 
 @property (nonatomic, readwrite) sp_album *album;
-@property (nonatomic, readwrite, retain) SPSession *session;
-@property (nonatomic, readwrite, retain) SPImage *cover; 
-@property (nonatomic, readwrite, retain) SPArtist *artist;
+@property (nonatomic, readwrite, strong) SPSession *session;
+@property (nonatomic, readwrite, strong) SPImage *cover; 
+@property (nonatomic, readwrite, strong) SPArtist *artist;
 @property (nonatomic, readwrite, copy) NSURL *spotifyURL;
 @property (nonatomic, readwrite, getter=isLoaded) BOOL loaded;
 @property (nonatomic, readwrite, getter=isAvailable) BOOL available;
@@ -76,7 +76,7 @@ static NSMutableDictionary *albumCache;
                                                     inSession:aSession];
     
     [albumCache setObject:cachedAlbum forKey:ptrValue];
-    return [cachedAlbum autorelease];
+    return cachedAlbum;
 }
 
 +(SPAlbum *)albumWithAlbumURL:(NSURL *)aURL inSession:(SPSession *)aSession {
@@ -97,15 +97,15 @@ static NSMutableDictionary *albumCache;
 
 -(id)initWithAlbumStruct:(sp_album *)anAlbum inSession:(SPSession *)aSession {
     if ((self = [super init])) {
-        album = anAlbum;
-        sp_album_add_ref(album);
+        self.album = anAlbum;
+        sp_album_add_ref(self.album);
         self.session = aSession;
         sp_link *link = sp_link_create_from_album(anAlbum);
         if (link != NULL) {
             self.spotifyURL = [NSURL urlWithSpotifyLink:link];
             sp_link_release(link);
         }
-        
+
         if (!sp_album_is_loaded(album)) {
             [aSession addLoadingObject:self];
         } else {
@@ -124,19 +124,19 @@ static NSMutableDictionary *albumCache;
 }
 
 -(void)loadAlbumData {
-    const byte *imageId = sp_album_cover(album);
+    const byte *imageId = sp_album_cover(self.album);
     
     if (imageId != NULL) {
         [self setCover:[SPImage imageWithImageId:imageId
-                                              inSession:session]];
+                                              inSession:self.session]];
     }
     
-    sp_artist *spArtist = sp_album_artist(album);
+    sp_artist *spArtist = sp_album_artist(self.album);
     if (spArtist != NULL) {
         [self setArtist:[SPArtist artistWithArtistStruct:spArtist inSession:self.session]];
     }
     
-	const char *nameCharArray = sp_album_name(album);
+	const char *nameCharArray = sp_album_name(self.album);
     if (nameCharArray != NULL) {
         NSString *nameString = [NSString stringWithUTF8String:nameCharArray];
         self.name = [nameString length] > 0 ? nameString : nil;
@@ -144,10 +144,10 @@ static NSMutableDictionary *albumCache;
         self.name = nil;
     }
 
-	self.year = sp_album_year(album);
-	self.type = sp_album_type(album);
-	self.available = sp_album_is_available(album);
-	self.loaded = sp_album_is_loaded(album);
+	self.year = sp_album_year(self.album);
+	self.type = sp_album_type(self.album);
+	self.available = sp_album_is_available(self.album);
+	self.loaded = sp_album_is_loaded(self.album);
 }
 
 -(void)albumBrowseDidLoad {
@@ -171,17 +171,7 @@ static NSMutableDictionary *albumCache;
 @synthesize name;
 
 -(void)dealloc {
-    
-	self.name = nil;
-	
-    self.spotifyURL = nil;
-    self.session = nil;
-    [self setCover:nil];
-    [self setArtist:nil];
-    
     sp_album_release(album);
-    
-    [super dealloc];
 }
 
 @end

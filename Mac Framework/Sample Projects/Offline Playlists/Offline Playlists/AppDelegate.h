@@ -31,13 +31,13 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, SPSessionDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet NSSlider *playbackProgressSlider;
-@property (assign) IBOutlet NSTextField *userNameField;
-@property (assign) IBOutlet NSSecureTextField *passwordField;
-@property (assign) IBOutlet NSPanel *loginSheet;
-@property (assign) IBOutlet NSTableView *trackTable;
-@property (assign) IBOutlet NSArrayController *trackArrayController;
+@property (unsafe_unretained) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSSlider *playbackProgressSlider;
+@property (weak) IBOutlet NSTextField *userNameField;
+@property (weak) IBOutlet NSSecureTextField *passwordField;
+@property (unsafe_unretained) IBOutlet NSPanel *loginSheet;
+@property (weak) IBOutlet NSTableView *trackTable;
+@property (weak) IBOutlet NSArrayController *trackArrayController;
 
 -(SPSession *)session;
 
@@ -46,7 +46,7 @@
 
 #pragma mark -
 
-@property (nonatomic, readwrite, retain) SPPlaybackManager *playbackManager;
+@property (nonatomic, readwrite, strong) SPPlaybackManager *playbackManager;
 
 - (IBAction)seekToPosition:(id)sender;
 - (IBAction)togglePlayPause:(id)sender;

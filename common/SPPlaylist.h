@@ -40,26 +40,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @class SPSession;
 @protocol SPPlaylistDelegate;
 
-@interface SPPlaylist : NSObject <SPPlaylistableItem> {
-@private 
-    sp_playlist *playlist;
-    BOOL updating;
-    BOOL loaded;
-    BOOL collaborative;
-    BOOL hasPendingChanges;
-    __weak id <SPPlaylistDelegate> delegate;
-    __weak SPSession *session;
-    NSString *playlistDescription;
-    NSString *name;
-    SPImage *image;
-    SPUser *owner;
-	NSURL *spotifyURL;
-	BOOL trackChangesAreFromLibSpotifyCallback;
-	NSMutableArray *itemWrapper;
-	NSArray *subscribers;
-	float offlineDownloadProgress;
-	sp_playlist_offline_status offlineStatus;
-}
+@interface SPPlaylist : NSObject <SPPlaylistableItem>
 
 ///----------------------------
 /// @name Creating and Initializing Playlists
@@ -107,7 +88,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///----------------------------
 
 /** Returns the playlist's delegate object. */
-@property (nonatomic, readwrite, assign) __weak id <SPPlaylistDelegate> delegate;
+@property (nonatomic, readwrite, assign) __unsafe_unretained id <SPPlaylistDelegate> delegate;
 
 /** Returns `YES` if the playlist has changes not yet recognised by the Spotify servers, otherwise `NO`. */
 @property (nonatomic, readonly) BOOL hasPendingChanges;
@@ -147,7 +128,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readonly) sp_playlist_offline_status offlineStatus;
 
 /** Returns the owner of the playlist, or `nil` if the playlist hasn't loaded yet. */
-@property (nonatomic, readonly, retain) SPUser *owner;
+@property (nonatomic, readonly, strong) SPUser *owner;
 
 /** Returns the opaque structure used by the C LibSpotify API. 
  
@@ -158,20 +139,20 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readonly) sp_playlist *playlist;
 
 /** Returns the session object the playlist is loaded in. */
-@property (nonatomic, readonly, assign) __weak SPSession *session;
+@property (nonatomic, readonly, assign) __unsafe_unretained SPSession *session;
 
 /** Returns the Spotify URI of the playlist profile, for example: `spotify:user:sarnesjo:playlist:3p2c7mmML3fIUh5fcZ8Hcq` */
 @property (nonatomic, readonly, copy) NSURL *spotifyURL;
 
 /** Returns the subscribers to the playlist as an array of Spotify usernames. */
-@property (nonatomic, readonly, retain) NSArray *subscribers;
+@property (nonatomic, readonly, strong) NSArray *subscribers;
 
 ///----------------------------
 /// @name Metadata
 ///----------------------------
 
 /** Returns the custom image for the playlist, or `nil` if the playlist hasn't loaded yet or it doesn't have a custom image. */
-@property (nonatomic, readonly, retain) SPImage *image;
+@property (nonatomic, readonly, strong) SPImage *image;
 
 /** Returns the name of the playlist, or `nil` if the playlist hasn't loaded yet. */
 @property (nonatomic, readwrite, copy) NSString *name;

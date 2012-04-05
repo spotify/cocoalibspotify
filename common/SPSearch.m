@@ -41,10 +41,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 @interface SPSearch ()
 
-@property (nonatomic, readwrite, retain) NSArray *tracks;
-@property (nonatomic, readwrite, retain) NSArray *artists;
-@property (nonatomic, readwrite, retain) NSArray *albums;
-@property (nonatomic, readwrite, retain) NSArray *playlists;
+@property (nonatomic, readwrite, strong) NSArray *tracks;
+@property (nonatomic, readwrite, strong) NSArray *artists;
+@property (nonatomic, readwrite, strong) NSArray *albums;
+@property (nonatomic, readwrite, strong) NSArray *playlists;
 
 @property (nonatomic, readwrite) BOOL hasExhaustedTrackResults;
 @property (nonatomic, readwrite) BOOL hasExhaustedArtistResults;
@@ -58,7 +58,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @property (nonatomic, readwrite, copy) NSString *suggestedSearchQuery;
 
 @property (nonatomic, readwrite, copy) NSURL *spotifyURL;
-@property (nonatomic, readwrite, retain) SPSession *session;
+@property (nonatomic, readwrite, strong) SPSession *session;
 @property (nonatomic, readwrite) sp_search *activeSearch;
 
 -(id)initWithSession:(SPSession *)aSession; // Designated initialiser.
@@ -78,7 +78,8 @@ static NSString * const kSPSearchCallbackSearchingPlaylistsKey = @"playlists";
 void search_complete(sp_search *result, void *userdata);
 void search_complete(sp_search *result, void *userdata) {
 	
-	NSDictionary *properties = userdata;
+	NSDictionary *properties = (__bridge_transfer NSDictionary *)userdata;
+	// ^ __bridge_transfer the userData dictionary so it's released correctly.
 	SPSearch *search = [properties valueForKey:kSPSearchCallbackSearchObjectKey];
 	
 	[search searchDidComplete:result 
@@ -86,25 +87,29 @@ void search_complete(sp_search *result, void *userdata) {
 					  artists:[[properties valueForKey:kSPSearchCallbackSearchingArtistsKey] boolValue]
 					   albums:[[properties valueForKey:kSPSearchCallbackSearchingAlbumsKey] boolValue]
 					playlists:[[properties valueForKey:kSPSearchCallbackSearchingPlaylistsKey] boolValue]];
-	
-	[properties release];
-	// ^ Was retained when the search was created.
 }
 
 #pragma mark -
 
-@implementation SPSearch
+@implementation SPSearch {
+	sp_search *activeSearch;
+	NSInteger requestedTrackResults;
+	NSInteger requestedArtistResults;
+	NSInteger requestedAlbumResults;
+	NSInteger requestedPlaylistResults;
+	NSInteger pageSize;
+}
 
 +(SPSearch *)searchWithURL:(NSURL *)searchURL inSession:(SPSession *)aSession {
-	return [[[SPSearch alloc] initWithURL:searchURL inSession:aSession] autorelease];
+	return [[SPSearch alloc] initWithURL:searchURL inSession:aSession];
 }
 
 +(SPSearch *)searchWithSearchQuery:(NSString *)searchQuery inSession:(SPSession *)aSession {
-	return [[[SPSearch alloc] initWithSearchQuery:searchQuery inSession:aSession] autorelease];
+	return [[SPSearch alloc] initWithSearchQuery:searchQuery inSession:aSession];
 }
 
 +(SPSearch *)liveSearchWithSearchQuery:(NSString *)searchQuery inSession:(SPSession *)aSession {
-	return [[[SPSearch alloc] initWithSearchQuery:searchQuery inSession:aSession type:SP_SEARCH_SUGGEST] autorelease];
+	return [[SPSearch alloc] initWithSearchQuery:searchQuery inSession:aSession type:SP_SEARCH_SUGGEST];
 }
 
 -(id)initWithSession:(SPSession *)aSession {
@@ -140,7 +145,6 @@ void search_complete(sp_search *result, void *userdata) {
 							   inSession:aSession
 									type:SP_SEARCH_STANDARD];
 	}
-	[self release];
 	return nil;
 }
 
@@ -195,7 +199,6 @@ void search_complete(sp_search *result, void *userdata) {
 		return self;
 		
 	} else {
-		[self release];
 		return nil;
 	}
 	
@@ -410,7 +413,6 @@ void search_complete(sp_search *result, void *userdata) {
 		if (artistCount > 0 || albumCount > 0 || trackCount > 0 || playlistCount > 0) {
 			
 			NSMutableDictionary *userData = [[NSMutableDictionary alloc] initWithCapacity:5];
-			// ^ Don't release userData, it needs to survive through a search operation. The complete callback releases it.
 			
 			[userData setValue:self forKey:kSPSearchCallbackSearchObjectKey];
 			[userData setValue:[NSNumber numberWithBool:searchArtist] forKey:kSPSearchCallbackSearchingArtistsKey];
@@ -430,7 +432,9 @@ void search_complete(sp_search *result, void *userdata) {
 													playlistCount, // playlist_count
 													self.searchType,
 													&search_complete, //callback
-													userData); // userdata
+													(__bridge_retained void *)userData); // userdata
+			// ^ __bridge_retain the userData dictionary, it needs to survive through a search operation. The complete callback releases it.
+			
 			if (newSearch != NULL) {
 				self.activeSearch = newSearch;
 				sp_search_release(newSearch);
@@ -452,17 +456,8 @@ void search_complete(sp_search *result, void *userdata) {
 
 - (void)dealloc {
 	
-	self.searchError = nil;
-	self.tracks = nil;
-	self.artists = nil;
-	self.albums = nil;
-	self.searchQuery = nil;
-	self.suggestedSearchQuery = nil;
-	self.session = nil;
 	self.activeSearch = NULL;
-	self.spotifyURL = nil;
 	
-	[super dealloc];
 }
 
 @end

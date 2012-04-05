@@ -35,11 +35,11 @@
 
 @interface SPFacebookPermissionsViewController : SPSignupViewController {
 	NSArray *permissions;
-	id <SPSignupPageDelegate> delegate;
+	id <SPSignupPageDelegate> __unsafe_unretained delegate;
 }
 
 -(id)initWithPermissions:(NSArray *)permissions inSession:(SPSession *)aSession;
 
-@property (nonatomic, readwrite, assign) id <SPSignupPageDelegate> delegate;
+@property (nonatomic, readwrite, unsafe_unretained) id <SPSignupPageDelegate> delegate;
 
 @end
