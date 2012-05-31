@@ -33,6 +33,9 @@
 #import "SPSessionTests.h"
 #import "SPSession.h"
 #import "SPUser.h"
+#import "SPPlaylistContainer.h"
+#import "SPPlaylistItem.h"
+#import "SPTrack.h"
 
 static NSTimeInterval const kSessionLoadingTimeout = 15.0;
 static NSTimeInterval const kSessionBlobTimeout = 15.0;
@@ -135,6 +138,71 @@ static NSString * const kTestPasswordUserDefaultsKey = @"TestPassword";
 }
 
 #pragma mark - Misc
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if([keyPath hasPrefix:@"userPlaylists.playlists"])
+    {
+        [self test4aConcurrentMetadataLoadingWithKVO];
+        [[SPSession sharedSession] removeObserver:self forKeyPath:@"userPlaylists.playlists" context:nil];
+       
+        
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+-(void)test4aConcurrentMetadataLoadingWithKVO {
+
+    static bool observerAdded = false;
+    
+    if(!observerAdded)
+        [[SPSession sharedSession] addObserver:self forKeyPath:@"userPlaylists.playlists" options:0 context:nil];
+    observerAdded = true;
+    
+    [SPAsyncLoading waitUntilLoaded:[SPSession sharedSession] then:^(NSArray *loadedession) {
+    
+		[SPAsyncLoading waitUntilLoaded:[SPSession sharedSession].userPlaylists then:^(NSArray *loadedContainers) {
+			
+            NSMutableArray *playlists = [NSMutableArray array];
+            [playlists addObject:[SPSession sharedSession].starredPlaylist];
+            [playlists addObject:[SPSession sharedSession].inboxPlaylist];
+            [playlists addObjectsFromArray:[SPSession sharedSession].userPlaylists.flattenedPlaylists];
+            
+            [SPAsyncLoading waitUntilLoaded:playlists timeout:10.0 then:^(NSArray *loadedPlaylists, NSArray *notLoadedPlaylists) {
+                 
+                NSArray *playlistItems = [loadedPlaylists valueForKeyPath:@"@unionOfArrays.items"];
+                
+                NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:playlistItems.count];
+                
+                for (SPPlaylistItem *anItem in playlistItems) {
+                    if (anItem.itemClass == [SPTrack class]) {
+                        [tracks addObject:anItem.item];
+                    }
+                }
+                
+                [SPAsyncLoading waitUntilLoaded:tracks timeout:10.0 then:^(NSArray *loadedTracks, NSArray *notLoadedTracks) {
+                    
+                    // All of our tracks have loaded their metadata. Hooray!
+                    NSLog(@"[%@ %@]: %@ of %@ tracks loaded.", NSStringFromClass([self class]), NSStringFromSelector(_cmd), 
+                          [NSNumber numberWithInteger:loadedTracks.count], [NSNumber numberWithInteger:loadedTracks.count + notLoadedTracks.count]);
+                    
+                    NSMutableArray *theTrackPool = [NSMutableArray arrayWithCapacity:loadedTracks.count];
+                    
+                    for (SPTrack *aTrack in loadedTracks) {
+                        if (aTrack.availability == SP_TRACK_AVAILABILITY_AVAILABLE && [aTrack.name length] > 0)
+                            [theTrackPool addObject:aTrack];
+                    }
+                    
+                    SPPassTest();
+                    
+                }];
+            }];
+        }];
+    }];
+	
+}
+
 
 -(void)test4UserDetails {
 	
