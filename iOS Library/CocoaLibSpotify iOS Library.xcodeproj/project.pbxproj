@@ -7,6 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27657E121595290100FA4CE0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F53F156BCDE800E237DD /* ViewController.m */; };
+		27657E1B1595290100FA4CE0 /* SPAsyncLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 501E8ECB15384945001CEA82 /* SPAsyncLoading.m */; };
+		27657E1C1595290100FA4CE0 /* SPURLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A541439CF5B00E4A5EF /* SPURLExtensions.m */; };
+		27657E1D1595290100FA4CE0 /* SPErrorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A581439CF6500E4A5EF /* SPErrorExtensions.m */; };
+		27657E1E1595290100FA4CE0 /* SPAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A5E1439CF8600E4A5EF /* SPAlbum.m */; };
+		27657E1F1595290100FA4CE0 /* SPAlbumBrowse.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A601439CF8600E4A5EF /* SPAlbumBrowse.m */; };
+		27657E201595290100FA4CE0 /* SPArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A621439CF8600E4A5EF /* SPArtist.m */; };
+		27657E211595290100FA4CE0 /* SPArtistBrowse.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A641439CF8600E4A5EF /* SPArtistBrowse.m */; };
+		27657E221595290100FA4CE0 /* SPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A661439CF8600E4A5EF /* SPImage.m */; };
+		27657E231595290100FA4CE0 /* SPToplist.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A761439CF8600E4A5EF /* SPToplist.m */; };
+		27657E241595290100FA4CE0 /* SPPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A681439CF8600E4A5EF /* SPPlaylist.m */; };
+		27657E251595290100FA4CE0 /* SPPlaylistContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A6A1439CF8600E4A5EF /* SPPlaylistContainer.m */; };
+		27657E261595290100FA4CE0 /* SPPlaylistFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A6D1439CF8600E4A5EF /* SPPlaylistFolder.m */; };
+		27657E271595290100FA4CE0 /* SPPlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 509840271460444100C0FC18 /* SPPlaylistItem.m */; };
+		27657E281595290100FA4CE0 /* SPPostTracksToInboxOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A701439CF8600E4A5EF /* SPPostTracksToInboxOperation.m */; };
+		27657E291595290100FA4CE0 /* SPSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A721439CF8600E4A5EF /* SPSearch.m */; };
+		27657E2A1595290100FA4CE0 /* SPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A741439CF8600E4A5EF /* SPSession.m */; };
+		27657E2B1595290100FA4CE0 /* SPTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A781439CF8600E4A5EF /* SPTrack.m */; };
+		27657E2C1595290100FA4CE0 /* SPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF4A7A1439CF8600E4A5EF /* SPUser.m */; };
+		27657E2D1595290100FA4CE0 /* SPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F28A1518E69A00CB7186 /* SPLoginViewController.m */; };
+		27657E2E1595290100FA4CE0 /* SPLoginLogicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5062AEE3151DE0A900095B3C /* SPLoginLogicViewController.m */; };
+		27657E2F1595290100FA4CE0 /* SPSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F2051518B1DA00CB7186 /* SPSignupViewController.m */; };
+		27657E301595290100FA4CE0 /* SPFacebookPermissionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5062AEFB151E484400095B3C /* SPFacebookPermissionsViewController.m */; };
+		27657E311595290100FA4CE0 /* SPLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB5B715206AF900BF516F /* SPLicenseViewController.m */; };
+		27657E321595290100FA4CE0 /* SPCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB47F51523166A0037A206 /* SPCircularBuffer.m */; };
+		27657E331595290100FA4CE0 /* SPCoreAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB47F71523166A0037A206 /* SPCoreAudioController.m */; };
+		27657E341595290100FA4CE0 /* SPPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB47F91523166A0037A206 /* SPPlaybackManager.m */; };
+		27657E361595290100FA4CE0 /* SPClientUpsellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5082C6C71577694C00B74280 /* SPClientUpsellViewController.m */; };
+		27657E381595290100FA4CE0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D4F588156BCF1700E237DD /* AVFoundation.framework */; };
+		27657E391595290100FA4CE0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D4F586156BCF0A00E237DD /* CFNetwork.framework */; };
+		27657E3A1595290100FA4CE0 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D4F584156BCF0200E237DD /* libstdc++.dylib */; };
+		27657E3B1595290100FA4CE0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D4F582156BCEF800E237DD /* AudioToolbox.framework */; };
+		27657E3C1595290100FA4CE0 /* libCocoaLibSpotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AF49DC1439CBFE00E4A5EF /* libCocoaLibSpotify.a */; };
+		27657E3D1595290100FA4CE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D4F52D156BCDE800E237DD /* UIKit.framework */; };
+		27657E3E1595290100FA4CE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AF49DF1439CBFE00E4A5EF /* Foundation.framework */; };
+		27657E3F1595290100FA4CE0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D4F530156BCDE800E237DD /* CoreGraphics.framework */; };
+		27657E411595290100FA4CE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50D4F535156BCDE800E237DD /* InfoPlist.strings */; };
+		27657E421595290100FA4CE0 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D4F541156BCDE800E237DD /* ViewController_iPhone.xib */; };
+		27657E431595290100FA4CE0 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D4F544156BCDE800E237DD /* ViewController_iPad.xib */; };
+		27657E441595290100FA4CE0 /* SPLoginResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50D4F58A156BD37700E237DD /* SPLoginResources.bundle */; };
+		27657E4E1595295300FA4CE0 /* AppDelegate2.m in Sources */ = {isa = PBXBuildFile; fileRef = 27657E4D1595295300FA4CE0 /* AppDelegate2.m */; };
+		27657E51159529CF00FA4CE0 /* SPPlaylistContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27657E50159529CF00FA4CE0 /* SPPlaylistContainerTests.m */; };
+		27657E5315952BB300FA4CE0 /* main2.m in Sources */ = {isa = PBXBuildFile; fileRef = 27657E5215952BB300FA4CE0 /* main2.m */; };
+		278CE4D815953D0B0002F105 /* SPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F55C156BCE4D00E237DD /* SPTests.m */; };
 		500EC8B51439D02A00E8A60C /* CocoaLibSpotify iOS Library-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 500EC8B41439D02A00E8A60C /* CocoaLibSpotify iOS Library-Prefix.pch */; };
 		501E8ECC15384945001CEA82 /* SPAsyncLoading.h in Headers */ = {isa = PBXBuildFile; fileRef = 501E8ECA15384945001CEA82 /* SPAsyncLoading.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501E8ECD15384945001CEA82 /* SPAsyncLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 501E8ECB15384945001CEA82 /* SPAsyncLoading.m */; };
@@ -129,6 +173,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27657E481595290100FA4CE0 /* CocoaLSTests2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaLSTests2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27657E4A1595290100FA4CE0 /* CocoaLSTests2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CocoaLSTests2-Info.plist"; path = "/Users/Kyle/code/cocoalibspotify/iOS Library/CocoaLSTests2-Info.plist"; sourceTree = "<absolute>"; };
+		27657E4C1595295300FA4CE0 /* AppDelegate2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate2.h; sourceTree = "<group>"; };
+		27657E4D1595295300FA4CE0 /* AppDelegate2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate2.m; sourceTree = "<group>"; };
+		27657E4F159529CF00FA4CE0 /* SPPlaylistContainerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlaylistContainerTests.h; sourceTree = "<group>"; };
+		27657E50159529CF00FA4CE0 /* SPPlaylistContainerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlaylistContainerTests.m; sourceTree = "<group>"; };
+		27657E5215952BB300FA4CE0 /* main2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main2.m; sourceTree = "<group>"; };
 		500EC8B41439D02A00E8A60C /* CocoaLibSpotify iOS Library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CocoaLibSpotify iOS Library-Prefix.pch"; sourceTree = "<group>"; };
 		501E8ECA15384945001CEA82 /* SPAsyncLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPAsyncLoading.h; path = ../common/SPAsyncLoading.h; sourceTree = "<group>"; };
 		501E8ECB15384945001CEA82 /* SPAsyncLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPAsyncLoading.m; path = ../common/SPAsyncLoading.m; sourceTree = "<group>"; };
@@ -237,6 +288,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		27657E371595290100FA4CE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27657E381595290100FA4CE0 /* AVFoundation.framework in Frameworks */,
+				27657E391595290100FA4CE0 /* CFNetwork.framework in Frameworks */,
+				27657E3A1595290100FA4CE0 /* libstdc++.dylib in Frameworks */,
+				27657E3B1595290100FA4CE0 /* AudioToolbox.framework in Frameworks */,
+				27657E3C1595290100FA4CE0 /* libCocoaLibSpotify.a in Frameworks */,
+				27657E3D1595290100FA4CE0 /* UIKit.framework in Frameworks */,
+				27657E3E1595290100FA4CE0 /* Foundation.framework in Frameworks */,
+				27657E3F1595290100FA4CE0 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		50AF49D91439CBFE00E4A5EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,6 +366,7 @@
 			children = (
 				50AF49DC1439CBFE00E4A5EF /* libCocoaLibSpotify.a */,
 				50D4F52B156BCDE800E237DD /* CocoaLSTests.app */,
+				27657E481595290100FA4CE0 /* CocoaLSTests2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -419,6 +486,8 @@
 			children = (
 				50D4F53B156BCDE800E237DD /* AppDelegate.h */,
 				50D4F53C156BCDE800E237DD /* AppDelegate.m */,
+				27657E4C1595295300FA4CE0 /* AppDelegate2.h */,
+				27657E4D1595295300FA4CE0 /* AppDelegate2.m */,
 				50D4F53E156BCDE800E237DD /* ViewController.h */,
 				50D4F53F156BCDE800E237DD /* ViewController.m */,
 				50D4F541156BCDE800E237DD /* ViewController_iPhone.xib */,
@@ -433,11 +502,13 @@
 		50D4F533156BCDE800E237DD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27657E4A1595290100FA4CE0 /* CocoaLSTests2-Info.plist */,
 				50D4F58A156BD37700E237DD /* SPLoginResources.bundle */,
 				50D4F534156BCDE800E237DD /* CocoaLibSpotify iOS Test Container-Info.plist */,
 				50D4F535156BCDE800E237DD /* InfoPlist.strings */,
 				50D4F538156BCDE800E237DD /* main.m */,
 				50D4F53A156BCDE800E237DD /* CocoaLibSpotify iOS Test Container-Prefix.pch */,
+				27657E5215952BB300FA4CE0 /* main2.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -463,6 +534,8 @@
 				50D4F55A156BCE4D00E237DD /* SPSessionTests.m */,
 				50B9D4A5156CCE3800EE1665 /* SPConcurrencyTests.h */,
 				50B9D4A6156CCE3800EE1665 /* SPConcurrencyTests.m */,
+				27657E4F159529CF00FA4CE0 /* SPPlaylistContainerTests.h */,
+				27657E50159529CF00FA4CE0 /* SPPlaylistContainerTests.m */,
 			);
 			name = Tests;
 			path = ../../common/Tests;
@@ -533,6 +606,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		27657E0E1595290100FA4CE0 /* CocoaLSTests2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27657E451595290100FA4CE0 /* Build configuration list for PBXNativeTarget "CocoaLSTests2" */;
+			buildPhases = (
+				27657E0F1595290100FA4CE0 /* Sources */,
+				27657E371595290100FA4CE0 /* Frameworks */,
+				27657E401595290100FA4CE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CocoaLSTests2;
+			productName = "CocoaLibSpotify iOS Test Container";
+			productReference = 27657E481595290100FA4CE0 /* CocoaLSTests2.app */;
+			productType = "com.apple.product-type.application";
+		};
 		50AF49DB1439CBFE00E4A5EF /* CocoaLibSpotify */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50AF49E91439CBFE00E4A5EF /* Build configuration list for PBXNativeTarget "CocoaLibSpotify" */;
@@ -590,11 +680,23 @@
 			targets = (
 				50AF49DB1439CBFE00E4A5EF /* CocoaLibSpotify */,
 				50D4F52A156BCDE800E237DD /* CocoaLSTests */,
+				27657E0E1595290100FA4CE0 /* CocoaLSTests2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		27657E401595290100FA4CE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27657E411595290100FA4CE0 /* InfoPlist.strings in Resources */,
+				27657E421595290100FA4CE0 /* ViewController_iPhone.xib in Resources */,
+				27657E431595290100FA4CE0 /* ViewController_iPad.xib in Resources */,
+				27657E441595290100FA4CE0 /* SPLoginResources.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		50D4F529156BCDE800E237DD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -626,6 +728,45 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		27657E0F1595290100FA4CE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				278CE4D815953D0B0002F105 /* SPTests.m in Sources */,
+				27657E121595290100FA4CE0 /* ViewController.m in Sources */,
+				27657E1B1595290100FA4CE0 /* SPAsyncLoading.m in Sources */,
+				27657E1C1595290100FA4CE0 /* SPURLExtensions.m in Sources */,
+				27657E1D1595290100FA4CE0 /* SPErrorExtensions.m in Sources */,
+				27657E1E1595290100FA4CE0 /* SPAlbum.m in Sources */,
+				27657E1F1595290100FA4CE0 /* SPAlbumBrowse.m in Sources */,
+				27657E201595290100FA4CE0 /* SPArtist.m in Sources */,
+				27657E211595290100FA4CE0 /* SPArtistBrowse.m in Sources */,
+				27657E221595290100FA4CE0 /* SPImage.m in Sources */,
+				27657E231595290100FA4CE0 /* SPToplist.m in Sources */,
+				27657E241595290100FA4CE0 /* SPPlaylist.m in Sources */,
+				27657E251595290100FA4CE0 /* SPPlaylistContainer.m in Sources */,
+				27657E261595290100FA4CE0 /* SPPlaylistFolder.m in Sources */,
+				27657E271595290100FA4CE0 /* SPPlaylistItem.m in Sources */,
+				27657E281595290100FA4CE0 /* SPPostTracksToInboxOperation.m in Sources */,
+				27657E291595290100FA4CE0 /* SPSearch.m in Sources */,
+				27657E2A1595290100FA4CE0 /* SPSession.m in Sources */,
+				27657E2B1595290100FA4CE0 /* SPTrack.m in Sources */,
+				27657E2C1595290100FA4CE0 /* SPUser.m in Sources */,
+				27657E2D1595290100FA4CE0 /* SPLoginViewController.m in Sources */,
+				27657E2E1595290100FA4CE0 /* SPLoginLogicViewController.m in Sources */,
+				27657E2F1595290100FA4CE0 /* SPSignupViewController.m in Sources */,
+				27657E301595290100FA4CE0 /* SPFacebookPermissionsViewController.m in Sources */,
+				27657E311595290100FA4CE0 /* SPLicenseViewController.m in Sources */,
+				27657E321595290100FA4CE0 /* SPCircularBuffer.m in Sources */,
+				27657E331595290100FA4CE0 /* SPCoreAudioController.m in Sources */,
+				27657E341595290100FA4CE0 /* SPPlaybackManager.m in Sources */,
+				27657E361595290100FA4CE0 /* SPClientUpsellViewController.m in Sources */,
+				27657E4E1595295300FA4CE0 /* AppDelegate2.m in Sources */,
+				27657E51159529CF00FA4CE0 /* SPPlaylistContainerTests.m in Sources */,
+				27657E5315952BB300FA4CE0 /* main2.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		50AF49D81439CBFE00E4A5EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -736,6 +877,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		27657E461595290100FA4CE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CocoaLibSpotify iOS Test Container/CocoaLibSpotify iOS Test Container-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "CocoaLSTests2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = CocoaLSTests2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		27657E471595290100FA4CE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CocoaLibSpotify iOS Test Container/CocoaLibSpotify iOS Test Container-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "CocoaLSTests2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = CocoaLSTests2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		50AF49E71439CBFE00E4A5EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -854,6 +1030,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		27657E451595290100FA4CE0 /* Build configuration list for PBXNativeTarget "CocoaLSTests2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27657E461595290100FA4CE0 /* Debug */,
+				27657E471595290100FA4CE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		50AF49D61439CBFE00E4A5EF /* Build configuration list for PBXProject "CocoaLibSpotify iOS Library" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
