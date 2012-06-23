@@ -99,6 +99,7 @@ static NSString * const kTrack2TestURI = @"spotify:track:2zpRYcfuvripcfzgWEj1c7"
 			SPTestAssert(notLoadedItems.count == 0, @"Playlist container loading timed out for %@", container);
 			SPTestAssert(container.owner != nil, @"User playlists has nil owner");
 			SPTestAssert(container.playlists != nil, @"User playlists has nil playlist tree");
+			SPTestAssert(container.flattenedPlaylists.count > 0, @"No playlists loaded");
 			SPPassTest();
 		}];
 	}];
