@@ -242,6 +242,8 @@
 	self.usernameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 	self.usernameField.delegate = self;
 	self.usernameField.returnKeyType = UIReturnKeyNext;
+	self.usernameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+	self.usernameField.autocorrectionType = UITextAutocorrectionTypeNo;
 	[self.loginFormView addSubview:self.usernameField];
 	
 	self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(88.0, 52.0, 162.0, 26.0)];
