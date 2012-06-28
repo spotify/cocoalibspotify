@@ -41,6 +41,8 @@
 static NSString * const kTestPlaylistName = @"CocoaLibSpotify Test Playlist";
 static NSString * const kTrack1TestURI = @"spotify:track:5iIeIeH3LBSMK92cMIXrVD"; // Spotify Test Track
 static NSString * const kTrack2TestURI = @"spotify:track:2zpRYcfuvripcfzgWEj1c7"; // I Am, I Feel by Alisha's Attic
+static NSString * const kTestUserNameUserDefaultsKey = @"TestUserName";
+static NSString * const kTestPasswordUserDefaultsKey = @"TestPassword";
 
 @interface SPPlaylistTests ()
 @property (nonatomic, readwrite, strong) SPPlaylist *playlist;
@@ -216,6 +218,77 @@ static NSString * const kTrack2TestURI = @"spotify:track:2zpRYcfuvripcfzgWEj1c7"
 				self.playlist = nil;
 				SPPassTest();
 			}];
+		}];
+	}];
+}
+
+-(void)loginDidSucceed:(NSNotification *)notification {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+	SPSession *session = [SPSession sharedSession];
+    [SPAsyncLoading waitUntilLoaded:session timeout:kSPAsyncLoadingDefaultTimeout then:^(NSArray *loadedSession, NSArray *notLoadedSession) {
+		
+		SPPlaylistContainer *container = session.userPlaylists;
+		SPTestAssert(container != nil, @"User playlists is nil");
+		
+		[SPAsyncLoading waitUntilLoaded:container timeout:kSPAsyncLoadingDefaultTimeout then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+			            
+            SPTestAssert(container == session.userPlaylists, @"Invalid Container after logout/login");
+            
+            SPPassTest();
+        }];
+    }];
+	
+}
+
+-(void)loginDidFail:(NSNotification *)notification {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[self failTest:@selector(test3SessionLogin) format:@"Login failed: %@", [[notification userInfo] valueForKey:SPSessionLoginDidFailErrorKey]];
+}
+
+- (void)didLogout
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    NSString *userName = [[NSUserDefaults standardUserDefaults] valueForKey:kTestUserNameUserDefaultsKey];
+    NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:kTestPasswordUserDefaultsKey];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginDidSucceed:)
+                                                 name:SPSessionLoginDidSucceedNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginDidFail:)
+                                                 name:SPSessionLoginDidFailNotification
+                                               object:nil];
+    
+    [[SPSession sharedSession] attemptLoginWithUserName:userName
+                                               password:password
+                                    rememberCredentials:NO];
+}
+
+-(void)test7PlaylistContainerCache
+{
+	SPSession *session = [SPSession sharedSession];
+    
+	[SPAsyncLoading waitUntilLoaded:session timeout:kSPAsyncLoadingDefaultTimeout then:^(NSArray *loadedSession, NSArray *notLoadedSession) {
+		
+		SPPlaylistContainer *container = session.userPlaylists;
+		
+		[SPAsyncLoading waitUntilLoaded:container timeout:kSPAsyncLoadingDefaultTimeout then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+			            
+            SPTestAssert(container == session.userPlaylists, @"Invalid Container before logout/login");
+            
+            [SPAsyncLoading waitUntilLoaded:container.flattenedPlaylists timeout:1.0f then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+                
+                [[NSNotificationCenter defaultCenter] addObserver:self
+                                                         selector:@selector(didLogout)
+                                                             name:SPSessionDidLogoutNotification
+                                                           object:nil];
+                
+                [[SPSession sharedSession] logout:nil];                
+            }];
 		}];
 	}];
 }
