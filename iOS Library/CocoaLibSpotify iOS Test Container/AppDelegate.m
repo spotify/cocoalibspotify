@@ -41,6 +41,7 @@
 #import "SPSessionTeardownTests.h"
 #import "SPPlaylistTests.h"
 #import "SPConcurrencyTests.h"
+#import "SPOfflineSyncTests.h"
 
 static NSString * const kTestStatusServerUserDefaultsKey = @"StatusColorServer";
 
@@ -53,6 +54,7 @@ static NSString * const kTestStatusServerUserDefaultsKey = @"StatusColorServer";
 @property (nonatomic, strong) SPTests *teardownTests;
 @property (nonatomic, strong) SPTests *playlistTests;
 @property (nonatomic, strong) SPTests *concurrencyTests;
+@property (nonatomic, strong) SPTests *offlineSyncTests;
 @end
 
 @implementation AppDelegate
@@ -67,6 +69,7 @@ static NSString * const kTestStatusServerUserDefaultsKey = @"StatusColorServer";
 @synthesize teardownTests;
 @synthesize playlistTests;
 @synthesize concurrencyTests;
+@synthesize offlineSyncTests;
 
 -(void)completeTestsWithPassCount:(NSUInteger)passCount failCount:(NSUInteger)failCount {
 	printf("**** Completed %lu tests with %lu passes and %lu failures ****\n", (unsigned long)(passCount + failCount), (unsigned long)passCount, (unsigned long)failCount);
@@ -166,15 +169,22 @@ static NSString * const kTestStatusServerUserDefaultsKey = @"StatusColorServer";
 								totalPassCount += metadataPassCount;
 								totalFailCount += metadataFailCount;
 								
-								self.teardownTests = [SPSessionTeardownTests new];
-								[self.teardownTests runTests:^(NSUInteger teardownPassCount, NSUInteger teardownFailCount) {
-									
-									totalPassCount += teardownPassCount;
-									totalFailCount += teardownFailCount;
-									
-									[self completeTestsWithPassCount:totalPassCount failCount:totalFailCount];
-									
-								}];
+                self.offlineSyncTests = [SPOfflineSyncTests new];
+                [self.offlineSyncTests runTests:^(NSUInteger offlineSyncPassCount, NSUInteger offlineSyncFailCount) {
+                  
+                  totalPassCount += offlineSyncPassCount;
+                  totalFailCount += offlineSyncFailCount;
+                  
+                  self.teardownTests = [SPSessionTeardownTests new];
+                  [self.teardownTests runTests:^(NSUInteger teardownPassCount, NSUInteger teardownFailCount) {
+                    
+                    totalPassCount += teardownPassCount;
+                    totalFailCount += teardownFailCount;
+                    
+                    [self completeTestsWithPassCount:totalPassCount failCount:totalFailCount];
+                    
+                  }];
+                }];
 							}];
 						}];
 					}];

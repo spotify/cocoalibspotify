@@ -126,6 +126,8 @@
 		50DBB5B915206AF900BF516F /* SPLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB5B715206AF900BF516F /* SPLicenseViewController.m */; };
 		50DE7F55147E833D005403A9 /* SPPlaylistInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DE7F54147E833D005403A9 /* SPPlaylistInternal.h */; };
 		50DE7F58147E834D005403A9 /* SPTrackInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DE7F57147E834D005403A9 /* SPTrackInternal.h */; };
+		5CB80C4315D12D0800DEFBEC /* SPOfflineSyncTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CB80C4115D12D0700DEFBEC /* SPOfflineSyncTests.h */; };
+		5CB80C4415D12D0800DEFBEC /* SPOfflineSyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB80C4215D12D0800DEFBEC /* SPOfflineSyncTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -234,6 +236,8 @@
 		50DBB5B715206AF900BF516F /* SPLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPLicenseViewController.m; path = "View Controllers/SPLicenseViewController.m"; sourceTree = "<group>"; };
 		50DE7F54147E833D005403A9 /* SPPlaylistInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaylistInternal.h; path = ../common/SPPlaylistInternal.h; sourceTree = "<group>"; };
 		50DE7F57147E834D005403A9 /* SPTrackInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPTrackInternal.h; path = ../common/SPTrackInternal.h; sourceTree = "<group>"; };
+		5CB80C4115D12D0700DEFBEC /* SPOfflineSyncTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPOfflineSyncTests.h; sourceTree = "<group>"; };
+		5CB80C4215D12D0800DEFBEC /* SPOfflineSyncTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOfflineSyncTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,6 +467,8 @@
 				50D4F55A156BCE4D00E237DD /* SPSessionTests.m */,
 				50B9D4A5156CCE3800EE1665 /* SPConcurrencyTests.h */,
 				50B9D4A6156CCE3800EE1665 /* SPConcurrencyTests.m */,
+				5CB80C4115D12D0700DEFBEC /* SPOfflineSyncTests.h */,
+				5CB80C4215D12D0800DEFBEC /* SPOfflineSyncTests.m */,
 			);
 			name = Tests;
 			path = ../../common/Tests;
@@ -527,6 +533,7 @@
 				50DB47FE1523166A0037A206 /* SPPlaybackManager.h in Headers */,
 				501E8ECC15384945001CEA82 /* SPAsyncLoading.h in Headers */,
 				5082C6C81577694C00B74280 /* SPClientUpsellViewController.h in Headers */,
+				5CB80C4315D12D0800DEFBEC /* SPOfflineSyncTests.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +664,7 @@
 				50DB47FF1523166A0037A206 /* SPPlaybackManager.m in Sources */,
 				501E8ECD15384945001CEA82 /* SPAsyncLoading.m in Sources */,
 				5082C6C91577694C00B74280 /* SPClientUpsellViewController.m in Sources */,
+				5CB80C4415D12D0800DEFBEC /* SPOfflineSyncTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
