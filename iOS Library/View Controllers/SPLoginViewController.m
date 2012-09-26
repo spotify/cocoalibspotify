@@ -81,6 +81,7 @@ static NSMutableDictionary *loginControllerCache;
 		self.session = aSession;
 		self.navigationBar.barStyle = UIBarStyleBlack;
 		self.modalPresentationStyle = UIModalPresentationFormSheet;
+		self.dismissesAfterLogin = YES;
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self 
 												 selector:@selector(sessionDidLogin:)
@@ -106,6 +107,7 @@ static NSMutableDictionary *loginControllerCache;
 @synthesize session;
 @synthesize waitingForFacebookPermissions;
 @synthesize loginDelegate;
+@synthesize dismissesAfterLogin;
 
 
 -(void)setAllowsCancel:(BOOL)allowsCancel {
@@ -287,7 +289,9 @@ static NSMutableDictionary *loginControllerCache;
 		nav.modalPresentationStyle = UIModalPresentationFormSheet;
 		
 		vc.completionBlock = ^() {
-			[targetViewController dismissModalViewControllerAnimated:YES];
+			if (self.dismissesAfterLogin) {
+				[targetViewController dismissModalViewControllerAnimated:YES];
+			}
 			[self.loginDelegate loginViewController:self didCompleteSuccessfully:success];
 		};
 		
