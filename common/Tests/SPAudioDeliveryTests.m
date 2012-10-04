@@ -33,8 +33,7 @@
 #import "SPAudioDeliveryTests.h"
 #import "SPAsyncLoading.h"
 #import "SPTrack.h"
-
-static NSString * const kTrackLoadingTestURI = @"spotify:track:5iIeIeH3LBSMK92cMIXrVD"; // Spotify Test Track
+#import "TestConstants.h"
 
 @implementation SPAudioDeliveryTests {
 	BOOL gotAudioDelivery;

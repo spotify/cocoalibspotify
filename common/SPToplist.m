@@ -317,7 +317,7 @@ void toplistbrowse_albums_complete(sp_toplistbrowse *result, void *userdata) {
 	return _trackBrowseOperation;
 }
 
-+(NSSet *)keyPathsForValuesAffectingIsLoaded {
++(NSSet *)keyPathsForValuesAffectingLoaded {
 	return [NSSet setWithObjects:@"tracksLoaded", @"albumsLoaded", @"artistsLoaded", nil];
 }
 

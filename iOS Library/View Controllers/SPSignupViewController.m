@@ -304,7 +304,7 @@
 	dispatch_async([SPSession libSpotifyQueue], ^{
 		sp_signup_userdata_with_user_credentials setting;
 		setting.user_name = [user UTF8String];
-		setting.password = [user UTF8String];
+		setting.password = [pass UTF8String];
 		sp_session_signup_perform_action(self.session.session, SP_SIGNUP_ACTION_MERGE_WITH_ACCOUNT, &setting);
 	});
 }

@@ -40,12 +40,7 @@
 #import "SPToplist.h"
 #import "SPAsyncLoading.h"
 #import "SPSession.h"
-
-static NSString * const kArtistLoadingTestURI = @"spotify:artist:26dSoYclwsYLMAKD3tpOr4"; // Britney Spears
-static NSString * const kArtistBrowseLoadingTestURI = @"spotify:artist:5zzrJD2jXrE9dZ1AklRFcL"; //KT Tunstall
-static NSString * const kAlbumLoadingTestURI = @"spotify:album:50KUdiSuV2MmBmreFPl3PE"; // Barenaked Ladies Live
-static NSString * const kAlbumBrowseLoadingTestURI = @"spotify:album:7IH5SRyEVemZWfhjYmWtT1"; //Wall-E Soundtrack
-static NSString * const kTrackLoadingTestURI = @"spotify:track:5iIeIeH3LBSMK92cMIXrVD"; // Spotify Test Track
+#import "TestConstants.h"
 
 @implementation SPMetadataTests
 

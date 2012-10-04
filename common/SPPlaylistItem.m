@@ -64,7 +64,7 @@
 		self.dateAdded = [NSDate dateWithTimeIntervalSince1970:sp_playlist_track_create_time(self.playlist.playlist, index)];
 		self.creator = [SPUser userWithUserStruct:sp_playlist_track_creator(self.playlist.playlist, index)
 										inSession:self.playlist.session];
-		[self setUnreadFromLibSpotify:sp_playlist_track_seen(self.playlist.playlist, index)];
+		[self setUnreadFromLibSpotify:!sp_playlist_track_seen(self.playlist.playlist, index)];
 		
 		const char *msg = sp_playlist_track_message(self.playlist.playlist, index);
 		if (msg != NULL)

@@ -32,12 +32,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class ViewController;
+@class TestsViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) TestsViewController *viewController;
 
 @end

@@ -78,6 +78,9 @@
 /** Returns whether the view controller allows the user to cancel the login process or not. Defaults to `YES`. */
 @property (nonatomic, readwrite) BOOL allowsCancel;
 
+/** Returns whether the view controller dismisses itself after the user successfully logs in. Defaults to `YES`. */
+@property (nonatomic, readwrite) BOOL dismissesAfterLogin;
+
 /** Returns the controller's loginDelegate object. */
 @property (nonatomic, readwrite, unsafe_unretained) id <SPLoginViewControllerDelegate> loginDelegate;
 

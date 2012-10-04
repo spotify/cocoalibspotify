@@ -33,9 +33,7 @@
 #import "SPSessionTests.h"
 #import "SPSession.h"
 #import "SPUser.h"
-
-static NSString * const kTestUserNameUserDefaultsKey = @"TestUserName";
-static NSString * const kTestPasswordUserDefaultsKey = @"TestPassword";
+#import "TestConstants.h"
 
 @implementation SPSessionTests {
 	BOOL _didGetLoginBlob;

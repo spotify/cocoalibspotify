@@ -82,6 +82,7 @@ static void image_loaded(sp_image *image, void *userdata) {
 
 @implementation SPImage {
 	BOOL hasRequestedImage;
+	BOOL hasStartedLoading;
 	SPPlatformNativeImage *_image;
 }
 
@@ -209,6 +210,9 @@ static NSMutableDictionary *imageCache;
 #pragma mark -
 
 -(void)startLoading {
+
+	if (hasStartedLoading) return;
+	hasStartedLoading = YES;
 	
 	dispatch_async([SPSession libSpotifyQueue], ^{
 		

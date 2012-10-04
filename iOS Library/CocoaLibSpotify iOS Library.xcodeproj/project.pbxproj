@@ -23,6 +23,13 @@
 		5098402A1460444100C0FC18 /* SPPlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 509840271460444100C0FC18 /* SPPlaylistItem.m */; };
 		5098402B1460444100C0FC18 /* SPPlaylistItemInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 509840281460444100C0FC18 /* SPPlaylistItemInternal.h */; };
 		509E6A8014DAE15E009874C9 /* SPUnknownPlaylist.h in Headers */ = {isa = PBXBuildFile; fileRef = 509E6A7F14DAE15E009874C9 /* SPUnknownPlaylist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50A9F3ED161AE9600009ECA2 /* TestsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A9F3EB161AE9600009ECA2 /* TestsViewController.h */; };
+		50A9F3EE161AE9600009ECA2 /* TestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A9F3EC161AE9600009ECA2 /* TestsViewController.m */; };
+		50A9F3F1161AFC9A0009ECA2 /* TestProgressCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A9F3EF161AFC9A0009ECA2 /* TestProgressCell.h */; };
+		50A9F3F2161AFC9A0009ECA2 /* TestProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A9F3F0161AFC9A0009ECA2 /* TestProgressCell.m */; };
+		50A9F3F5161B146A0009ECA2 /* Fail.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A9F3F3161B146A0009ECA2 /* Fail.png */; };
+		50A9F3F6161B146A0009ECA2 /* Pass.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A9F3F4161B146A0009ECA2 /* Pass.png */; };
+		50A9F3F8161B17BF0009ECA2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A9F3F7161B17BF0009ECA2 /* Default-568h@2x.png */; };
 		50AF49E01439CBFE00E4A5EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AF49DF1439CBFE00E4A5EF /* Foundation.framework */; };
 		50AF4A501439CF4700E4A5EF /* CocoaLibSpotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AF4A4E1439CF4700E4A5EF /* CocoaLibSpotify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AF4A511439CF4700E4A5EF /* CocoaLibSpotifyPlatformImports.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AF4A4F1439CF4700E4A5EF /* CocoaLibSpotifyPlatformImports.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,9 +80,6 @@
 		50D4F537156BCDE800E237DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50D4F535156BCDE800E237DD /* InfoPlist.strings */; };
 		50D4F539156BCDE800E237DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F538156BCDE800E237DD /* main.m */; };
 		50D4F53D156BCDE800E237DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F53C156BCDE800E237DD /* AppDelegate.m */; };
-		50D4F540156BCDE800E237DD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F53F156BCDE800E237DD /* ViewController.m */; };
-		50D4F543156BCDE800E237DD /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D4F541156BCDE800E237DD /* ViewController_iPhone.xib */; };
-		50D4F546156BCDE800E237DD /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D4F544156BCDE800E237DD /* ViewController_iPad.xib */; };
 		50D4F55E156BCE4D00E237DD /* SPAudioDeliveryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F54E156BCE4D00E237DD /* SPAudioDeliveryTests.m */; };
 		50D4F55F156BCE4D00E237DD /* SPMetadataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F550156BCE4D00E237DD /* SPMetadataTests.m */; };
 		50D4F560156BCE4D00E237DD /* SPPlaylistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4F552156BCE4D00E237DD /* SPPlaylistTests.m */; };
@@ -144,6 +148,14 @@
 		509840271460444100C0FC18 /* SPPlaylistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPPlaylistItem.m; path = ../common/SPPlaylistItem.m; sourceTree = "<group>"; };
 		509840281460444100C0FC18 /* SPPlaylistItemInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaylistItemInternal.h; path = ../common/SPPlaylistItemInternal.h; sourceTree = "<group>"; };
 		509E6A7F14DAE15E009874C9 /* SPUnknownPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPUnknownPlaylist.h; path = ../common/SPUnknownPlaylist.h; sourceTree = "<group>"; };
+		50A9F3EB161AE9600009ECA2 /* TestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsViewController.h; sourceTree = "<group>"; };
+		50A9F3EC161AE9600009ECA2 /* TestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestsViewController.m; sourceTree = "<group>"; };
+		50A9F3EF161AFC9A0009ECA2 /* TestProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestProgressCell.h; sourceTree = "<group>"; };
+		50A9F3F0161AFC9A0009ECA2 /* TestProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestProgressCell.m; sourceTree = "<group>"; };
+		50A9F3F3161B146A0009ECA2 /* Fail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fail.png; sourceTree = "<group>"; };
+		50A9F3F4161B146A0009ECA2 /* Pass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pass.png; sourceTree = "<group>"; };
+		50A9F3F7161B17BF0009ECA2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		50A9F402161B2D7B0009ECA2 /* TestConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestConstants.h; path = ../../common/Tests/TestConstants.h; sourceTree = "<group>"; };
 		50AF49DC1439CBFE00E4A5EF /* libCocoaLibSpotify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCocoaLibSpotify.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AF49DF1439CBFE00E4A5EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		50AF4A4E1439CF4700E4A5EF /* CocoaLibSpotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CocoaLibSpotify.h; path = ../common/CocoaLibSpotify.h; sourceTree = "<group>"; };
@@ -199,10 +211,6 @@
 		50D4F53A156BCDE800E237DD /* CocoaLibSpotify iOS Test Container-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocoaLibSpotify iOS Test Container-Prefix.pch"; sourceTree = "<group>"; };
 		50D4F53B156BCDE800E237DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		50D4F53C156BCDE800E237DD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		50D4F53E156BCDE800E237DD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		50D4F53F156BCDE800E237DD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		50D4F542156BCDE800E237DD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		50D4F545156BCDE800E237DD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		50D4F54D156BCE4D00E237DD /* SPAudioDeliveryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAudioDeliveryTests.h; sourceTree = "<group>"; };
 		50D4F54E156BCE4D00E237DD /* SPAudioDeliveryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAudioDeliveryTests.m; sourceTree = "<group>"; };
 		50D4F54F156BCE4D00E237DD /* SPMetadataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMetadataTests.h; sourceTree = "<group>"; };
@@ -417,12 +425,13 @@
 		50D4F532156BCDE800E237DD /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				50A9F402161B2D7B0009ECA2 /* TestConstants.h */,
 				50D4F53B156BCDE800E237DD /* AppDelegate.h */,
 				50D4F53C156BCDE800E237DD /* AppDelegate.m */,
-				50D4F53E156BCDE800E237DD /* ViewController.h */,
-				50D4F53F156BCDE800E237DD /* ViewController.m */,
-				50D4F541156BCDE800E237DD /* ViewController_iPhone.xib */,
-				50D4F544156BCDE800E237DD /* ViewController_iPad.xib */,
+				50A9F3EB161AE9600009ECA2 /* TestsViewController.h */,
+				50A9F3EC161AE9600009ECA2 /* TestsViewController.m */,
+				50A9F3EF161AFC9A0009ECA2 /* TestProgressCell.h */,
+				50A9F3F0161AFC9A0009ECA2 /* TestProgressCell.m */,
 				50D4F54B156BCE4D00E237DD /* Tests */,
 				50D4F533156BCDE800E237DD /* Supporting Files */,
 			);
@@ -433,6 +442,9 @@
 		50D4F533156BCDE800E237DD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				50A9F3F7161B17BF0009ECA2 /* Default-568h@2x.png */,
+				50A9F3F3161B146A0009ECA2 /* Fail.png */,
+				50A9F3F4161B146A0009ECA2 /* Pass.png */,
 				50D4F58A156BD37700E237DD /* SPLoginResources.bundle */,
 				50D4F534156BCDE800E237DD /* CocoaLibSpotify iOS Test Container-Info.plist */,
 				50D4F535156BCDE800E237DD /* InfoPlist.strings */,
@@ -527,6 +539,8 @@
 				50DB47FE1523166A0037A206 /* SPPlaybackManager.h in Headers */,
 				501E8ECC15384945001CEA82 /* SPAsyncLoading.h in Headers */,
 				5082C6C81577694C00B74280 /* SPClientUpsellViewController.h in Headers */,
+				50A9F3ED161AE9600009ECA2 /* TestsViewController.h in Headers */,
+				50A9F3F1161AFC9A0009ECA2 /* TestProgressCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,9 +614,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D4F537156BCDE800E237DD /* InfoPlist.strings in Resources */,
-				50D4F543156BCDE800E237DD /* ViewController_iPhone.xib in Resources */,
-				50D4F546156BCDE800E237DD /* ViewController_iPad.xib in Resources */,
 				50D4F58B156BD37700E237DD /* SPLoginResources.bundle in Resources */,
+				50A9F3F5161B146A0009ECA2 /* Fail.png in Resources */,
+				50A9F3F6161B146A0009ECA2 /* Pass.png in Resources */,
+				50A9F3F8161B17BF0009ECA2 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +672,8 @@
 				50DB47FF1523166A0037A206 /* SPPlaybackManager.m in Sources */,
 				501E8ECD15384945001CEA82 /* SPAsyncLoading.m in Sources */,
 				5082C6C91577694C00B74280 /* SPClientUpsellViewController.m in Sources */,
+				50A9F3EE161AE9600009ECA2 /* TestsViewController.m in Sources */,
+				50A9F3F2161AFC9A0009ECA2 /* TestProgressCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,7 +683,6 @@
 			files = (
 				50D4F539156BCDE800E237DD /* main.m in Sources */,
 				50D4F53D156BCDE800E237DD /* AppDelegate.m in Sources */,
-				50D4F540156BCDE800E237DD /* ViewController.m in Sources */,
 				50D4F55E156BCE4D00E237DD /* SPAudioDeliveryTests.m in Sources */,
 				50D4F55F156BCE4D00E237DD /* SPMetadataTests.m in Sources */,
 				50D4F560156BCE4D00E237DD /* SPPlaylistTests.m in Sources */,
@@ -715,22 +731,6 @@
 				50D4F536156BCDE800E237DD /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		50D4F541156BCDE800E237DD /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50D4F542156BCDE800E237DD /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		50D4F544156BCDE800E237DD /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50D4F545156BCDE800E237DD /* en */,
-			);
-			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -829,6 +829,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -847,6 +848,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

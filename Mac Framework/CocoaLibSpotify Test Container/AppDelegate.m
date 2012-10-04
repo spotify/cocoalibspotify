@@ -101,116 +101,90 @@ static NSString * const kTestStatusServerUserDefaultsKey = @"StatusColorServer";
 {
 	[self pushColorToStatusServer:[NSColor yellowColor]];
 	
-	// --- Remove old cache and settings directories for a fresh test each time
-	
+	// Make sure we have a clean cache before starting.
+	NSString *aUserAgent = @"com.spotify.CocoaLSUnitTests";
+
 	// Find the application support directory for settings
-	
 	NSString *applicationSupportDirectory = nil;
 	NSArray *potentialDirectories = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
 																		NSUserDomainMask,
 																		YES);
-	
+
 	if ([potentialDirectories count] > 0) {
-		applicationSupportDirectory = [[potentialDirectories objectAtIndex:0] stringByAppendingPathComponent:@"com.spotify.CocoaLSUnitTests"];
+		applicationSupportDirectory = [[potentialDirectories objectAtIndex:0] stringByAppendingPathComponent:aUserAgent];
 	} else {
-		applicationSupportDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:@"com.spotify.CocoaLSUnitTests"];
+		applicationSupportDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:aUserAgent];
 	}
-	
+
 	if ([[NSFileManager defaultManager] fileExistsAtPath:applicationSupportDirectory]) {
-		NSError *error = nil;
-		if (![[NSFileManager defaultManager] removeItemAtPath:applicationSupportDirectory error:&error]) {
-			NSLog(@"Could not delete application support directory: %@", error);
-			[self completeTestsWithPassCount:0 failCount:1];
-		}
-	};
-	
+		printf("Application support directory exists, deleting… ");
+		if (![[NSFileManager defaultManager] removeItemAtPath:applicationSupportDirectory error:nil])
+			printf("failed.\n");
+		else
+			printf("done.\n");
+	}
+
 	// Find the caches directory for cache
-	
 	NSString *cacheDirectory = nil;
-	
 	NSArray *potentialCacheDirectories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
 																			 NSUserDomainMask,
 																			 YES);
-	
+
 	if ([potentialCacheDirectories count] > 0) {
-		cacheDirectory = [[potentialCacheDirectories objectAtIndex:0] stringByAppendingPathComponent:@"com.spotify.CocoaLSUnitTests"];
+		cacheDirectory = [[potentialCacheDirectories objectAtIndex:0] stringByAppendingPathComponent:aUserAgent];
 	} else {
-		cacheDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:@"com.spotify.CocoaLSUnitTests"];
+		cacheDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:aUserAgent];
 	}
-	
+
 	if ([[NSFileManager defaultManager] fileExistsAtPath:cacheDirectory]) {
-		NSError *error = nil;
-		if (![[NSFileManager defaultManager] removeItemAtPath:cacheDirectory error:&error]) {
-			NSLog(@"Could not delete cache directory: %@", error);
-			[self completeTestsWithPassCount:0 failCount:1];
-		}
+		printf("Cache directory exists, deleting… ");
+		if (![[NSFileManager defaultManager] removeItemAtPath:cacheDirectory error:nil])
+			printf("failed.\n");
+		else
+			printf("done.\n");
 	}
-	
-	// ---
-	
-	// Insert code here to initialize your application
+
 	self.sessionTests = [SPSessionTests new];
-	
+	self.concurrencyTests = [SPConcurrencyTests new];
+	self.playlistTests = [SPPlaylistTests new];
+	self.audioTests = [SPAudioDeliveryTests new];
+	self.searchTests = [SPSearchTests new];
+	self.inboxTests = [SPPostTracksToInboxTests new];
+	self.metadataTests = [SPMetadataTests new];
+	self.teardownTests = [SPSessionTeardownTests new];
+
+	NSArray *tests = @[self.sessionTests, self.concurrencyTests, self.playlistTests, self.audioTests, self.searchTests,
+	self.inboxTests, self.metadataTests, self.teardownTests];
+
 	__block NSUInteger totalPassCount = 0;
 	__block NSUInteger totalFailCount = 0;
-	
-	[self.sessionTests runTests:^(NSUInteger sessionPassCount, NSUInteger sessionFailCount) {
-		
-		totalPassCount += sessionPassCount;
-		totalFailCount += sessionFailCount;
-		
-		self.concurrencyTests = [SPConcurrencyTests new];
-		[self.concurrencyTests runTests:^(NSUInteger concurrencyPassCount, NSUInteger concurrencyFailCount) {
-			
-			totalPassCount += concurrencyPassCount;
-			totalFailCount += concurrencyFailCount;
-			
-			self.playlistTests = [SPPlaylistTests new];
-			[self.playlistTests runTests:^(NSUInteger playlistPassCount, NSUInteger playlistFailCount) {
-				
-				totalPassCount += playlistPassCount;
-				totalFailCount += playlistFailCount;
-				
-				self.audioTests = [SPAudioDeliveryTests new];
-				[self.audioTests runTests:^(NSUInteger audioPassCount, NSUInteger audioFailCount) {
-					
-					totalPassCount += audioPassCount;
-					totalFailCount += audioFailCount;
-					
-					self.searchTests = [SPSearchTests new];
-					[self.searchTests runTests:^(NSUInteger searchPassCount, NSUInteger searchFailCount) {
-						
-						totalPassCount += searchPassCount;
-						totalFailCount += searchFailCount;
-						
-						self.inboxTests = [SPPostTracksToInboxTests new];
-						[self.inboxTests runTests:^(NSUInteger inboxPassCount, NSUInteger inboxFailCount) {
-							
-							totalPassCount += inboxPassCount;
-							totalFailCount += inboxFailCount;
-							
-							self.metadataTests = [SPMetadataTests new];
-							[self.metadataTests runTests:^(NSUInteger metadataPassCount, NSUInteger metadataFailCount) {
-								
-								totalPassCount += metadataPassCount;
-								totalFailCount += metadataFailCount;
-								
-								self.teardownTests = [SPSessionTeardownTests new];
-								[self.teardownTests runTests:^(NSUInteger teardownPassCount, NSUInteger teardownFailCount) {
-									
-									totalPassCount += teardownPassCount;
-									totalFailCount += teardownFailCount;
-									
-									[self completeTestsWithPassCount:totalPassCount failCount:totalFailCount];
-									
-								}];
-							}];
-						}];
-					}];
-				}];
-			}];
+	__block NSUInteger currentTestIndex = 0;
+
+	__block void (^runNextTest)(void) = ^ {
+
+		if (currentTestIndex >= tests.count) {
+			[self completeTestsWithPassCount:totalPassCount failCount:totalFailCount];
+			return;
+		}
+
+		SPTests *testsToRun = tests[currentTestIndex];
+		[testsToRun runTests:^(NSUInteger passCount, NSUInteger failCount) {
+			totalPassCount += passCount;
+			totalFailCount += failCount;
+
+			//Special-case the first test suite since libspotify currently crashes a lot
+			//if you call certain APIs without being logged in.
+			if (currentTestIndex == 0 && totalFailCount > 0) {
+				[self completeTestsWithPassCount:totalPassCount failCount:totalFailCount];
+				return;
+			}
+
+			currentTestIndex++;
+			runNextTest();
 		}];
-	}];
+	};
+
+	runNextTest();
 }
 
 @end

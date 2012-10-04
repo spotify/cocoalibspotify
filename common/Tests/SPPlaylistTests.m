@@ -37,10 +37,7 @@
 #import "SPPlaylistFolder.h"
 #import "SPAsyncLoading.h"
 #import "SPTrack.h"
-
-static NSString * const kTestPlaylistName = @"CocoaLibSpotify Test Playlist";
-static NSString * const kTrack1TestURI = @"spotify:track:5iIeIeH3LBSMK92cMIXrVD"; // Spotify Test Track
-static NSString * const kTrack2TestURI = @"spotify:track:2zpRYcfuvripcfzgWEj1c7"; // I Am, I Feel by Alisha's Attic
+#import "TestConstants.h"
 
 @interface SPPlaylistTests ()
 @property (nonatomic, readwrite, strong) SPPlaylist *playlist;
@@ -149,11 +146,11 @@ static NSString * const kTrack2TestURI = @"spotify:track:2zpRYcfuvripcfzgWEj1c7"
 		
 		SPTestAssert(notLoadedItems.count == 0, @"Playlist loading timed out for %@", self.playlist);
 		
-		[SPTrack trackForTrackURL:[NSURL URLWithString:kTrack1TestURI] inSession:[SPSession sharedSession] callback:^(SPTrack *track1) {
-			[SPTrack trackForTrackURL:[NSURL URLWithString:kTrack2TestURI] inSession:[SPSession sharedSession] callback:^(SPTrack *track2) {
+		[SPTrack trackForTrackURL:[NSURL URLWithString:kPlaylistTestTrack1TestURI] inSession:[SPSession sharedSession] callback:^(SPTrack *track1) {
+			[SPTrack trackForTrackURL:[NSURL URLWithString:kPlaylistTestTrack2TestURI] inSession:[SPSession sharedSession] callback:^(SPTrack *track2) {
 				
-				SPTestAssert(track1 != nil, @"SPTrack returned nil for %@", kTrack1TestURI);
-				SPTestAssert(track2 != nil, @"SPTrack returned nil for %@", kTrack2TestURI);
+				SPTestAssert(track1 != nil, @"SPTrack returned nil for %@", kPlaylistTestTrack1TestURI);
+				SPTestAssert(track2 != nil, @"SPTrack returned nil for %@", kPlaylistTestTrack2TestURI);
 				
 				[sself.playlist addItems:[NSArray arrayWithObjects:track1, track2, nil] atIndex:0 callback:^(NSError *error) {
 					

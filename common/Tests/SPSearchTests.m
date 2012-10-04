@@ -34,9 +34,7 @@
 #import "SPAsyncLoading.h"
 #import "SPSession.h"
 #import "SPSearch.h"
-
-static NSString * const kStandardSearchQuery = @"Counting Crows";
-static NSString * const kLiveSearchQuery = @"Counti";
+#import "TestConstants.h"
 
 @implementation SPSearchTests
 

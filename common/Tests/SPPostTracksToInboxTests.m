@@ -34,22 +34,19 @@
 #import "SPSession.h"
 #import "SPTrack.h"
 #import "SPPostTracksToInboxOperation.h"
-
-static NSString * const kTargetUserName = @"alana-test";
-static NSString * const kOperationMessage = @"Hello from the CocoaLibSpotify test suite!";
-static NSString * const kTrackToSendURI = @"spotify:track:3O0kOIdSdb3xQnjoi1AjRD";
+#import "TestConstants.h"
 
 @implementation SPPostTracksToInboxTests
 
 -(void)testPostTracksToInbox {
 	
-	[SPTrack trackForTrackURL:[NSURL URLWithString:kTrackToSendURI] inSession:[SPSession sharedSession] callback:^(SPTrack *track) {
+	[SPTrack trackForTrackURL:[NSURL URLWithString:kInboxTestTrackToSendURI] inSession:[SPSession sharedSession] callback:^(SPTrack *track) {
 		
-		SPTestAssert(track != nil, @"SPTrack returned nil for %@", kTrackToSendURI);
+		SPTestAssert(track != nil, @"SPTrack returned nil for %@", kInboxTestTrackToSendURI);
 		
 		[SPPostTracksToInboxOperation sendTracks:[NSArray arrayWithObject:track]
-										  toUser:kTargetUserName
-										  message:kOperationMessage
+										  toUser:kInboxTestTargetUserName
+										  message:kInboxTestMessage
 									   inSession:[SPSession sharedSession]
 										callback:^(NSError *error) {
 											SPTestAssert(error == nil, @"Post to inbox operation encountered error: %@", error);

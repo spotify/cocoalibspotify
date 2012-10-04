@@ -973,10 +973,10 @@ static SPSession *sharedSession;
 			dispatch_async(dispatch_get_main_queue(), ^{
 				self.logoutCompletionBlock = nil;
 				if (completionBlock) completionBlock();
-				return;
 			});
+			return;
 		}
-		
+
 		sp_session_logout(outgoing_session);
 	});
 }

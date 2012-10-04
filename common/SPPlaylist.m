@@ -750,7 +750,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 	
 		sp_subscribers *subs = sp_playlist_subscribers(self.playlist);
 		NSUInteger actualSubscriberCount = subs->count;
-		NSMutableArray *newSubscribers = [NSMutableArray arrayWithCapacity:actualSubscriberCount];
+		NSMutableArray *mutableSubscribers = [NSMutableArray arrayWithCapacity:actualSubscriberCount];
 		
 		for (NSUInteger currentSubscriber = 0; currentSubscriber < actualSubscriberCount; currentSubscriber++) {
 			
@@ -758,11 +758,11 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 			if (subscriberName != NULL && strlen(subscriberName) > 0) {
 				NSString *subsName = [NSString stringWithUTF8String:subscriberName];
 				if (subsName != nil)
-					[newSubscribers addObject:subsName];
+					[mutableSubscribers addObject:subsName];
 			}
 		}
 		
-		newSubscribers = [NSArray arrayWithArray:newSubscribers];
+		newSubscribers = [NSArray arrayWithArray:mutableSubscribers];
 		sp_playlist_subscribers_free(subs);
 		
 	}
