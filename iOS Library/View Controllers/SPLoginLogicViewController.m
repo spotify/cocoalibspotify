@@ -313,12 +313,16 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
 	previousStyle = [[UIApplication sharedApplication] statusBarStyle];
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
 	[[UIApplication sharedApplication] setStatusBarStyle:previousStyle animated:animated];
+
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload

@@ -225,13 +225,21 @@ static NSMutableDictionary *loginControllerCache;
 
 -(void)viewWillDisappear:(BOOL)animated {
 	self.shown = NO;
+	SPLoginLogicViewController *root = [[self viewControllers] objectAtIndex:0];
+
+	[root viewWillDisappear:animated];
+	[super viewWillDisappear:animated];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
 	// Since we're a shared instance reset state
 	SPLoginLogicViewController *root = [[self viewControllers] objectAtIndex:0];
 	[root resetState];
+	[root viewDidDisappear:animated];
+
 	[self popToViewController:root animated:NO];
+
+	[super viewDidDisappear:animated];
 }
 
 -(void)showIfNeeded {
