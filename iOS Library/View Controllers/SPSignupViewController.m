@@ -242,39 +242,39 @@
 	
 	BOOL shouldScrobble = self.scrobbleSettingChecked;
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+    [SPSession dispatchToLibSpotifyThread:^{
 		sp_signup_userdata_with_scrobble_setting setting;
 		setting.should_scrobble = shouldScrobble;
 		sp_session_signup_perform_action(self.session.session, SP_SIGNUP_ACTION_CONNECT_TO_FACEBOOK, &setting);
-	});
+	}];
 }
 
 -(void)loginSpotify:(NSURLRequest*)req {
 	
 	BOOL shouldScrobble = self.scrobbleSettingChecked;
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	[SPSession dispatchToLibSpotifyThread:^{
 		sp_signup_userdata_with_scrobble_setting setting;
 		setting.should_scrobble = shouldScrobble;
 		sp_session_signup_perform_action(self.session.session, SP_SIGNUP_ACTION_LOGIN_WITH_SPOTIFY, &setting);
-	});
+	}];
 }
 
 -(void)done:(NSURLRequest*)req {
 	
 	BOOL shouldScrobble = self.scrobbleSettingChecked;
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	[SPSession dispatchToLibSpotifyThread:^{
 		sp_signup_userdata_with_scrobble_setting setting;
 		setting.should_scrobble = shouldScrobble;
 		sp_session_signup_perform_action(self.session.session, SP_SIGNUP_ACTION_ACCEPT, &setting);
-	});
+	}];
 }
 
 -(void)dontConnect:(NSURLRequest*)req {
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	[SPSession dispatchToLibSpotifyThread:^{
 		sp_session_signup_perform_action(self.session.session, SP_SIGNUP_ACTION_CANCEL_FACEBOOK_CONNECT, NULL);
-	});
+	}];
 }
 
 -(void)readTos:(NSURLRequest*)req {
@@ -301,12 +301,12 @@
 		return;
 	}
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	[SPSession dispatchToLibSpotifyThread:^{
 		sp_signup_userdata_with_user_credentials setting;
 		setting.user_name = [user UTF8String];
 		setting.password = [pass UTF8String];
 		sp_session_signup_perform_action(self.session.session, SP_SIGNUP_ACTION_MERGE_WITH_ACCOUNT, &setting);
-	});
+	}];
 }
 
 
