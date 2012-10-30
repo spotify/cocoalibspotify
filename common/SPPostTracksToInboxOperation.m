@@ -101,7 +101,7 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 			self.tracks = tracksToSend;
 			self.completionBlock = block;
 			
-			dispatch_async([SPSession libSpotifyQueue], ^{
+			dispatch_libspotify_async(^{
 				
 				int trackCount = (int)self.tracks.count;
 				sp_track *trackArray[trackCount];
@@ -143,7 +143,7 @@ void inboxpost_complete(sp_inbox *result, void *userdata) {
 
 -(sp_inbox *)inboxOperation {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif
 	return _inboxOperation;
 }

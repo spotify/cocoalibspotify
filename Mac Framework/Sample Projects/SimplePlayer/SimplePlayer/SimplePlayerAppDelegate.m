@@ -45,21 +45,20 @@
 @synthesize playbackManager;
 
 -(void)applicationWillFinishLaunching:(NSNotification *)notification {
-	
-	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
-											   userAgent:@"com.spotify.SimplePlayer"
-										   loadingPolicy:SPAsyncLoadingManual
-												   error:nil];
+
+	[SPSession createSharedSessionWithKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
+								userAgent:@"com.spotify.SimplePlayer"
+							loadingPolicy:SPAsyncLoadingManual
+								 callback:^(SPSession *sharedSession, NSError *error) {
+									 [[SPSession sharedSession] setDelegate:self];
+									 self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
+								 }];
 	[self.window center];
 	[self.window orderFront:nil];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application
-	
-	[[SPSession sharedSession] setDelegate:self];
-	
-	self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
 	
 	[self addObserver:self
 		   forKeyPath:@"playbackManager.trackPosition"

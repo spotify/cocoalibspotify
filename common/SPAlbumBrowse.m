@@ -148,7 +148,7 @@ void albumbrowse_complete (sp_albumbrowse *result, void *userdata) {
 		self.session = aSession;
 		self.album = anAlbum;
 		
-		dispatch_async([SPSession libSpotifyQueue], ^{
+		dispatch_libspotify_async(^{
 			self.albumBrowse = sp_albumbrowse_create(aSession.session,
 													 anAlbum.album,
 													 &albumbrowse_complete,
@@ -175,7 +175,7 @@ void albumbrowse_complete (sp_albumbrowse *result, void *userdata) {
 
 -(sp_albumbrowse *)albumBrowse {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif 
 	return _albumBrowse;
 }
@@ -183,7 +183,7 @@ void albumbrowse_complete (sp_albumbrowse *result, void *userdata) {
 - (void)dealloc {
 	sp_albumbrowse *outgoing_browse = _albumBrowse;
 	_albumBrowse = NULL;
-	dispatch_async([SPSession libSpotifyQueue], ^() { if (outgoing_browse) sp_albumbrowse_release(outgoing_browse); });
+	dispatch_libspotify_async(^() { if (outgoing_browse) sp_albumbrowse_release(outgoing_browse); });
 }
 
 @end

@@ -45,48 +45,43 @@
 #pragma mark - Initialising SPSession
 
 -(void)test1InvalidSessionInit {
-	
-	NSError *error = nil;
-	
-	[SPSession initializeSharedSessionWithApplicationKey:nil
-											   userAgent:@"com.spotify.CocoaLSUnitTests"
-										   loadingPolicy:SPAsyncLoadingManual
-												   error:&error];
-	
-	SPTestAssert(error != nil, @"Session initialisation should have provided an error.");
-	SPTestAssert([SPSession sharedSession] == nil, @"Session should be nil: %@", [SPSession sharedSession]);
-	
-	[SPSession initializeSharedSessionWithApplicationKey:nil
-											   userAgent:@""
-										   loadingPolicy:SPAsyncLoadingManual
-												   error:&error];
-	
-	SPTestAssert(error != nil, @"Session initialisation should have provided an error.");
-	SPTestAssert([SPSession sharedSession] == nil, @"Session should be nil: %@", [SPSession sharedSession]);
-	
-	SPPassTest();
+
+	[SPSession createSharedSessionWithKey:nil
+								userAgent:@"com.spotify.CocoaLSUnitTests"
+							loadingPolicy:SPAsyncLoadingManual
+								 callback:^(SPSession *sharedSession, NSError *error) {
+									 SPTestAssert(error != nil, @"Session initialisation should have provided an error.");
+									 SPTestAssert([SPSession sharedSession] == nil, @"Session should be nil: %@", [SPSession sharedSession]);
+									 
+									 [SPSession createSharedSessionWithKey:nil
+																 userAgent:@""
+															 loadingPolicy:SPAsyncLoadingManual
+																  callback:^(SPSession *sharedSession, NSError *error) {
+																	  SPTestAssert(error != nil, @"Session initialisation should have provided an error.");
+																	  SPTestAssert([SPSession sharedSession] == nil, @"Session should be nil: %@", [SPSession sharedSession]);
+																	  SPPassTest();
+																  }];
+									}];
 }
 
 -(void)test2ValidSessionInit {
-	
-	NSError *error = nil;
-	
+
 #include "appkey.c"
-	
-	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:g_appkey length:g_appkey_size]
-											   userAgent:@"com.spotify.CocoaLSUnitTests"
-										   loadingPolicy:SPAsyncLoadingManual
-												   error:&error];
-	
-	SPTestAssert(error == nil, @"Error should be nil: %@.", error);
-	SPTestAssert([SPSession sharedSession] != nil, @"Session should not be be nil.");
-	
-	[SPSession sharedSession].delegate = self;
-	
-	[[SPSession sharedSession] fetchLoginUserName:^(NSString *loginUserName) {
-		SPTestAssert(loginUserName == nil, @"loginUserName should be nil: %@.", loginUserName);
-		SPPassTest();
-	}];
+
+	[SPSession createSharedSessionWithKey:[NSData dataWithBytes:g_appkey length:g_appkey_size]
+								userAgent:@"com.spotify.CocoaLSUnitTests"
+							loadingPolicy:SPAsyncLoadingManual
+								 callback:^(SPSession *sharedSession, NSError *error) {
+									 SPTestAssert(error == nil, @"Error should be nil: %@.", error);
+									 SPTestAssert([SPSession sharedSession] != nil, @"Session should not be be nil.");
+
+									 [SPSession sharedSession].delegate = self;
+
+									 [[SPSession sharedSession] fetchLoginUserName:^(NSString *loginUserName) {
+										 SPTestAssert(loginUserName == nil, @"loginUserName should be nil: %@.", loginUserName);
+										 SPPassTest();
+									 }];
+								 }];
 }
 
 #pragma mark - Logging In

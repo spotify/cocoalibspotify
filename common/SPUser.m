@@ -65,7 +65,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		return nil;
 	}
 		
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
     if ((self = [super init])) {
         self.user = aUser;
@@ -88,7 +88,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -(BOOL)checkLoaded {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	BOOL userLoaded = sp_user_is_loaded(self.user);
 
@@ -100,7 +100,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -(void)loadUserData {
 
-    NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+    SPAssertOnLibSpotifyThread();
 	
 	BOOL userLoaded = sp_user_is_loaded(self.user);
 	NSURL *url = nil;
@@ -143,7 +143,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -(sp_user *)user {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif
 	return _user;
 }
@@ -151,7 +151,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -(void)dealloc {
 	sp_user *outgoing_user = _user;
 	_user = NULL;
-	dispatch_async([SPSession libSpotifyQueue], ^() {if (outgoing_user) sp_user_release(outgoing_user); });
+	dispatch_libspotify_async(^() {if (outgoing_user) sp_user_release(outgoing_user); });
 }
 
 @end

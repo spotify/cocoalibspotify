@@ -366,7 +366,7 @@ static void	playlist_metadata_updated(sp_playlist *pl, void *userdata) {
 				if (playlistItem.itemClass == [SPTrack class]) {
 					SPTrack *track = playlistItem.item;
 					// This is so bad it makes my head hurt
-					dispatch_async([SPSession libSpotifyQueue], ^{
+					dispatch_libspotify_async(^{
 						sp_track_offline_status status = sp_track_offline_get_status(track.track);
 						dispatch_async(dispatch_get_main_queue(), ^() { [track setOfflineStatusFromLibSpotifyUpdate:status]; });
 					});
@@ -484,7 +484,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(void)offlineSyncStatusMayHaveChanged {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	sp_playlist_offline_status newStatus = sp_playlist_get_offline_status(self.session.session, self.playlist);
 	float newProgress = sp_playlist_get_offline_download_completed(self.session.session, self.playlist) / 100.0;
@@ -509,7 +509,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(id)initWithPlaylistStruct:(sp_playlist *)pl inSession:(SPSession *)aSession {
     
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
     if ((self = [super init])) {
         self.session = aSession;
@@ -555,7 +555,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(sp_playlist *)playlist {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif
 	return _playlist;
 }
@@ -580,7 +580,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 @synthesize removeCallbackStack;
 
 -(void)setMarkedForOfflinePlayback:(BOOL)isMarkedForOfflinePlayback {
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		sp_playlist_set_offline_mode(self.session.session, self.playlist, isMarkedForOfflinePlayback);
 	});
 }
@@ -597,7 +597,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(void)loadPlaylistData {
 	
-	dispatch_async([SPSession libSpotifyQueue], ^() {
+	dispatch_libspotify_async(^() {
 
 		if (self.playlist == NULL)
 			return;
@@ -659,7 +659,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(void)startLoading {
 	
-	dispatch_async([SPSession libSpotifyQueue], ^() {
+	dispatch_libspotify_async(^() {
 		
 		if (self.callbackProxy != nil) return;
 	
@@ -669,7 +669,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			self.items = newItems;
-			dispatch_async([SPSession libSpotifyQueue], ^() {
+			dispatch_libspotify_async(^() {
 
 				if (self.callbackProxy == nil) {
 					// We do this check earlier on, but there's a race condition that causes a nasty crash
@@ -694,10 +694,10 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
     
     if (context == (__bridge void *)kSPPlaylistKVOContext) {
         if ([keyPath isEqualToString:@"name"]) {
-            dispatch_async([SPSession libSpotifyQueue], ^() { sp_playlist_rename(self.playlist, [self.name UTF8String]); });
+            dispatch_libspotify_async(^() { sp_playlist_rename(self.playlist, [self.name UTF8String]); });
             return;
         } else if ([keyPath isEqualToString:@"collaborative"]) {
-            dispatch_async([SPSession libSpotifyQueue], ^() { sp_playlist_set_collaborative(self.playlist, self.isCollaborative); });
+            dispatch_libspotify_async(^() { sp_playlist_set_collaborative(self.playlist, self.isCollaborative); });
             return;
         }
     } 
@@ -741,7 +741,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(void)rebuildSubscribers {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	NSUInteger subscriberCount = sp_playlist_num_subscribers(self.playlist);
 	NSArray *newSubscribers = nil;
@@ -781,7 +781,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(NSArray *)playlistSnapshot {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	int itemCount = sp_playlist_num_tracks(self.playlist);
 	NSMutableArray *newitems = [NSMutableArray arrayWithCapacity:itemCount];
@@ -804,7 +804,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(void)addItems:(NSArray *)newItems atIndex:(NSUInteger)index callback:(SPErrorableOperationCallback)block {
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		if (newItems.count == 0) {
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -852,7 +852,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(void)removeItemAtIndex:(NSUInteger)index callback:(SPErrorableOperationCallback)block {
 
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		if (block)
 			[self.removeCallbackStack addObject:block];
@@ -875,7 +875,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 
 -(void)moveItemsAtIndexes:(NSIndexSet *)indexes toIndex:(NSUInteger)newLocation callback:(SPErrorableOperationCallback)block {
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		int count = (int)[indexes count];
 		int indexArray[count];
@@ -919,7 +919,7 @@ static NSString * const kSPPlaylistKVOContext = @"kSPPlaylistKVOContext";
 	SPPlaylistCallbackProxy *outgoingProxy = self.callbackProxy;
 	self.callbackProxy = nil;
     
-	dispatch_async([SPSession libSpotifyQueue], ^() {
+	dispatch_libspotify_async(^() {
 		if (outgoing_playlist != NULL) {
 			sp_playlist_remove_callbacks(outgoing_playlist, &_playlistCallbacks, (__bridge void *)outgoingProxy);
 			sp_playlist_release(outgoing_playlist);

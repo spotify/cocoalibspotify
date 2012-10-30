@@ -165,14 +165,14 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 
 -(sp_playlistcontainer *)container {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif 
 	return _container;
 }
 
 -(void)startLoading {
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		if (self.callbackProxy != nil) return;
 		
@@ -198,7 +198,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 
 -(NSArray *)createPlaylistTree {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	NSInteger itemCount = sp_playlistcontainer_num_playlists(self.container);
 	
@@ -265,7 +265,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 
 -(NSInteger)indexInFlattenedListForIndex:(NSUInteger)virtualIndex inFolder:(SPPlaylistFolder *)parentFolder {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	NSMutableArray *indexes = [NSMutableArray arrayWithCapacity:self.playlists.count];
 	NSRange folderRangeInRootList = [self rangeOfFolderInRootList:parentFolder];
@@ -305,7 +305,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 
 -(NSRange)rangeOfFolderInRootList:(SPPlaylistFolder *)folder {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	if (!folder) return NSMakeRange(0, sp_playlistcontainer_num_playlists(self.container));
 	
@@ -368,7 +368,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 
 -(void)createPlaylistWithName:(NSString *)name callback:(void (^)(SPPlaylist *))block {
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		if ([[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0 ||
 			[name length] > 255) {
@@ -389,7 +389,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 
 -(void)createFolderWithName:(NSString *)name callback:(void (^)(SPPlaylistFolder *, NSError *))block {
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		sp_error errorCode = sp_playlistcontainer_add_folder(self.container, 0, [name UTF8String]);
 		
@@ -424,7 +424,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 	if (aPlaylist == nil)
 		if (block) dispatch_async(dispatch_get_main_queue(), ^{ block([NSError spotifyErrorWithCode:SP_ERROR_INVALID_INDATA]); });
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		NSUInteger playlistCount = sp_playlistcontainer_num_playlists(self.container);
 		
@@ -457,7 +457,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 	if (aFolder == nil)
 		if (block) dispatch_async(dispatch_get_main_queue(), ^{ block([NSError spotifyErrorWithCode:SP_ERROR_INVALID_INDATA]); });
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		// Remove callbacks, since we have to remove two playlists and reacting to list change notifications halfway through would be bad.
 		self.callbackProxy.container = nil;
@@ -492,7 +492,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 	
 	if ([playlistOrFolder isKindOfClass:[SPPlaylist class]]) {
 		
-		dispatch_async([SPSession libSpotifyQueue], ^{
+		dispatch_libspotify_async(^{
 			
 			NSInteger sourceIndex = NSNotFound;
 			SPPlaylist *sourcePlaylist = playlistOrFolder;
@@ -531,7 +531,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 		
 	} else if ([playlistOrFolder isKindOfClass:[SPPlaylistFolder class]]) {
 		
-		dispatch_async([SPSession libSpotifyQueue], ^{
+		dispatch_libspotify_async(^{
 			
 			self.callbackProxy.container = nil;
 			sp_playlistcontainer_remove_callbacks(self.container, &playlistcontainer_callbacks, (__bridge void *)(self.callbackProxy));
@@ -595,7 +595,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 		return;
 	}
 
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 
 		sp_link *link = sp_link_create_from_playlist(playlist.playlist);
 		sp_playlist *subbedPlaylist = sp_playlistcontainer_add_playlist(self.container, link);
@@ -622,7 +622,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 	self.callbackProxy.container = nil;
 	self.callbackProxy = nil;
 	
-    dispatch_async([SPSession libSpotifyQueue], ^() {
+    dispatch_libspotify_async(^() {
 		if (outgoing_container) sp_playlistcontainer_remove_callbacks(outgoing_container, &playlistcontainer_callbacks, (__bridge void *)outgoingProxy);
 		if (outgoing_container) sp_playlistcontainer_release(outgoing_container);
     });
@@ -634,7 +634,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 
 -(id)initWithContainerStruct:(sp_playlistcontainer *)aContainer inSession:(SPSession *)aSession {
     
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
     if ((self = [super init])) {
         self.container = aContainer;
@@ -651,7 +651,7 @@ static sp_playlistcontainer_callbacks playlistcontainer_callbacks = {
 
 -(void)printRootList {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	NSInteger itemCount = sp_playlistcontainer_num_playlists(self.container);
 	if (itemCount == -1) {

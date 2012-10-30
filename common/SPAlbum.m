@@ -63,7 +63,7 @@ static NSMutableDictionary *albumCache;
 
 +(SPAlbum *)albumWithAlbumStruct:(sp_album *)anAlbum inSession:(SPSession *)aSession {
     
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
     if (albumCache == nil) {
         albumCache = [[NSMutableDictionary alloc] init];
@@ -89,7 +89,7 @@ static NSMutableDictionary *albumCache;
 		return;
 	}
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		SPAlbum *newAlbum = nil;
 		sp_link *link = [aURL createSpotifyLink];
 		if (link != NULL) {
@@ -105,7 +105,7 @@ static NSMutableDictionary *albumCache;
 
 -(id)initWithAlbumStruct:(sp_album *)anAlbum inSession:(SPSession *)aSession {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
     if ((self = [super init])) {
         self.album = anAlbum;
@@ -128,7 +128,7 @@ static NSMutableDictionary *albumCache;
 
 -(BOOL)checkLoaded {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	BOOL isLoaded = sp_album_is_loaded(self.album);
 	
@@ -140,7 +140,7 @@ static NSMutableDictionary *albumCache;
 
 -(void)loadAlbumData {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	SPImage *newCover = nil;
 	SPImage *newLargeCover = nil;
@@ -193,7 +193,7 @@ static NSMutableDictionary *albumCache;
 }
 
 -(void)albumBrowseDidLoad {
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		if (self.album) {
 			int aYear = sp_album_year(self.album);
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -209,7 +209,7 @@ static NSMutableDictionary *albumCache;
 
 -(sp_album *)album {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif 
 	return _album;
 }
@@ -252,7 +252,7 @@ static NSMutableDictionary *albumCache;
 -(void)dealloc {
 	sp_album *outgoing_album = _album;
 	_album = NULL;
-	dispatch_async([SPSession libSpotifyQueue], ^() { if (outgoing_album) sp_album_release(outgoing_album); });
+	dispatch_libspotify_async(^() { if (outgoing_album) sp_album_release(outgoing_album); });
 }
 
 @end

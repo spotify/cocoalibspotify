@@ -21,18 +21,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Override point for customization after application launch.
-	
-	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
-											   userAgent:@"com.spotify.GuessTheIntro"
-										   loadingPolicy:SPAsyncLoadingImmediate
-												   error:nil];
-	
-	[SPSession sharedSession].delegate = (id)self.viewController;
-	
-	self.viewController.playbackManager = [[SPPlaybackManager alloc] 
-							 initWithPlaybackSession:[SPSession sharedSession]];
-	self.viewController.playbackManager.delegate = self.viewController;
-	
+
+	[SPSession createSharedSessionWithKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
+								userAgent:@"com.spotify.GuessTheIntro"
+							loadingPolicy:SPAsyncLoadingImmediate
+								 callback:^(SPSession *sharedSession, NSError *error) {
+									 [SPSession sharedSession].delegate = (id)self.viewController;
+									 self.viewController.playbackManager = [[SPPlaybackManager alloc]
+																			initWithPlaybackSession:[SPSession sharedSession]];
+									 self.viewController.playbackManager.delegate = self.viewController;
+
+								 }];
+
 	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
 	

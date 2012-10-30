@@ -43,12 +43,15 @@
 @synthesize playbackManager;
 
 -(void)applicationWillFinishLaunching:(NSNotification *)notification {
-	
+
 	[self willChangeValueForKey:@"session"];
-	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size] 
-											   userAgent:@"com.spotify.OfflinePlaylists"
-										   loadingPolicy:SPAsyncLoadingImmediate
-												   error:nil];
+	[SPSession createSharedSessionWithKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
+								userAgent:@"com.spotify.OfflinePlaylists"
+							loadingPolicy:SPAsyncLoadingImmediate
+								 callback:^(SPSession *sharedSession, NSError *error) {
+									 [[SPSession sharedSession] setDelegate:self];
+									 self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
+								 }];
 	[self didChangeValueForKey:@"session"];
 	[self.window center];
 	[self.window orderFront:nil];
@@ -56,11 +59,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application
-	
-	[[SPSession sharedSession] setDelegate:self];
-	
-	self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
-	
+
 	[self addObserver:self
 		   forKeyPath:@"playbackManager.trackPosition"
 			  options:0

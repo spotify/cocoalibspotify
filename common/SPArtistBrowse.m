@@ -180,7 +180,7 @@ void artistbrowse_complete(sp_artistbrowse *result, void *userdata) {
 		self.session = aSession;
 		self.artist = anArtist;
 		
-		dispatch_async([SPSession libSpotifyQueue], ^{
+		dispatch_libspotify_async(^{
 			self.artistBrowse = sp_artistbrowse_create(aSession.session,
 													   anArtist.artist,
 													   browseMode,
@@ -210,7 +210,7 @@ void artistbrowse_complete(sp_artistbrowse *result, void *userdata) {
 
 -(sp_artistbrowse *)artistBrowse {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif 
 	return _artistBrowse;
 }
@@ -229,7 +229,7 @@ void artistbrowse_complete(sp_artistbrowse *result, void *userdata) {
 - (void)dealloc {
 	sp_artistbrowse *outgoing_browse = _artistBrowse;
 	_artistBrowse = NULL;
-	dispatch_async([SPSession libSpotifyQueue], ^() { if (outgoing_browse) sp_artistbrowse_release(outgoing_browse); });
+	dispatch_libspotify_async(^() { if (outgoing_browse) sp_artistbrowse_release(outgoing_browse); });
 }
 
 @end

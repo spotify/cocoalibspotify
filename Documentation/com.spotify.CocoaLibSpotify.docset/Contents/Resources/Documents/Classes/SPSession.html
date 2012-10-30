@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -87,6 +87,8 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/createSharedSessionWithKey:userAgent:loadingPolicy:callback:">&nbsp;&nbsp;&nbsp;&nbsp;+ createSharedSessionWithKey:userAgent:loadingPolicy:callback:</option>
+	
 	<option value="//api/name/initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:</option>
 	
 	<option value="//api/name/launchSpotifyClientIfInstalled">&nbsp;&nbsp;&nbsp;&nbsp;+ launchSpotifyClientIfInstalled</option>
@@ -125,6 +127,8 @@
 	<option value="//api/name/imageForURL:callback:">&nbsp;&nbsp;&nbsp;&nbsp;- imageForURL:callback:</option>
 	
 	<option value="//api/name/initWithApplicationKey:userAgent:loadingPolicy:error:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithApplicationKey:userAgent:loadingPolicy:error:</option>
+	
+	<option value="//api/name/initWithKey:userAgent:loadingPolicy:callback:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithKey:userAgent:loadingPolicy:callback:</option>
 	
 	<option value="//api/name/logout:">&nbsp;&nbsp;&nbsp;&nbsp;- logout:</option>
 	
@@ -256,6 +260,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createSharedSessionWithKey:userAgent:loadingPolicy:callback:">createSharedSessionWithKey:userAgent:loadingPolicy:callback:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:">initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/launchSpotifyClientIfInstalled">launchSpotifyClientIfInstalled</a></span></li>
@@ -295,6 +301,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageForURL:callback:">imageForURL:callback:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithApplicationKey:userAgent:loadingPolicy:error:">initWithApplicationKey:userAgent:loadingPolicy:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithKey:userAgent:loadingPolicy:callback:">initWithKey:userAgent:loadingPolicy:callback:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logout:">logout:</a></span></li>
 	
@@ -439,8 +447,15 @@ as you see fit. See the SimplePlayback sample project for an example of how to d
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/createSharedSessionWithKey:userAgent:loadingPolicy:callback:">+&nbsp;createSharedSessionWithKey:userAgent:loadingPolicy:callback:</a></code>
+		<span class="tooltip"><p>Creates the shared SPSession object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:">+&nbsp;initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:</a></code>
-		<span class="tooltip"><p>Initializes the shared SPSession object.</p></span>
+		<span class="tooltip"><p>DEPRECATED: Initializes the shared SPSession object.</p></span>
 	</span>
 	
 	
@@ -461,8 +476,15 @@ as you see fit. See the SimplePlayback sample project for an example of how to d
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithApplicationKey:userAgent:loadingPolicy:error:">&ndash;&nbsp;initWithApplicationKey:userAgent:loadingPolicy:error:</a></code>
+		<code><a href="#//api/name/initWithKey:userAgent:loadingPolicy:callback:">&ndash;&nbsp;initWithKey:userAgent:loadingPolicy:callback:</a></code>
 		<span class="tooltip"><p>Initialize a new SPSession object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithApplicationKey:userAgent:loadingPolicy:error:">&ndash;&nbsp;initWithApplicationKey:userAgent:loadingPolicy:error:</a></code>
+		<span class="tooltip"><p>DEPRECATED: Initialize a new SPSession object.</p></span>
 	</span>
 	
 	
@@ -805,7 +827,7 @@ social services is temporarily disabled.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/unknownPlaylistForPlaylistStruct:">&ndash;&nbsp;unknownPlaylistForPlaylistStruct:</a></code>
-		<span class="tooltip"><p>Create and cache an <a href="../Classes/SPUnknownPlaylist.html">SPUnknownPlaylist</a> (subclass of <a href="../Classes/SPPlaylist.html">SPPlaylist</a>) for the given sp_playlist struct from the C LibSpotify API.</p></span>
+		<span class="tooltip"><p>Create and cache an SPUnknownPlaylist (subclass of <a href="../Classes/SPPlaylist.html">SPPlaylist</a>) for the given sp_playlist struct from the C LibSpotify API.</p></span>
 	</span>
 	
 	
@@ -912,7 +934,7 @@ sound level of each track the same), otherwise <code>NO</code>.</p></span>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, assign) __unsafe_unretained id&lt;&gt; audioDeliveryDelegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, assign) __unsafe_unretained id&lt;SPSessionAudioDeliveryDelegate&gt; audioDeliveryDelegate</code></div>
 	
 	
 	
@@ -1006,7 +1028,7 @@ The connection state is undefined.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, assign) __unsafe_unretained id&lt;&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, assign) __unsafe_unretained id&lt;SPSessionDelegate&gt; delegate</code></div>
 	
 	
 	
@@ -1358,7 +1380,7 @@ updated as new tracks are sent to the <a href="#//api/name/user">user</a>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, assign) __unsafe_unretained id&lt;&gt; playbackDelegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, assign) __unsafe_unretained id&lt;SPSessionPlaybackDelegate&gt; playbackDelegate</code></div>
 	
 	
 	
@@ -1703,13 +1725,85 @@ sound level of each track the same), otherwise <code>NO</code>.</p>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/createSharedSessionWithKey:userAgent:loadingPolicy:callback:" title="createSharedSessionWithKey:userAgent:loadingPolicy:callback:"></a>
+	<h3 class="subsubtitle method-title">createSharedSessionWithKey:userAgent:loadingPolicy:callback:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates the shared SPSession object.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (SPSession *)createSharedSessionWithKey:(NSData *)<em>appKey</em> userAgent:(NSString *)<em>userAgent</em> loadingPolicy:(SPAsyncLoadingPolicy)<em>policy</em> callback:(void ( ^ ) ( SPSession *sharedSession , NSError *error ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appKey</em></dt>
+			<dd><p>Your application key as an NSData.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>userAgent</em></dt>
+			<dd><p>Your application&rsquo;s <a href="#//api/name/user">user</a> agent (for example, com.yourcompany.MyGreatApp).</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>policy</em></dt>
+			<dd><p>The loading policy to use.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>The block to be invoked when the <a href="#//api/name/session">session</a> is created (or not).</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The shared <code>SPSession</code> object, which won&rsquo;t be useable until the <code>block</code> callback is fired.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Your application key and <a href="#//api/name/user">user</a> agent must be valid to create an SPSession object.</p><div class="warning"><p><strong>Warning:</strong> The C API that CocoaLibSpotify uses (LibSpotify) doesn&rsquo;t
+support using multiple sessions in the same process. While you can either create and
+store your SPSession object using this convenience method or yourself using <a href="#//api/name/initWithKey:userAgent:loadingPolicy:callback:">[SPSession initWithKey:userAgent:loadingPolicy:callback:]</a>,
+make sure you only have <em>one</em> instance of SPSession active in your process at a time.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPSession.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:" title="initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:"></a>
 	<h3 class="subsubtitle method-title">initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initializes the shared SPSession object.</p>
+		<p>DEPRECATED: Initializes the shared SPSession object.</p>
 	</div>		
 	
 	
@@ -1754,7 +1848,7 @@ sound level of each track the same), otherwise <code>NO</code>.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Your application key and <a href="#//api/name/user">user</a> agent must be valid to create an SPSession object.</p><div class="warning"><p><strong>Warning:</strong> The C API that CocoaLibSpotify uses (LibSpotify) doesn&rsquo;t
+		<p>Your application key and <a href="#//api/name/user">user</a> agent must be valid to create an SPSession object.</p><div class="warning"><p><strong>Warning:</strong> This method has been deprecated. Use <a href="#//api/name/createSharedSessionWithKey:userAgent:loadingPolicy:callback:">[SPSession createSharedSessionWithKey:userAgent:loadingPolicy:callback:]</a> instead.</p></div><div class="warning"><p><strong>Warning:</strong> The C API that CocoaLibSpotify uses (LibSpotify) doesn&rsquo;t
 support using multiple sessions in the same process. While you can either create and
 store your SPSession object using this convenience method or yourself using <a href="#//api/name/initWithApplicationKey:userAgent:loadingPolicy:error:">[SPSession initWithApplicationKey:userAgent:loadingPolicy:error:]</a>,
 make sure you only have <em>one</em> instance of SPSession active in your process at a time.</p></div>
@@ -1925,7 +2019,7 @@ you&rsquo;re likely to trigger an apparently random crash in the future since th
 		<p>This is a convenience method for creating and storing a single SPSession instance.</p><div class="warning"><p><strong>Warning:</strong> The C API that CocoaLibSpotify uses (LibSpotify) doesn&rsquo;t
 support using multiple sessions in the same process. While you can either create and
 store your SPSession object using this convenience method or yourself using <a href="#//api/name/init">[SPSession init]</a>,
-make sure you only have <em>one</em> instance of SPSession active in your process at a time.</p></div><div class="warning"><p><strong>Warning:</strong> This will return <code>nil</code> until <a href="#//api/name/initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:">[SPSession initializeSharedSessionWithApplicationKey:userAgent:loadingPolicy:error:]</a> is
+make sure you only have <em>one</em> instance of SPSession active in your process at a time.</p></div><div class="warning"><p><strong>Warning:</strong> This will return <code>nil</code> until <a href="#//api/name/createSharedSessionWithKey:userAgent:loadingPolicy:callback:">[SPSession createSharedSessionWithKey:userAgent:loadingPolicy:callback:]</a> is
 successfully called.</p></div>
 	</div>
 	
@@ -2492,7 +2586,7 @@ this when your application is put into the background to ensure correct operatio
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize a new SPSession object.</p>
+		<p>DEPRECATED: Initialize a new SPSession object.</p>
 	</div>		
 	
 	
@@ -2520,6 +2614,77 @@ this when your application is put into the background to ensure correct operatio
 		<dl class="argument-def parameter-def">
 			<dt><em>error</em></dt>
 			<dd><p>An error pointer to be filled with an NSError should a login problem occur.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns a newly initialised SPSession object.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This method has been deprecated. Use <a href="#//api/name/initWithKey:userAgent:loadingPolicy:callback:">[SPSession initWithKey:userAgent:loadingPolicy:callback:]</a> instead.</p>
+
+<p>Your application key and <a href="#//api/name/user">user</a> agent must be valid to create an SPSession object. This is SPSession&rsquo;s designated initializer.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SPSession.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithKey:userAgent:loadingPolicy:callback:" title="initWithKey:userAgent:loadingPolicy:callback:"></a>
+	<h3 class="subsubtitle method-title">initWithKey:userAgent:loadingPolicy:callback:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new SPSession object.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithKey:(NSData *)<em>appKey</em> userAgent:(NSString *)<em>userAgent</em> loadingPolicy:(SPAsyncLoadingPolicy)<em>policy</em> callback:(void ( ^ ) ( SPSession *session , NSError *error ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appKey</em></dt>
+			<dd><p>Your application key as an NSData.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>userAgent</em></dt>
+			<dd><p>Your application&rsquo;s <a href="#//api/name/user">user</a> agent (for example, com.yourcompany.MyGreatApp).</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>policy</em></dt>
+			<dd><p>The loading policy to use.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>The block to be invoked when the <a href="#//api/name/session">session</a> is ready for use (or not).</p></dd>
 		</dl>
 		
 	</div>
@@ -3490,7 +3655,7 @@ convenience methods use.</p><div class="warning"><p><strong>Warning:</strong> Th
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Create and cache an <a href="../Classes/SPUnknownPlaylist.html">SPUnknownPlaylist</a> (subclass of <a href="../Classes/SPPlaylist.html">SPPlaylist</a>) for the given sp_playlist struct from the C LibSpotify API.</p>
+		<p>Create and cache an SPUnknownPlaylist (subclass of <a href="../Classes/SPPlaylist.html">SPPlaylist</a>) for the given sp_playlist struct from the C LibSpotify API.</p>
 	</div>		
 	
 	
@@ -3511,7 +3676,7 @@ convenience methods use.</p><div class="warning"><p><strong>Warning:</strong> Th
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>Returns the created or cached <a href="../Classes/SPUnknownPlaylist.html">SPUnknownPlaylist</a> object.</p>
+		<p>Returns the created or cached SPUnknownPlaylist object.</p>
 	</div>
 	
 	
@@ -3696,9 +3861,9 @@ convenience methods use.</p><div class="warning"><p><strong>Warning:</strong> Th
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Spotify AB. All rights reserved. (Last updated: 2012-08-24)</span><br />
+						<p><span class="copyright">&copy; 2012 Spotify AB. All rights reserved. (Last updated: 2012-10-22)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
 					</div>
 				</div>

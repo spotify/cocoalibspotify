@@ -52,7 +52,7 @@ static NSMutableDictionary *artistCache;
 
 +(SPArtist *)artistWithArtistStruct:(sp_artist *)anArtist inSession:(SPSession *)aSession {
     
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
     if (artistCache == nil) {
         artistCache = [[NSMutableDictionary alloc] init];
@@ -78,7 +78,7 @@ static NSMutableDictionary *artistCache;
 		return;
 	}
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		SPArtist *newArtist = nil;
 		sp_link *link = [aURL createSpotifyLink];
 		if (link != NULL) {
@@ -96,7 +96,7 @@ static NSMutableDictionary *artistCache;
 
 -(id)initWithArtistStruct:(sp_artist *)anArtist inSession:(SPSession *)aSession {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
     if ((self = [super init])) {
         self.artist = anArtist;
@@ -121,7 +121,7 @@ static NSMutableDictionary *artistCache;
 
 -(BOOL)checkLoaded {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	BOOL isLoaded = sp_artist_is_loaded(self.artist);
 	if (isLoaded) [self loadArtistData];
@@ -131,7 +131,7 @@ static NSMutableDictionary *artistCache;
 
 -(void)loadArtistData {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	NSString *newName = nil;
 	
@@ -157,7 +157,7 @@ static NSMutableDictionary *artistCache;
 
 -(sp_artist *)artist {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif
 	return _artist;
 }
@@ -170,7 +170,7 @@ static NSMutableDictionary *artistCache;
 -(void)dealloc {
 	sp_artist *outgoing_artist = _artist;
 	_artist = NULL;
-	dispatch_async([SPSession libSpotifyQueue], ^() { if (outgoing_artist) sp_artist_release(outgoing_artist); });
+	dispatch_libspotify_async(^() { if (outgoing_artist) sp_artist_release(outgoing_artist); });
 }
 
 @end

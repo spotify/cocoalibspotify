@@ -232,14 +232,14 @@ void search_complete(sp_search *result, void *userdata) {
 
 -(sp_search *)activeSearch {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif
 	return _activeSearch;
 }
 
 -(void)setActiveSearch:(sp_search *)search {
 #if DEBUG
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 #endif
 	if (search != _activeSearch) {
 		if (_activeSearch != NULL) {
@@ -256,7 +256,7 @@ void search_complete(sp_search *result, void *userdata) {
 
 -(void)searchDidComplete:(sp_search *)search wasSearchingForTracks:(BOOL)searchTracks artists:(BOOL)searchArtists albums:(BOOL)searchAlbums playlists:(BOOL)searchPlaylists {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	sp_error errorCode = sp_search_error(search);
 	NSError *error = errorCode == SP_ERROR_OK ? nil : [NSError spotifyErrorWithCode:errorCode];
@@ -446,7 +446,7 @@ void search_complete(sp_search *result, void *userdata) {
 	if (artistCount == 0 && albumCount == 0 && trackCount == 0 && playlistCount == 0)
 		return NO;
 	
-	dispatch_async([SPSession libSpotifyQueue], ^{
+	dispatch_libspotify_async(^{
 		
 		NSMutableDictionary *userData = [[NSMutableDictionary alloc] initWithCapacity:5];
 		
@@ -497,7 +497,7 @@ void search_complete(sp_search *result, void *userdata) {
 -(void)dealloc {
 	sp_search *outgoing_search = _activeSearch;
 	_activeSearch = NULL;
-	dispatch_async([SPSession libSpotifyQueue], ^() { if (outgoing_search) sp_search_release(outgoing_search); });
+	dispatch_libspotify_async(^() { if (outgoing_search) sp_search_release(outgoing_search); });
 }
 
 @end

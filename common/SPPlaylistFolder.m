@@ -56,7 +56,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					container:(SPPlaylistContainer *)aContainer
 					inSession:(SPSession *)aSession {
     
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
     if ((self = [super init])) {
         self.session = aSession;

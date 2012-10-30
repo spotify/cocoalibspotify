@@ -60,25 +60,26 @@
 
 	NSString *userAgent = [[[NSBundle mainBundle] infoDictionary] valueForKey:(__bridge NSString *)kCFBundleIdentifierKey];
 	NSData *appKey = [NSData dataWithBytes:&g_appkey length:g_appkey_size];
-	NSError *error = nil;
 
-	[SPSession initializeSharedSessionWithApplicationKey:appKey
-											   userAgent:userAgent
-										   loadingPolicy:SPAsyncLoadingManual
-												   error:&error];
+	void (^sessionCreationComplete)(SPSession *, NSError *) = ^(SPSession *sharedSession, NSError *error) {
+		if (error != nil) {
+			NSLog(@"[%@ %@]: FATAL: Failed to initialise SPSession with error: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), error);
+			abort();
+		}
 
-	if (error != nil) {
-		NSLog(@"[%@ %@]: FATAL: Failed to initialise SPSession with error: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), error);
-		abort();
-	}
+		[[SPSession sharedSession] setDelegate:self];
 
-	[[SPSession sharedSession] setDelegate:self];
+		SPLoginViewController *controller = [SPLoginViewController loginControllerForSession:[SPSession sharedSession]];
+		controller.allowsCancel = NO;
+		// ^ To allow the user to cancel (i.e., your application doesn't require a logged-in Spotify user, set this to YES.
+		[self.viewController presentModalViewController:controller animated:NO];
+	};
 
-	SPLoginViewController *controller = [SPLoginViewController loginControllerForSession:[SPSession sharedSession]];
-	controller.allowsCancel = NO;
-	// ^ To allow the user to cancel (i.e., your application doesn't require a logged-in Spotify user, set this to YES.
-	[self.viewController presentModalViewController:controller animated:NO];
-	
+	[SPSession createSharedSessionWithKey:appKey
+								userAgent:userAgent
+							loadingPolicy:SPAsyncLoadingManual
+								 callback:sessionCreationComplete];
+
     return YES;
 }
 

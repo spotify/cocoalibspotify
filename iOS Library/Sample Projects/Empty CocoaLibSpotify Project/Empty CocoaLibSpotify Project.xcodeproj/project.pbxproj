@@ -352,6 +352,7 @@
 		50EECB4615CABA47006E54FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Empty CocoaLibSpotify Project/Empty CocoaLibSpotify Project-Prefix.pch";
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
@@ -361,6 +362,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -368,6 +370,7 @@
 		50EECB4715CABA47006E54FA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Empty CocoaLibSpotify Project/Empty CocoaLibSpotify Project-Prefix.pch";
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
@@ -377,6 +380,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

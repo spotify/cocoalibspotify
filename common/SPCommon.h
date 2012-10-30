@@ -31,15 +31,8 @@
 
 typedef void (^SPErrorableOperationCallback)(NSError *error);
 
-/** Call the given block synchronously on the libSpotify queue, or inline if already on that queue.
- 
- This helper macro allows you to perform synchronous code on the libSpotify queue. 
- It helps avoid deadlocks by checking if you're already on the queue and just calls the 
- block inline if that's the case.
- 
- @param block The block to execute.
- */
-#define SPDispatchSyncIfNeeded(block) if (dispatch_get_current_queue() == [SPSession libSpotifyQueue]) block(); else dispatch_sync([SPSession libSpotifyQueue], block);
+#define SPAssertOnLibSpotifyThread() NSAssert(CFRunLoopGetCurrent() == [SPSession libSpotifyRunloop], @"Not on correct thread!");
+#define dispatch_libspotify_async(x) [SPSession dispatchToLibSpotifyThread:x];
 
 @class SPTrack;
 @protocol SPSessionPlaybackDelegate;

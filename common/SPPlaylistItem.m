@@ -47,7 +47,7 @@
 
 -(id)initWithPlaceholderTrack:(sp_track *)track atIndex:(int)index inPlaylist:(SPPlaylist *)aPlaylist {
 	
-	NSAssert(dispatch_get_current_queue() == [SPSession libSpotifyQueue], @"Not on correct queue!");
+	SPAssertOnLibSpotifyThread();
 	
 	if ((self = [super init])) {
 		self.playlist = aPlaylist;
@@ -138,7 +138,7 @@
 @synthesize unread = _unread;
 
 -(void)setUnread:(BOOL)unread {
-	dispatch_async([SPSession libSpotifyQueue], ^() { sp_playlist_track_set_seen(self.playlist.playlist, self.itemIndex, !unread); });
+	dispatch_libspotify_async(^() { sp_playlist_track_set_seen(self.playlist.playlist, self.itemIndex, !unread); });
 	_unread = unread;
 }
 
