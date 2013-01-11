@@ -245,6 +245,7 @@
 		50DBB5B715206AF900BF516F /* SPLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPLicenseViewController.m; path = "View Controllers/SPLicenseViewController.m"; sourceTree = "<group>"; };
 		50DE7F54147E833D005403A9 /* SPPlaylistInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPPlaylistInternal.h; path = ../common/SPPlaylistInternal.h; sourceTree = "<group>"; };
 		50DE7F57147E834D005403A9 /* SPTrackInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPTrackInternal.h; path = ../common/SPTrackInternal.h; sourceTree = "<group>"; };
+		A1717CA516963D8E00076154 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +319,7 @@
 		50AF49DE1439CBFE00E4A5EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1717CA516963D8E00076154 /* SystemConfiguration.framework */,
 				50D4F588156BCF1700E237DD /* AVFoundation.framework */,
 				50D4F586156BCF0A00E237DD /* CFNetwork.framework */,
 				50D4F584156BCF0200E237DD /* libstdc++.dylib */,
