@@ -304,6 +304,33 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 -(void)setPreferredBitrate:(sp_bitrate)bitrate;
 
+/** Returns `YES` if session is currently forced in offline mode. */
+@property (nonatomic, readwrite) BOOL forceOfflineMode;
+
+/** Returns the current connection type.
+ 
+ Possible values:
+ 
+ SP_CONNECTION_TYPE_UNKNOWN
+ Connection type unknown (Default).
+ 
+ SP_CONNECTION_TYPE_NONE
+ No connection.
+ 
+ SP_CONNECTION_TYPE_MOBILE
+ Mobile data (EDGE, 3G, etc).
+ 
+ SP_CONNECTION_TYPE_MOBILE_ROAMING
+ Roamed mobile data (EDGE, 3G, etc).
+ 
+ SP_CONNECTION_TYPE_WIFI
+ Wireless connection.
+ 
+ SP_CONNECTION_TYPE_WIRED
+ Ethernet cable, etc.
+ */
+@property (nonatomic, readonly) sp_connection_type connectionType;
+
 ///----------------------------
 /// @name Properties
 ///----------------------------
@@ -407,6 +434,19 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  `user`, `locale` and `userPlaylists` properties are set.
  */ 
 @property (nonatomic, readonly, getter=isLoaded) BOOL loaded;
+
+/** Returns `YES` if session allows syncing over Wifi. */
+@property (nonatomic, readwrite) BOOL allowSyncOverWifi;
+
+/** Returns `YES` if session allows syncing over cellular networks. */
+@property (nonatomic, readwrite) BOOL allowSyncOverMobile;
+
+/** Set the preffered audio bitrate for offline syncing.
+ 
+ @param bitrate The prefered bitrate for offline syncing.
+ @param allowResync Specifies weather already synced tracks should be resynced.
+ */
+- (void)setPreferredOfflineBitrate:(sp_bitrate)bitrate allowResync:(BOOL)allowResync;
 
 ///----------------------------
 /// @name User Content

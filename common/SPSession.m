@@ -30,6 +30,8 @@
  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <SystemConfiguration/SystemConfiguration.h>
+
 #import "SPSession.h"
 #import "SPErrorExtensions.h"
 #import "SPTrack.h"
@@ -84,10 +86,14 @@
 
 @property (readwrite, strong) NSTimer *prodTimeoutTimer;
 
+@property (nonatomic, readwrite) SCNetworkReachabilityRef reachabilityRef;
+@property (nonatomic, readwrite) sp_connection_type connectionType;
+
 @property (nonatomic, readwrite, copy) void (^logoutCompletionBlock) ();
 
 -(void)checkLoadingObjects;
 -(void)prodSessionForcefully;
+-(void)updateConnectionType;
 
 @end
 
@@ -516,6 +522,16 @@ static void private_session_mode_changed(sp_session *session, bool is_private) {
 	}
 }
 
+static void reachability_callback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* info) {
+    
+    @autoreleasepool {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [(__bridge SPSession *)info updateConnectionType];
+        });
+    }
+    
+}
+
 #if TARGET_OS_IPHONE
 
 #import "SPLoginViewController.h"
@@ -884,6 +900,25 @@ static SPSession *sharedSession;
 				*error = creationError;
 			return nil;
 		}
+        
+        /* Setup reachability callbacks */
+        
+        SCNetworkReachabilityRef reachabilityRef = SCNetworkReachabilityCreateWithName(NULL, [@"ap.spotify.com" UTF8String]);
+        if (reachabilityRef) {
+
+            SCNetworkReachabilityContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
+            SCNetworkReachabilitySetCallback(reachabilityRef, reachability_callback, &context);
+            SCNetworkReachabilityScheduleWithRunLoop(reachabilityRef, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+            
+            self.reachabilityRef = reachabilityRef;
+            
+        }
+        
+        /* Setup default connection rules */
+        
+        _forceOfflineMode = !(_allowSyncOverWifi = _allowSyncOverMobile = YES);
+        [self updateConnectionRules];
+        
 	}
 	
 	return self;
@@ -1473,6 +1508,10 @@ static SPSession *sharedSession;
     SPDispatchAsync(^() { if (self.session) sp_session_preferred_bitrate(self.session, bitrate); });
 }
 
+-(void)setPreferredOfflineBitrate:(sp_bitrate)bitrate allowResync:(BOOL)allowResync {
+    SPDispatchAsync(^() { if (self.session) sp_session_preferred_offline_bitrate(self.session, bitrate, allowResync); });
+}
+
 -(void)setMaximumCacheSizeMB:(size_t)maximumCacheSizeMB {
     SPDispatchAsync(^() { if (self.session) sp_session_set_cache_size(self.session, maximumCacheSizeMB); });
 }
@@ -1497,6 +1536,43 @@ static SPSession *sharedSession;
 @synthesize playbackDelegate;
 @synthesize audioDeliveryDelegate;
 @synthesize session = _session;
+
+@synthesize forceOfflineMode = _forceOfflineMode;
+@synthesize allowSyncOverWifi = _allowSyncOverWifi;
+@synthesize allowSyncOverMobile = _allowSyncOverMobile;
+
+-(void)setForceOfflineMode:(BOOL)forceOfflineMode {
+    
+    [self willChangeValueForKey:@"forceOfflineMode"];
+    
+    _forceOfflineMode = forceOfflineMode;
+    [self updateConnectionRules];
+    
+    [self didChangeValueForKey:@"forceOfflineMode"];
+    
+}
+
+-(void)setAllowSyncOverWifi:(BOOL)allowSyncOverWifi {
+    
+    [self willChangeValueForKey:@"allowSyncOverWifi"];
+    
+    _allowSyncOverWifi = allowSyncOverWifi;
+    [self updateConnectionRules];
+    
+    [self didChangeValueForKey:@"allowSyncOverWifi"];
+    
+}
+
+-(void)setAllowSyncOverMobile:(BOOL)allowSyncOverMobile {
+    
+    [self willChangeValueForKey:@"allowSyncOverMobile"];
+    
+    _allowSyncOverMobile = allowSyncOverMobile;
+    [self updateConnectionRules];
+    
+    [self didChangeValueForKey:@"allowSyncOverMobile"];
+    
+}
 
 -(sp_session *)session {
 	
@@ -1576,6 +1652,49 @@ static SPSession *sharedSession;
 	SPDispatchAsync(^() { if (self.session) sp_session_player_unload(self.session); });
 }
 
+#pragma mark Connection Handling
+
+-(void)updateConnectionType {
+    
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityGetFlags(self.reachabilityRef, &flags);
+    sp_connection_type type = SP_CONNECTION_TYPE_UNKNOWN;
+    
+    if ((flags & kSCNetworkReachabilityFlagsReachable) != 0) {
+        
+#if TARGET_OS_IPHONE
+        type = SP_CONNECTION_TYPE_WIFI;
+#else
+        if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0 && (flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0)
+            type = SP_CONNECTION_TYPE_WIFI;
+#endif
+        
+        if ((flags & kSCNetworkReachabilityFlagsIsWWAN) != 0)
+            type = SP_CONNECTION_TYPE_MOBILE;
+        
+    } else
+        type = SP_CONNECTION_TYPE_NONE;
+    
+    self.connectionType = type;
+    
+    SPDispatchAsync(^() { if (self.session) sp_session_set_connection_type(self.session, type); });
+    
+}
+
+- (void)updateConnectionRules {
+    
+    sp_connection_rules rules = 0;
+    
+    if (!self.forceOfflineMode)
+        rules |= SP_CONNECTION_RULE_NETWORK | SP_CONNECTION_RULE_NETWORK_IF_ROAMING;
+    if (self.allowSyncOverWifi)
+        rules |= SP_CONNECTION_RULE_ALLOW_SYNC_OVER_WIFI;
+    if (self.allowSyncOverMobile)
+        rules |= SP_CONNECTION_RULE_ALLOW_SYNC_OVER_MOBILE;
+    
+    SPDispatchAsync(^() { if (self.session) sp_session_set_connection_rules(self.session, rules); });
+    
+}
 
 #pragma mark libSpotify Run Loop
 
@@ -1630,6 +1749,14 @@ static SPSession *sharedSession;
 		sp_session_player_unload(outgoing_session);
 		sp_session_logout(outgoing_session);
 	});
+    
+    SCNetworkReachabilityRef reachabilityRef = self.reachabilityRef;
+    if (reachabilityRef) {
+        SCNetworkReachabilityUnscheduleFromRunLoop(reachabilityRef, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+        CFRelease(reachabilityRef);
+        self.reachabilityRef = nil;
+    }
+    
 }
 
 @end
