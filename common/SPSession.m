@@ -1348,8 +1348,8 @@ static SPSession *sharedSession;
 }
 
 -(void)playlistForURL:(NSURL *)url callback:(void (^)(SPPlaylist *playlist))block {
-	
-	if ([url spotifyLinkType] != SP_LINKTYPE_PLAYLIST) {
+	sp_linktype linkType = [url spotifyLinkType];
+	if (linkType != SP_LINKTYPE_PLAYLIST && linkType != SP_LINKTYPE_STARRED) {
 		if (block) block(nil);
 		return;
 	}
