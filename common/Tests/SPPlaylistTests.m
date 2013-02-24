@@ -176,17 +176,30 @@
 						SPTestAssert(movedPlaylistTracks.count == 2, @"Playlist doesn't have 2 tracks after move, instead has: %u", movedPlaylistTracks.count);
 						SPTestAssert([movedPlaylistTracks objectAtIndex:0] == track2, @"Playlist track 0 should be %@ after move, is actually %@", track2, [movedPlaylistTracks objectAtIndex:0]);
 						SPTestAssert([movedPlaylistTracks objectAtIndex:1] == track1, @"Playlist track 1 should be %@ after move, is actually %@", track1, [movedPlaylistTracks objectAtIndex:1]);
-						
-						[sself.playlist removeItemAtIndex:0 callback:^(NSError *deletionError) {
+						                        
+                        [sself.playlist removeItemAtIndex:0 callback:^(NSError *deletionError) {
 							
+                            SPTestAssert(![track1 isEqual:track2], @"Forcing track2 from being released");
+
 							SPTestAssert(deletionError == nil, @"Removal operation returned error: %@", deletionError);
 							SPTestAssert(dispatch_get_current_queue() == dispatch_get_main_queue(), @"removeItemAtIndex		callback on wrong queue.");
 							
 							NSArray *afterDeletionPlaylistTracks = [self.playlist.items valueForKey:@"item"];
 							SPTestAssert(afterDeletionPlaylistTracks.count == 1, @"Playlist doesn't have 1 tracks after track remove, instead has: %u", afterDeletionPlaylistTracks.count);
 							SPTestAssert([afterDeletionPlaylistTracks objectAtIndex:0] == track1, @"Playlist track 0 should be %@ after track remove, is actually %@", track1, [afterDeletionPlaylistTracks objectAtIndex:0]);
-							SPPassTest();
-						}];
+                            
+                            // Added this part to add another track to the playlist that will be used as a offline test
+                            [sself.playlist addItems:[NSArray arrayWithObjects:track2, nil] atIndex:0 callback:^(NSError *error) {
+                                
+                                SPTestAssert(error == nil, @"Got error when adding to playlist: %@", error);
+                                SPTestAssert(dispatch_get_current_queue() == dispatch_get_main_queue(), @"addItems callback on wrong queue.");
+                                
+                                // Tracks get converted to items.
+                                NSArray *originalPlaylistTracks = [self.playlist.items valueForKey:@"item"];
+                                SPTestAssert(originalPlaylistTracks.count == 2, @"Playlist doesn't have 2 tracks, instead has: %u", originalPlaylistTracks.count);
+                            }];
+                            SPPassTest();
+                        }];
 					}];
 				}];
 			}];
@@ -194,8 +207,81 @@
 	}];
 }
 
--(void)test6PlaylistDeletion {
+-(void)test6PlaylistOffline {
+	SPTestAssert(self.playlist != nil, @"Test playlist is nil - cannot mark offline");
+	
+    __block SPPlaylistTests *sself = self;
 
+	SPSession *session = [SPSession sharedSession];
+	
+	[SPAsyncLoading waitUntilLoaded:session timeout:kSPAsyncLoadingDefaultTimeout then:^(NSArray *loadedSession, NSArray *notLoadedSession) {
+
+		[sself.playlist addObserver:self forKeyPath:@"offlineStatus" options:0 context:nil];
+		[sself.playlist addObserver:self forKeyPath:@"offlineDownloadProgress" options:0 context:nil];
+        
+        sself.playlist.markedForOfflinePlayback = YES;
+
+	}];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    static int state = 0;
+
+    if ([keyPath isEqualToString:@"offlineStatus"]) {
+        switch (playlist.offlineStatus) {
+            case SP_PLAYLIST_OFFLINE_STATUS_NO:
+                NSLog(@"SP_PLAYLIST_OFFLINE_STATUS_NO");
+                state = -1;
+                break;
+                
+            case SP_PLAYLIST_OFFLINE_STATUS_YES:
+                if (state == 2) {
+                    state = 3;
+                    SPPassTest(); // have passed state downloading, lets call it OK
+                } else if (state == 3) {
+                    // don't fail now
+                } else {
+                    state = -1;
+                }
+                NSLog(@"SP_PLAYLIST_OFFLINE_STATUS_YES");
+                break;
+                
+            case SP_PLAYLIST_OFFLINE_STATUS_DOWNLOADING:
+                if (state == 1 || state == 2)
+                    state = 2;
+                else
+                    state = -1;
+                NSLog(@"SP_PLAYLIST_OFFLINE_STATUS_DOWNLOADING");
+                break;
+                
+            case SP_PLAYLIST_OFFLINE_STATUS_WAITING:
+                if (state == 0 || state == 1)
+                    state = 1;
+                else
+                    state = -1;
+                NSLog(@"SP_PLAYLIST_OFFLINE_STATUS_WAITING");
+                break;
+        }
+        SPTestAssert(state != -1, @"Failed sync playlist for offline");
+    }
+    if ([keyPath isEqualToString:@"offlineDownloadProgress"]) {
+        [SPSession dispatchToLibSpotifyThread:^{
+            sp_offline_sync_status status = {0};
+            sp_offline_sync_get_status([SPSession sharedSession].session, &status);
+            NSLog(@"syncing %d %d", status.syncing, [SPSession sharedSession].offlineSyncing);
+        }];
+        NSLog(@"%d %f", self.playlist.items.count, self.playlist.offlineDownloadProgress);
+    }
+}
+
+-(void)cleanupTest6 {
+    [self.playlist removeObserver:self forKeyPath:@"offlineStatus" context:nil];
+    [self.playlist removeObserver:self forKeyPath:@"offlineDownloadProgress" context:nil];
+}
+
+-(void)test7PlaylistDeletion {
+	[self cleanupTest6];
+    
 	SPAssertTestCompletesInTimeInterval(kDefaultNonAsyncLoadingTestTimeout + (kSPAsyncLoadingDefaultTimeout * 2));
 	SPTestAssert(self.playlist != nil, @"Test playlist is nil - cannot remove");
 	
