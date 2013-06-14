@@ -1498,6 +1498,10 @@ static SPSession *sharedSession;
 }
 
 -(void)playTrack:(SPTrack *)aTrack callback:(SPErrorableOperationCallback)block {
+	[self playTrack:aTrack offset:0.0 callback:block];
+}
+
+-(void)playTrack:(SPTrack *)aTrack offset:(NSTimeInterval)offset callback:(SPErrorableOperationCallback)block {
 	
 	SPDispatchAsync(^() {
 		
@@ -1508,6 +1512,9 @@ static SPSession *sharedSession;
 			errorCode = sp_session_player_load(self.session, aTrack.track);
 		
 		if (errorCode == SP_ERROR_OK) {
+			int msecOffset = (int)(offset * 1000.0);
+			if (msecOffset > 0)
+				sp_session_player_seek(self.session, msecOffset);
 			dispatch_async(dispatch_get_main_queue(), ^{ self.playing = YES; });
 		} else {
 			error = [NSError spotifyErrorWithCode:errorCode];
