@@ -64,9 +64,9 @@ static NSString * const kSPLicensesFormatter = @"http://www.spotify.com/mobile/e
 	UIViewController *parent = self.navigationController;
 	
 	if ([parent respondsToSelector:@selector(presentingViewController)]) {
-		[parent.presentingViewController dismissModalViewControllerAnimated:YES];
+		[parent.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 	} else {
-		[parent.parentViewController dismissModalViewControllerAnimated:YES];
+		[parent.parentViewController dismissViewControllerAnimated:YES completion:nil];
 	}
 }
 
