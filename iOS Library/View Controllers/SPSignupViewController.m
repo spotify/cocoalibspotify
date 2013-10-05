@@ -283,7 +283,7 @@
 	nav.navigationBar.barStyle = UIBarStyleBlack;
 	nav.modalPresentationStyle = UIModalPresentationFormSheet;
  
-	[self presentModalViewController:nav animated:YES];
+	[self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark Merge page
