@@ -316,7 +316,7 @@
     [super viewWillAppear:animated];
 
 	previousStyle = [[UIApplication sharedApplication] statusBarStyle];
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:animated];
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
