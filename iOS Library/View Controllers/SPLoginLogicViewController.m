@@ -189,8 +189,16 @@
 	[self.view addSubview:self.backgroundImageView];
 	
 	// Login form background
+	UIView *loginContainerView;
 	
-	UIView *loginContainerView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 185.0)];
+	if([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0){
+        	loginContainerView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 185.0)];	
+    	}
+    	else{
+       		self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+       		loginContainerView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 74.0, 300.0, 185.0)];
+    	}
+	
 	loginContainerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 	[self.view addSubview:loginContainerView];
 	
