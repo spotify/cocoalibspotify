@@ -1461,6 +1461,14 @@ static SPSession *sharedSession;
     SPDispatchAsync(^() { if (self.session) sp_session_preferred_bitrate(self.session, bitrate); });
 }
 
+-(void)setPreferredOfflineBitrate:(sp_bitrate)bitrate {
+    [self setPreferredOfflineBitrate:bitrate allowResync:YES];
+}
+
+-(void)setPreferredOfflineBitrate:(sp_bitrate)bitrate allowResync:(BOOL)allowResync {
+    SPDispatchAsync(^() { if (self.session) sp_session_preferred_offline_bitrate(self.session, bitrate, allowResync); });
+}
+
 -(void)setMaximumCacheSizeMB:(size_t)maximumCacheSizeMB {
     SPDispatchAsync(^() { if (self.session) sp_session_set_cache_size(self.session, maximumCacheSizeMB); });
 }
