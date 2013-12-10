@@ -265,6 +265,23 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 -(void)setPreferredBitrate:(sp_bitrate)bitrate;
 
+/** Set the preferred offline audio bitrate for playback.
+ 
+ The default is to play the highest quality stream available.
+ 
+ @param bitrate The preferred offline bitrate for streaming.
+ */
+-(void)setPreferredOfflineBitrate:(sp_bitrate)bitrate;
+
+/** Set the preferred offline audio bitrate for playback.
+ 
+ The default is to play the highest quality stream available.
+ 
+ @param bitrate The preferred offline bitrate for streaming.
+ @param allowResync To allow libspotify to resync all synced content if needed
+ */
+-(void)setPreferredOfflineBitrate:(sp_bitrate)bitrate allowResync:(BOOL)allowResync;
+
 ///----------------------------
 /// @name Properties
 ///----------------------------
