@@ -220,6 +220,7 @@ static NSMutableDictionary *loginControllerCache;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 	self.shown = YES;
 }
 
