@@ -217,7 +217,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
  @param completionBlock The block to be called when the operation has completed.
  */
--(void)flushCaches:(void (^)())completionBlock;
+-(void)flushCaches:(void (^)(void))completionBlock;
 
 /** Log out from the Spotify service.
  
@@ -226,7 +226,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
  @param completionBlock The block to be called when the logout process has completed.
  */
--(void)logout:(void (^)())completionBlock;
+-(void)logout:(void (^)(void))completionBlock;
 
 /** Returns the current connection state.
  
