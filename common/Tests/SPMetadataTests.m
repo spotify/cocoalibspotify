@@ -87,7 +87,7 @@
 								 type:SP_ARTISTBROWSE_NO_TRACKS
 							 callback:^(SPArtistBrowse *artistBrowse) {
 								 
-								 SPTestAssert(dispatch_get_current_queue() == dispatch_get_main_queue(), @"browseArtistAtURL callback on wrong queue.");
+								 SPTestAssert([NSThread isMainThread], @"browseArtistAtURL callback on wrong queue.");
 								 
 								 [SPAsyncLoading waitUntilLoaded:artistBrowse timeout:kSPAsyncLoadingDefaultTimeout then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
 									 SPTestAssert(notLoadedItems.count == 0, @"ArtistBrowse loading timed out for %@", artistBrowse);
@@ -106,7 +106,7 @@
 						  inSession:[SPSession sharedSession]
 						   callback:^(SPAlbumBrowse *albumBrowse) {
 							   
-							   SPTestAssert(dispatch_get_current_queue() == dispatch_get_main_queue(), @"browseAlbumAtURL callback on wrong queue.");
+							   SPTestAssert([NSThread isMainThread], @"browseAlbumAtURL callback on wrong queue.");
 							   
 							   [SPAsyncLoading waitUntilLoaded:albumBrowse timeout:kSPAsyncLoadingDefaultTimeout then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
 								   SPTestAssert(notLoadedItems.count == 0, @"AlbumBrowse loading timed out for %@", albumBrowse);

@@ -53,7 +53,7 @@
 									   inSession:[SPSession sharedSession]
 										callback:^(NSError *error) {
 											SPTestAssert(error == nil, @"Post to inbox operation encountered error: %@", error);
-											SPTestAssert(dispatch_get_current_queue() == dispatch_get_main_queue(), @"Post tracks callback on wrong queue.");
+											SPTestAssert([NSThread isMainThread], @"Post tracks callback on wrong queue.");
 											SPPassTest();
 										}];
 	}];
