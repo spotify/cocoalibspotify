@@ -84,7 +84,7 @@
 
 @property (readwrite, strong) NSTimer *prodTimeoutTimer;
 
-@property (nonatomic, readwrite, copy) void (^logoutCompletionBlock) ();
+@property (nonatomic, readwrite, copy) void (^logoutCompletionBlock) (void);
 
 -(void)checkLoadingObjects;
 -(void)prodSessionForcefully;
@@ -913,7 +913,7 @@ static SPSession *sharedSession;
 	});
 }
 
--(void)flushCaches:(void (^)())completionBlock {
+-(void)flushCaches:(void (^)(void))completionBlock {
 	SPDispatchAsync(^() {
 		if (self.session) sp_session_flush_caches(self.session); 
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -1026,7 +1026,7 @@ static SPSession *sharedSession;
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
--(void)logout:(void (^)())completionBlock {
+-(void)logout:(void (^)(void))completionBlock {
 	[self.trackCache removeAllObjects];
 	[self.userCache removeAllObjects];
 	self.inboxPlaylist = nil;

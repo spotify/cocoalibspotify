@@ -39,6 +39,6 @@
 
 -(id)initWithSession:(SPSession *)aSession;
 
-@property (nonatomic, readwrite, copy) void (^completionBlock) ();
+@property (nonatomic, readwrite, copy) void (^completionBlock) (void);
 
 @end
