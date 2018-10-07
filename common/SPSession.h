@@ -602,6 +602,14 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 -(void)playTrack:(SPTrack *)aTrack callback:(SPErrorableOperationCallback)block;
 
+/** Start playing the given track from a specific offset.
+
+ @param aTrack The track to play.
+ @offset offset The time at which to start playing from. Must be between 0.0 and the duration of the track.
+ @param block A block to be called when operation has successfully begun. The error parameter will be non-`nil` is an error occurred.
+ */
+-(void)playTrack:(SPTrack *)aTrack offset:(NSTimeInterval)offset callback:(SPErrorableOperationCallback)block;
+
 /** Seek the current playback position to the given time. 
  
  @param offset The time at which to seek to. Must be between 0.0 and the duration of the playing track.
