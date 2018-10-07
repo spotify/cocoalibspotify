@@ -1534,7 +1534,7 @@ static SPSession *sharedSession;
 }
 
 -(void)seekPlaybackToOffset:(NSTimeInterval)offset {
-	SPDispatchAsync(^() { if (self.session != NULL) sp_session_player_seek(self.session, (int)offset * 1000); });
+	SPDispatchAsync(^() { if (self.session != NULL) sp_session_player_seek(self.session, (int)(offset * 1000.0)); });
 }
 
 -(void)setPlaying:(BOOL)nowPlaying {
